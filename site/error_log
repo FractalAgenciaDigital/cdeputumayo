@@ -1,0 +1,3 @@
+[02-Mar-2021 04:40:40 UTC] PHP Warning:  mysqli_stmt_bind_param(): Number of variables doesn't match number of parameters in prepared statement in /home2/ccputuma/cdeputumayo.com/site/diligencias_frontend.php on line 67
+[02-Mar-2021 04:48:13 UTC] PHP Warning:  mysqli_stmt_bind_param(): Number of variables doesn't match number of parameters in prepared statement in /home2/ccputuma/cdeputumayo.com/site/diligencias_frontend.php on line 67
+[02-Mar-2021 04:49:17 UTC] PHP Warning:  mysqli_stmt_bind_param(): Number of variables doesn't match number of parameters in prepared statement in /home2/ccputuma/cdeputumayo.com/site/diligencias_frontend.php on line 67

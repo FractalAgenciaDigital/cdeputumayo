@@ -1,0 +1,107 @@
+<?php
+		include "cabecera.php";
+?>
+
+        <div class="row">
+    		<div class="col-sm-12">
+    			<div class="card">
+    				<div class="card-header">
+    					<div class="d-flex justify-content-between">
+    						<div class="align-self-center">
+    							<strong>Diligencias</strong>
+    						</div>
+    						<!--<a id="exportar" class="btn btn-success" target="_blank" role="button">Exportar</a>-->
+    						<a class="btn btn-success" target="_blank" role="button" href="info_d.php">Exportar</a>
+    						
+    						<div class="col-1"></div>
+    					</div>
+    				</div>
+    				    <div class="card-body">
+    					    <div class="form-group row">
+    						    <label class="col-md-auto col-form-label">Tipo documento</label>
+    						        <div class="col-md-auto">
+    							    <select id="tipoDoc" class="form-control">
+        								<option value="">Seleccione</option>
+        								<option value="1">CEDULA DE CIUDADANIA</option>
+        								<option value="2">NIT</option>
+        								<option value="3">OTROS</option>
+        							</select>
+        						</div>
+    						    <label class="col-md-auto col-form-label">Tercero o Raz&oacute;n social</label>
+    						    <div class="col-md-2">
+    							    <input id="txtBuscar" type="text" class="form-control">
+    						    </div>
+    						    <div class="col-md-1">
+    							    <button type="button" class="btn btn-ghost-primary active" name="nuevo" onClick="listar()">
+    								    Buscar
+    							    </button>
+    						    </div>
+    					</div>
+    					<!--<button type="button" class="btn btn-ghost-primary active" name="nuevo" id="nuevo" data-toggle="modal" data-target="#exampleModal" onClick="limpiar()">
+    						Nuevo
+    					</button><br><br>-->
+    					<table style="font-size: 12px;">
+    						<thead>
+    							<tr>
+    								<th class="text-center align-middle">#</th>
+    								<th class="text-center align-middle">Tipo documento</th>
+    								<th class="text-center align-middle">Nit</th>
+    								<th class="text-center align-middle">Doc. persona</th>
+    								<th class="text-center align-middle">Nombre</th>
+    								<th class="text-center align-middle">Ape. 1</th>
+    								<th class="text-center align-middle">Ape. 2</th>
+    								<th class="text-center align-middle">Raz&oacute;n social</th>
+    								<th class="text-center align-middle">Act. econ&oacute;mica</th>
+    								<th class="text-center align-middle">Dir. domicilio</th>
+    								<th class="text-center align-middle">Ciudad</th>
+    								<th class="text-center align-middle">Correo</th>
+    								<th class="text-center align-middle">Tel. o cel. 1</th>
+    								<th class="text-center align-middle">Tel. o cel. 2</th>
+    								<th class="text-center align-middle">Act. econ&oacute;mica empresa</th>
+    								<th class="text-center align-middle">Dir. empresa</th>
+    								<th class="text-center align-middle">Correo empresarial</th>
+    								<th class="text-center align-middle">Correo empresa</th>
+    								<th class="text-center align-middle">Tel. o cel.</th>
+    								<th class="text-center align-middle">Ctde</th>
+    								<th class="text-center align-middle">Desarrollo prod.</th>
+    								<th class="text-center align-middle">Form. empresarial</th>
+    								<th class="text-center align-middle">Fort. empresarial</th>
+    								<th class="text-center align-middle">Fecha solicitud</th>
+    								<th class="text-center align-middle">Solicitud</th>
+    								<th>-</th>
+    							</tr>
+    						</thead>
+    						<tbody id="cuerpo">
+    							
+    						</tbody>
+    					</table
+    				
+    				    </div>
+    			   </div>
+    		    </div>  
+            </div>
+
+<?php
+		include "pie.php";
+?>
+<script>
+    $( document ).ready(function () {
+        listar();
+    });
+
+    function listar ()
+    {
+		let cuerpo = {
+		    listar : '1', 
+		    tipoDoc: $('#tipoDoc').val(), 
+		    txtBuscar: $('#txtBuscar').val()
+		    
+		};
+		
+		$("#exportar").attr('href', `info_d.php?exportar=1&tipoDoc=${cuerpo.tipoDoc}&txtBuscar=${cuerpo.txtBuscar}`);
+        
+        $.post('../diligencias_ajax.php', cuerpo).done(function ( resp ) {
+            $('#cuerpo').html(resp);
+        });
+    }
+</script>
