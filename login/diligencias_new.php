@@ -307,7 +307,7 @@
         				                    </tr>
         				                    <tr>
         				                        <td><b>Des. Productivo: </b></td>
-        				                        <td> <?= $sectores[$datos_usu['sectorEcon']]?></td>
+        				                        <td> <?= isset($sectores[$datos_usu['sectorEcon']])? $sectores[$datos_usu['sectorEcon']] : ''?></td>
         				                        <td>
             				                <?php   if($datos_usu['sectorEcon']==12){?>
             				                            <b>Cual: </b>
@@ -466,7 +466,7 @@
         				                                            <?= $filap['programa']?>
         				                                        </td>
         				                                        <td>
-        				                                            <input type="checkbox" name="si_programa[]" value="<?= $filap['id']?>" <?php if($aux_pxd[$filap['id']]) echo "checked";?>>
+        				                                            <input type="checkbox" name="si_programa[]" value="<?= $filap['id']? $filap['id'] : ''?>" <?php if(isset($aux_pxd[$filap['id']]) && $aux_pxd[$filap['id']]) echo "checked";?>>
         				                                        </td>
         				                                        <td>
         				                                            <select class="form-control " style="width: 5em;" name="apoyo_l['<?= $filap['id']?>']" id="apoyo">
@@ -475,13 +475,18 @@
                                                                     </select>
         				                                        </td>
         				                                        <td>
-        				                                            <select class="form-control " name="dinero_espcie_l['<?= $filap['id']?>']" id="dinero_espcie">
-                    				                                    <option value="Dinero" <?php if($aux_pxd[$filap['id']]['dinero_espcie']=="Dinero"||$aux_pxd[$filap['id']]=="Di"){ echo "selected";}?>>Dinero</option>
-                                                                        <option value="Especie"<?php if($aux_pxd[$filap['id']]['dinero_espcie']!="Dinero"&&$aux_pxd[$filap['id']]!="Di"){ echo "selected";}?>>Especie</option>
+        				                                            <select class="form-control " name="dinero_espcie_l['<?= isset($filap['id'])? $filap['id'] : ''?>']" id="dinero_espcie">
+                    				                                    <option value="Dinero" <?php 
+																			if( isset($aux_pxd[$filap['id']]['dinero_espcie']) && ($aux_pxd[$filap['id']]['dinero_espcie']=="Dinero" 
+																			|| $aux_pxd[$filap['id']]=="Di")){ echo "selected";}?>
+																		>
+																			Dinero
+																		</option>
+                                                                        <option value="Especie"<?php if( isset($aux_pxd[$filap['id']]['dinero_espcie']) && ($aux_pxd[$filap['id']]['dinero_espcie']!="Dinero"&&$aux_pxd[$filap['id']]!="Di")){ echo "selected";}?>>Especie</option>
                                                                     </select>
         				                                        </td>
         				                                        <td>   
-        				                                            <input class="form-control " type="text" name="especie_l['<?= $filap['id']?>']" id="especie" value="<?= $aux_pxd[$filap['id']]['descrip_val']?>">
+        				                                            <input class="form-control " type="text" name="especie_l['<?= isset($filap['id'])? $filap['id'] : ''?>']" id="especie" value="<?= isset($aux_pxd[$filap['id']]['descrip_val'])? $aux_pxd[$filap['id']]['descrip_val'] : ''?>">
         				                                        </td>
         				                                    </tr>
         				                        <?php   }

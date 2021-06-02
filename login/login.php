@@ -108,11 +108,11 @@
 			$.post( "usuarios_ajax.php", { usuario: usu, clave: clave })
 			.done(function( data ) {
 				resultado =  JSON.parse(data) ;
-				//console.log(resultado.respuesta);
+				//console.log(resultado);
 				if(resultado.respuesta==0){
 					$("#errores").show();
 				}
-				else{
+				else{					
 					document.location.href="principal.php";
 				}
 			});

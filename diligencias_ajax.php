@@ -266,18 +266,20 @@
     $formtal["11"] = "Visita Putumayo";
     $formtal["12"] = "Club de afiliados";
     $cons_a="SELECT * FROM programas where estado = 1 order by programa";
-	$res_a = mysqli_query($conn, $cons_a);
-	$programas = array();
-	while($afila = mysqli_fetch_array($res_a)){
-	    $programas[]=$afila['programa'];
-	}
+    $res_a = mysqli_query($conn, $cons_a);
+    $programas = array();
+
+    while($afila = mysqli_fetch_array($res_a)){
+        $programas[]=$afila['programa'];
+    }
+
     $cons_a="SELECT * FROM programas   order by programa";
-	$res_a = mysqli_query($conn, $cons_a);
-	$programas2 = array(); $programas3 = array();
-	while($afila = mysqli_fetch_array($res_a)){
-	    $programas2[$afila['id']]=$afila['programa'];
-	    $programas3[$afila['id']]=$afila;
-	}
+    $res_a = mysqli_query($conn, $cons_a);
+    $programas2 = array(); $programas3 = array();
+    while($afila = mysqli_fetch_array($res_a)){
+        $programas2[$afila['id']]=$afila['programa'];
+        $programas3[$afila['id']]=$afila;
+    }
     //while (list($tipoDocumento, $documento, $nombre, $apellido1, $apellido2, $razonSocial, $actividadEconomica, $direccDomicilio, $ciudad, $email, $telocel1, $telocel2, $nitEmpr, $actividadEconomicaEmpr, $direccEmpr, $emailPersonaEmpr, $emailEmpr, $telocel) = mysqli_fetch_array($res))
     while ($fila = mysqli_fetch_array($res))
     {
@@ -343,6 +345,8 @@
               $fechaSol = explode('-', explode(' ', $fila['updated_at'])[0]);
               $updated_at = $fechaSol[2]."/".$fechaSol[1]."/".$fechaSol[0];
               $id_f = '"'.$fila['id'].'"';
+              $auxsector = $fila['sectorEcon']? $fila['sectorEcon'] : '';
+              
               $tbody .= "
               <tr>
                   <td>$cont</td>
@@ -363,9 +367,9 @@
                   <td>".$fila['activEconEmpr']."</td>
                   <td>".$fila['direccEmpr']."</td>
                   <td>".$fila['emailPersonalEmpr']."</td>
-                  <td>  ".$fila['emailEmpr']."</td>
+                  <td>".$fila['emailEmpr']."</td>
                   <td>".$fila['telocel']."</td>
-                  <td>".$sectores[$fila['sectorEcon']]."</td>
+                  <td>".$auxsector."</td>
                   <td>".$fila['sectorEconOtro']."</td>
                   <td>".$fila['ppalProdServ']."</td>
                   <td>".$fila['formeTema']."</td>
@@ -385,7 +389,7 @@
                   <td>".$fila2['programa_ccp']."</td>";
                     foreach($programas3 as $p) {  
                         
-                        if($aux_pxd_x_id_pro[$p['id']]){
+                        if(isset($aux_pxd_x_id_pro[$p['id']])){
                            $tbody.="<td>Si</td><td>".$aux_pxd_x_id_pro[$p['id']]['recive_apoyo']."</td><td>".$aux_pxd_x_id_pro[$p['id']]['dinero_espcie']."</td><td>".$aux_pxd_x_id_pro[$p['id']]['descrip_val']."</td>";
                         }
                         else{

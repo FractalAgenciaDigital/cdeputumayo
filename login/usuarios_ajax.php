@@ -6,8 +6,9 @@ if(isset($_POST['usuario'])&&isset($_POST['clave'])){
 	$cons="SELECT * FROM usuarios where usuario='".$_POST['usuario']."' and clave='".md5($_POST['clave'])."' and estado=1";
 	$res = mysqli_query($conn,$cons);
 	$fila = mysqli_fetch_assoc($res);
+	
 	if($fila){
-		$fila['respuesta'] = 1;
+		$fila['respuesta'] = 1;		
 		session_start();
 		$_SESSION['usuario'] = $fila['usuario'];
 		$_SESSION['nombre'] = $fila['nombre'];
@@ -18,7 +19,7 @@ if(isset($_POST['usuario'])&&isset($_POST['clave'])){
 	else{
 		$fila['respuesta'] = 0;
 	}
-	//print_r(json_encode($fila));
+	//print_r($_SESSION);
 	//echo json_encode($fila,JSON_UNESCAPED_SLASHES);
 	
 	echo json_encode($fila);

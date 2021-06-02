@@ -1,5 +1,5 @@
 	<?php 
-
+session_start();
 $ruta="";
 if(isset($_GET['ruta'])){
 	$ruta = $_GET['ruta'];
