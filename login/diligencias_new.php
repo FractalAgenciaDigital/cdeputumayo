@@ -1,8 +1,21 @@
 <?php
 		include "cabecera.php";
-		 include '../funciones.php'; 
-		$id_edit = $id_registro = isset($_GET['id_edit'])? $_GET['id_edit'] : $_POST['id_edit'];
-		
+		include '../funciones.php'; 
+		$id_edit = ''; $id_registro = ''; 
+		if(isset($_GET['id_edit'])) {
+			$id_edit = $id_registro = $_GET['id_edit'];
+			$cons="SELECT * FROM diligencias where id=".$id_registro;
+			$res = mysqli_query($conn, $cons);
+			$datos_usu = mysqli_fetch_array($res);
+
+			$cons="SELECT * FROM extras_usus where id_usu=".$id_registro;
+			$res = mysqli_query($conn, $cons);
+			$datos_extra = mysqli_fetch_array($res);
+			
+		} elseif(isset($_POST['id_edit'])) {
+			$id_edit = $id_registro = $_POST['id_edit'];
+		}
+
 		//echo "<pre>"; print_r($_POST); echo "</pre>";
 		if(isset($_POST['Guardar'])){
 		    //echo "id_registro=$id_registro ".$_POST['Guardar']." ---- enttrando";
@@ -86,9 +99,6 @@
 		    $programas[]=$afila['programa'];
 		}
 		
-		$cons="SELECT * FROM diligencias where id=".$id_registro;
-		$res = mysqli_query($conn, $cons);
-		$datos_usu = mysqli_fetch_array($res);
 		
 		$tipo_docs['1']="CÉDULA DE CIUDADANÍA";
 		$tipo_docs['2']="NIT";
@@ -135,70 +145,68 @@
         $formtal["11"] = "Visita Putumayo";
         $formtal["12"] = "Club de afiliados";
 		
-		$cons="SELECT * FROM extras_usus where id_usu=".$id_registro;
-		$res = mysqli_query($conn, $cons);
-		$datos_extra = mysqli_fetch_array($res);
+		
 		//echo "<pre>"; print_r($datos_extra); echo "</pre>";
 		
-		$genero = $datos_extra['sexo'] ? $datos_extra['sexo'] : "";
-		$poblacion = $datos_extra['poblacion'] ? $datos_extra['poblacion'] : "";
-		$escolaridad = $datos_extra['escolaridad'] ? $datos_extra['escolaridad'] : "";
-		$rango_edad = $datos_extra['rango_edad'] ? $datos_extra['rango_edad'] : "";
-		$registrado = $datos_extra['registrado'] ? $datos_extra['registrado'] : "";
-		$matricula = $datos_extra['matricula'] ? $datos_extra['matricula'] : "";
-		$fecha_matricula = $datos_extra['fecha_matricula'] ? $datos_extra['fecha_matricula'] : "";
-		$programa_ccp = $datos_extra['programa_ccp'] ? $datos_extra['programa_ccp'] : "";
-		$nom_progr = $datos_extra['nom_progr'] ? $datos_extra['nom_progr'] : "";
-		$nom_progr2 = $datos_extra['nom_progr2'] ? $datos_extra['nom_progr2'] : "";
-		$nom_progr3 = $datos_extra['nom_progr3'] ? $datos_extra['nom_progr3'] : "";
-		$nom_progr4 = $datos_extra['nom_progr4'] ? $datos_extra['nom_progr4'] : "";
-		$nom_progr5 = $datos_extra['nom_progr5'] ? $datos_extra['nom_progr5'] : "";
-		$nom_progr6 = $datos_extra['nom_progr6'] ? $datos_extra['nom_progr6'] : "";
-		$apoyo = $datos_extra['apoyo'] ? $datos_extra['apoyo'] : "";
-		$apoyo2 = $datos_extra['apoyo2'] ? $datos_extra['apoyo2'] : "";
-        $apoyo3 = $datos_extra['apoyo3'] ? $datos_extra['apoyo3'] : "";		
-        $apoyo4 = $datos_extra['apoyo4'] ? $datos_extra['apoyo4'] : "";
-        $apoyo5 = $datos_extra['apoyo5'] ? $datos_extra['apoyo5'] : "";
-        $apoyo6 = $datos_extra['apoyo6'] ? $datos_extra['apoyo6'] : "";
-		$dinero_espcie = $datos_extra['dinero_espcie'] ? $datos_extra['dinero_espcie'] : "";
-		$dinero_espcie2 = $datos_extra['dinero_espcie2'] ? $datos_extra['dinero_espcie2'] : "";
-		$dinero_espcie3 = $datos_extra['dinero_espcie3'] ? $datos_extra['dinero_espcie3'] : "";
-		$dinero_espcie4 = $datos_extra['dinero_espcie4'] ? $datos_extra['dinero_espcie4'] : "";
-		$dinero_espcie5 = $datos_extra['dinero_espcie5'] ? $datos_extra['dinero_espcie5'] : "";
-		$dinero_espcie6 = $datos_extra['dinero_espcie6'] ? $datos_extra['dinero_espcie6'] : "";
-	    $especie = $datos_extra['especie'] ? $datos_extra['especie'] : "";
-	    $especie2 = $datos_extra['especie2'] ? $datos_extra['especie2'] : "";
-	    $especie3 = $datos_extra['especie3'] ? $datos_extra['especie3'] : "";
-	    $especie4 = $datos_extra['especie4'] ? $datos_extra['especie4'] : "";
-	    $especie5 = $datos_extra['especie5'] ? $datos_extra['especie5'] : "";
-	    $especie6 = $datos_extra['especie6'] ? $datos_extra['especie6'] : "";
-		$estado_solicitud = $datos_extra['estado_solicitud'] ? $datos_extra['estado_solicitud'] : "";
-		$fecha_solicitud = $datos_extra['fecha_solicitud'] ? $datos_extra['fecha_solicitud'] : "";
-		$enero = $datos_extra['enero'] ? $datos_extra['enero'] : "";
-		$febrero = $datos_extra['febrero'] ? $datos_extra['febrero'] : "";
-		$marzo = $datos_extra['marzo'] ? $datos_extra['marzo'] : "";
-		$abril = $datos_extra['abril'] ? $datos_extra['abril'] : "";
-		$mayo = $datos_extra['mayo'] ? $datos_extra['mayo'] : "";
-		$junio = $datos_extra['junio'] ? $datos_extra['junio'] : "";
-		$julio = $datos_extra['julio'] ? $datos_extra['julio'] : "";
-		$agosto = $datos_extra['agosto'] ? $datos_extra['agosto'] : "";
-		$septiembre = $datos_extra['septiembre'] ? $datos_extra['septiembre'] : "";
-		$octubre = $datos_extra['octubre'] ? $datos_extra['octubre'] : "";
-		$noviembre = $datos_extra['noviembre'] ? $datos_extra['noviembre'] : "";
-		$diciembre = $datos_extra['diciembre'] ? $datos_extra['diciembre'] : "";
-		$obs_ene = $datos_extra['obs_ene'] ? $datos_extra['obs_ene'] : "";
-		$obs_feb = $datos_extra['obs_feb'] ? $datos_extra['obs_feb'] : "";
-		$obs_mar = $datos_extra['obs_mar'] ? $datos_extra['obs_mar'] : "";
-		$obs_abr = $datos_extra['obs_abr'] ? $datos_extra['obs_abr'] : "";
-		$obs_may = $datos_extra['obs_may'] ? $datos_extra['obs_may'] : "";
-		$obs_jun = $datos_extra['obs_jun'] ? $datos_extra['obs_jun'] : "";
-		$obs_jul = $datos_extra['obs_jul'] ? $datos_extra['obs_jul'] : "";
-		$obs_ago = $datos_extra['obs_ago'] ? $datos_extra['obs_ago'] : "";
-		$obs_sep = $datos_extra['obs_sep'] ? $datos_extra['obs_sep'] : "";
-		$obs_oct = $datos_extra['obs_oct'] ? $datos_extra['obs_oct'] : "";
-		$obs_nov = $datos_extra['obs_nov'] ? $datos_extra['obs_nov'] : "";
-		$obs_dic = $datos_extra['obs_dic'] ? $datos_extra['obs_dic'] : "";
-		$otro_poblacion = $datos_extra['otro_poblacion'] ? $datos_extra['otro_poblacion'] : "";
+		$genero = isset($datos_extra['sexo']) ? $datos_extra['sexo'] : "";
+		$poblacion = isset($datos_extra['poblacion']) ? $datos_extra['poblacion'] : "";
+		$escolaridad = isset($datos_extra['escolaridad']) ? $datos_extra['escolaridad'] : "";
+		$rango_edad = isset($datos_extra['rango_edad']) ? $datos_extra['rango_edad'] : "";
+		$registrado = isset($datos_extra['registrado']) ? $datos_extra['registrado'] : "";
+		$matricula = isset($datos_extra['matricula']) ? $datos_extra['matricula'] : "";
+		$fecha_matricula = isset($datos_extra['fecha_matricula']) ? $datos_extra['fecha_matricula'] : "";
+		$programa_ccp = isset($datos_extra['programa_ccp']) ? $datos_extra['programa_ccp'] : "";
+		$nom_progr = isset($datos_extra['nom_progr']) ? $datos_extra['nom_progr'] : "";
+		$nom_progr2 = isset($datos_extra['nom_progr2']) ? $datos_extra['nom_progr2'] : "";
+		$nom_progr3 = isset($datos_extra['nom_progr3']) ? $datos_extra['nom_progr3'] : "";
+		$nom_progr4 = isset($datos_extra['nom_progr4']) ? $datos_extra['nom_progr4'] : "";
+		$nom_progr5 = isset($datos_extra['nom_progr5']) ? $datos_extra['nom_progr5'] : "";
+		$nom_progr6 = isset($datos_extra['nom_progr6']) ? $datos_extra['nom_progr6'] : "";
+		$apoyo = isset($datos_extra['apoyo']) ? $datos_extra['apoyo'] : "";
+		$apoyo2 = isset($datos_extra['apoyo2']) ? $datos_extra['apoyo2'] : "";
+        $apoyo3 = isset($datos_extra['apoyo3']) ? $datos_extra['apoyo3'] : "";		
+        $apoyo4 = isset($datos_extra['apoyo4']) ? $datos_extra['apoyo4'] : "";
+        $apoyo5 = isset($datos_extra['apoyo5']) ? $datos_extra['apoyo5'] : "";
+        $apoyo6 = isset($datos_extra['apoyo6']) ? $datos_extra['apoyo6'] : "";
+		$dinero_espcie = isset($datos_extra['dinero_espcie']) ? $datos_extra['dinero_espcie'] : "";
+		$dinero_espcie2 = isset($datos_extra['dinero_espcie2']) ? $datos_extra['dinero_espcie2'] : "";
+		$dinero_espcie3 = isset($datos_extra['dinero_espcie3']) ? $datos_extra['dinero_espcie3'] : "";
+		$dinero_espcie4 = isset($datos_extra['dinero_espcie4']) ? $datos_extra['dinero_espcie4'] : "";
+		$dinero_espcie5 = isset($datos_extra['dinero_espcie5']) ? $datos_extra['dinero_espcie5'] : "";
+		$dinero_espcie6 = isset($datos_extra['dinero_espcie6']) ? $datos_extra['dinero_espcie6'] : "";
+	    $especie = isset($datos_extra['especie']) ? $datos_extra['especie'] : "";
+	    $especie2 = isset($datos_extra['especie2']) ? $datos_extra['especie2'] : "";
+	    $especie3 = isset($datos_extra['especie3']) ? $datos_extra['especie3'] : "";
+	    $especie4 = isset($datos_extra['especie4']) ? $datos_extra['especie4'] : "";
+	    $especie5 = isset($datos_extra['especie5']) ? $datos_extra['especie5'] : "";
+	    $especie6 = isset($datos_extra['especie6']) ? $datos_extra['especie6'] : "";
+		$estado_solicitud = isset($datos_extra['estado_solicitud']) ? $datos_extra['estado_solicitud'] : "";
+		$fecha_solicitud = isset($datos_extra['fecha_solicitud']) ? $datos_extra['fecha_solicitud'] : "";
+		$enero = isset($datos_extra['enero']) ? $datos_extra['enero'] : "";
+		$febrero = isset($datos_extra['febrero']) ? $datos_extra['febrero'] : "";
+		$marzo = isset($datos_extra['marzo']) ? $datos_extra['marzo'] : "";
+		$abril = isset($datos_extra['abril']) ? $datos_extra['abril'] : "";
+		$mayo = isset($datos_extra['mayo']) ? $datos_extra['mayo'] : "";
+		$junio = isset($datos_extra['junio']) ? $datos_extra['junio'] : "";
+		$julio = isset($datos_extra['julio']) ? $datos_extra['julio'] : "";
+		$agosto = isset($datos_extra['agosto']) ? $datos_extra['agosto'] : "";
+		$septiembre = isset($datos_extra['septiembre']) ? $datos_extra['septiembre'] : "";
+		$octubre = isset($datos_extra['octubre']) ? $datos_extra['octubre'] : "";
+		$noviembre = isset($datos_extra['noviembre']) ? $datos_extra['noviembre'] : "";
+		$diciembre = isset($datos_extra['diciembre']) ? $datos_extra['diciembre'] : "";
+		$obs_ene = isset($datos_extra['obs_ene']) ? $datos_extra['obs_ene'] : "";
+		$obs_feb = isset($datos_extra['obs_feb']) ? $datos_extra['obs_feb'] : "";
+		$obs_mar = isset($datos_extra['obs_mar']) ? $datos_extra['obs_mar'] : "";
+		$obs_abr = isset($datos_extra['obs_abr']) ? $datos_extra['obs_abr'] : "";
+		$obs_may = isset($datos_extra['obs_may']) ? $datos_extra['obs_may'] : "";
+		$obs_jun = isset($datos_extra['obs_jun']) ? $datos_extra['obs_jun'] : "";
+		$obs_jul = isset($datos_extra['obs_jul']) ? $datos_extra['obs_jul'] : "";
+		$obs_ago = isset($datos_extra['obs_ago']) ? $datos_extra['obs_ago'] : "";
+		$obs_sep = isset($datos_extra['obs_sep']) ? $datos_extra['obs_sep'] : "";
+		$obs_oct = isset($datos_extra['obs_oct']) ? $datos_extra['obs_oct'] : "";
+		$obs_nov = isset($datos_extra['obs_nov']) ? $datos_extra['obs_nov'] : "";
+		$obs_dic = isset($datos_extra['obs_dic']) ? $datos_extra['obs_dic'] : "";
+		$otro_poblacion = isset($datos_extra['otro_poblacion']) ? $datos_extra['otro_poblacion'] : "";
 		
 ?>
 <style>
@@ -227,122 +235,76 @@
     				        </div>
     					    <div class="form-group row">
     					        <div class="table-responsive" id="datos_reg">
-        				            <table class="table" style="font-size: 12px; background-color: #ececec;">
-        				                <tbody>
-        				        <?php   if($datos_usu['tipoDocumento']!="2"){?>
-        				                    <tr>
-        				                        <td colspan="8" align="center">
-        				                            <b>
-        				                            <?php   if($datos_usu['tipoDocumento']=="1"){ echo "DATOS PERSONA";}
-        				                                    else{echo "DATOS";}        ?>
-        				                            </b>
-        				                        </td>
-        				                    </tr>
-        				                    <tr>
-            				                    <td><b>Tipo Documento: </b></td><td> <?= $tipo_docs[$datos_usu['tipoDocumento']]?></td>
-            				                    <td><b>Documento: </b></td><td> <?= $datos_usu['documento']?></td>
-            				                    <td><b>Nombres: </b></td><td> <?= $datos_usu['nombres']?></td>
-            				                    <td><b>Apellidos: </b></td><td> <?= $datos_usu['apellido1']." ".$datos_usu['apellido2']?></td>
-            				                </tr>
-            				                <tr>
-            				                    <td><b>Nom. Establecimiento1: </b></td><td colspan="3"> <?= $datos_usu['razonSocial']?></td>
-            				                    <td><b>Nom. Establecimiento2: </b></td><td colspan="3"> <?= $datos_usu['razonSocial2']?></td>
-            				                </tr>
-            				                <tr>
-            				                    <td><b>Nom. Establecimiento3: </b></td><td colspan="3"> <?= $datos_usu['razonSocial3']?></td>
-            				                    <td><b>Ciudad: </b></td><td> <?= $ciudades[$datos_usu['ciudad']]?></td>
-            				                    
-            				                </tr>
-            				                <tr>
-            				                    <td><b>Email: </b></td><td> <?= $datos_usu['email']?></td>
-            				                    <td><b>Dirección: </b></td><td colspan="5"> <?= $datos_usu['direccDomic']?></td>
-            				                    
-            				                    
-            				                </tr>
-            				                <tr>
-            				                    <td><b>Tels/Cels 1: </b></td><td> <?= $datos_usu['telocel1']." - ".$datos_usu['telocel2']?></td>
-            				                    <td><b>Act. Económica: </b></td><td  colspan="5"> <?= $datos_usu['activEcon']?></td>
-            				                </tr>
-        				        <?php   }
-        				                else
-        				                {?>
-        				                    <tr>
-        				                        <td colspan="8" align="center"><b>DATOS EMPRESA</b></td>
-        				                    </tr>
-        				                    <tr>
-            				                    <td><b>Nit: </b></td><td> <?= $datos_usu['nitEmpr']?></td>
-            				                    <td><b>Razón Social: </b></td><td colspan="5"> <?= $datos_usu['razonSocial']?></td>
-            				                </tr>
-            				                <tr>
-            				                    <td><b>Ciudad: </b></td><td> <?= $ciudades[$datos_usu['ciudad']]?></td>
-            				                    <td><b>Email: </b></td><td> <?= $datos_usu['emailEmpr']?></td>
-            				                    <td><b>Tel/Cel 1: </b></td><td> <?= $datos_usu['telocel1']?></td>
-            				                    <td><b>Tel/Cel 2: </b></td><td> <?= $datos_usu['telocel2']?></td>
-            				                </tr>
-            				                <tr>
-            				                    <td><b>Act. Económica</b></td><td colspan="3"> <?= $datos_usu['activEconEmpr']?></td>
-            				                    <td><b>Dirección: </b></td><td colspan="3"> <?= $datos_usu['direccEmpr']?></td>
-            				                </tr>
-            				                <tr>
-        				                        <td colspan="8" align="center"><b>DATOS PERSONALES</b></td>
-        				                    </tr>
-        				                    <tr>
-        				                        <td><b>Nombres: </b></td><td colspan="2"> <?= $datos_usu['nombres']?></td>
-        				                        <td><b>Apellidos: </b></td><td colspan="2"> <?= $datos_usu['apellidos']?></td>
-        				                        <td><b>Documento: </b></td><td> <?= $datos_usu['documento']?></td>
-        				                        
-        				                    </tr>
-        				                    <tr>
-        				                        <td><b>Dirección: </b></td><td colspan="3"> <?= $datos_usu['direccDomic']?></td>
-        				                        <td><b>Act. Económica: </b></td><td colspan="3"> <?= $datos_usu['activEcon']?></td>
-        				                    </tr>
-        				                    <tr>
-            				                    <td><b>Email: </b></td><td> <?= $datos_usu['email']?></td>
-            				                    <td><b>Tel/Cel 1: </b></td><td> <?= $datos_usu['telocel']?></td>
-            				                    
-            				                </tr>
-        				        <?php   }?>
-        				                    <tr>
-        				                        <td colspan="8" align="center"><b>EN QUE ESTA INTERESADO</b></td>
-        				                    </tr>
-        				                    <tr>
-        				                        <td><b>Des. Productivo: </b></td>
-        				                        <td> <?= isset($sectores[$datos_usu['sectorEcon']])? $sectores[$datos_usu['sectorEcon']] : ''?></td>
-        				                        <td>
-            				                <?php   if($datos_usu['sectorEcon']==12){?>
-            				                            <b>Cual: </b>
-            				                            
-            				                <?php   }?>
-            				                    </td>
-        				                        <td> 
-        				                    <?php   if($datos_usu['sectorEcon']==12){echo $datos_usu['sectorEconOtro'];} ?>
-        				                        </td>
-        				                        <td><b>Principal Prod/Serv: </b></td>
-        				                        <td colspan="3"> <?= $datos_usu['ppalProdServ']?></td>
-        				                    </tr>
-        				                    <tr>
-        				                        <td><b>Fortalecimiento Empresarial: </b></td>
-        				                        <td> <?= $formtal[$datos_usu['forte']]?></td>
-        				                        <td>
-            				                <?php   if($datos_usu['forteOtro']==8){?>
-            				                            <b>Cual: </b>
-            				                            
-            				                <?php   }?>
-            				                    </td>
-        				                        <td> 
-        				                    <?php   if($datos_usu['sectorEcon']==12){echo $datos_usu['sectorEconOtro'];} ?>
-        				                        </td>
-        				                        <td><b>Formación Empresarial: </b></td>
-        				                        <td colspan="3"> <?= $datos_usu['formeTema']?></td>
-        				                    </tr>
-        				                    <tr>
-        				                        <td><b>Solicitud: </b></td>
-        				                        <td colspan="5"> <?= $datos_usu['solicitud']?></td>
-        				                        
-        				                    </tr>
-        				                </tbody>
-        				            </table>
-        				        </div>
+									<table class="table" style="font-size: 12px; background-color: #ececec;">
+									    <form>
+											<div class="form-row">
+												<div class="form-group col-md-3">
+												<label for="text-input">Tipo Documento</label>                                      
+												<select v-model="tipo_documento" class="form-control">
+													<option value="0" disabled>Seleccione</option>
+													<option value="CC">Cedula de Ciudadania</option>
+													<option value="NIT">NIT</option>
+													<option value="CE">Cedula de Extranjeria</option>
+													<option value="NA">Otro</option>
+												</select>
+												</div>
+												<div class="form-group col-md-3">
+												<label for="text-input">Documento</label>                                        
+                                        		<input type="text" v-model="num_documento" class="form-control" placeholder="Número de documento">
+												</div>
+												<div class="form-group col-md-3">
+												<label for="text-input">Nombres</label>                                        
+                                        		<input type="text" v-model="nombre1" class="form-control" placeholder="Nombres">
+												</div>
+												<div class="form-group col-md-3">
+												<label for="text-input">Apellidos</label>                                      
+                                        		<input type="text" v-model="apellido1" class="form-control" placeholder="Apellidos">
+												</div>
+											</div>
+											<div class="form-row">
+												<div class="form-group col-md-6">
+												<label for="inputCiudad">Ciudad</label>
+												<input type="text" class="form-control" id="inputCiudad">
+												</div>
+												<div class="form-group col-md-4">
+												<label for="inputEmail4" class="form-label">Email</label>
+    											<input type="email" class="form-control" id="inputEmail4">
+												</div>
+												<div class="form-group col-md-2">
+												<label for="number-input">Cels</label>                                    
+                                        		<input type="number" id="Cels" v-model="Cels" class="form-control" placeholder="Num">
+												</div>
+											</div>
+											<div class="form-group">
+												<label for="inputActEconómica">Act. Económica:</label>
+												<input type="text" class="form-control" placeholder="example" aria-label="ActEconómica">
+											</div>
+										</form><br><br>
+
+										<form>
+											<div class="form-row">
+												<div class="form-group col-md-6">
+												<label for="inputDesProductivo">Des. Productivo:</label>
+												<input type="text" class="form-control" placeholder="example" aria-label="DesProductivo">
+												</div>
+												<div class="form-group col-md-6">
+												<label for="inputPrincipalProd/Serv">Principal Prod/Serv:</label>
+												<input type="text" class="form-control" placeholder="example" aria-label="PrincipalProd/Serv">
+												</div>
+											</div>
+											<div class="form-row">
+												<div class="form-group col-md-6">
+												<label for="inputFortalecimientoEmpresarial">Fortalecimiento Empresarial</label>
+												<input type="text" class="form-control" placeholder="example" aria-label="FortalecimientoEmpresarial">
+												</div>
+												<div class="form-group col-md-6">
+												<label for="inputFormaciónEmpresarial">Formación Empresarial:</label>
+												<input type="text" class="form-control" placeholder="example" aria-label="FormaciónEmpresarial">
+												</div>
+											</div>
+										</form>
+									</table>
+								</div>
     					    </div>
     					    <div class="form-group row">
     		                    <form method="POST" onSubmit="return validar()">

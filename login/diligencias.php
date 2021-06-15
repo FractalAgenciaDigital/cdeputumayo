@@ -108,7 +108,7 @@
     					    <div class="form-group row">
     						    <label class="col-md-auto col-form-label">Tipo documento
     						    </label>
-						        <div class="col-md-auto">
+						        <div class="col-md-2">
     							    <select id="tipoDoc" class="form-control">
         								<option value="">Seleccione</option>
         								<option value="1">CEDULA DE CIUDADANIA</option>
@@ -118,21 +118,28 @@
     						    </div>
     						    <label class="col-md-auto col-form-label">Programa
     						    </label>
-						        <div class="col-md-auto">
+						        <div class="col-md-2">
     							    <select id="proyectos" name="proyectos" class="form-control">
-        							
-        								
         							</select>
     						    </div>
     						    <label class="col-md-auto col-form-label">Tercero o Raz&oacute;n social</label>
     						    <div class="col-md-2">
     							    <input id="txtBuscar" type="text" class="form-control">
     						    </div>
-    						    <div class="col-md-1">
+							<div class="form-group row">
+								<div class="col-md-auto">
     							    <button type="button" class="btn btn-ghost-primary active" name="nuevo" onClick="listar()">
     								    Buscar
     							    </button>
     						    </div>
+								<div class="col-md-auto">
+    							    <button type="button" class="btn btn-success" name="nuevo"
+										onclick="document.location='diligencias_new.php'"
+									>
+    								    Nuevo
+    							    </button>
+    						    </div>
+							</div>
     					</div>
     					<!--<button type="button" class="btn btn-ghost-primary active" name="nuevo" id="nuevo" data-toggle="modal" data-target="#exampleModal" onClick="limpiar()">
     						Nuevo
