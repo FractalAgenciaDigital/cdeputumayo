@@ -365,12 +365,13 @@
                   <th>Descripción/ Valor</th>
               </tr><?php   
               $conspxd="SELECT * FROM progsxdiligendias where id_diligencia=$id_registro";
-                  $respxd = mysqli_query($conn, $conspxd);
-                  $aux_pxd=array();
-                  while($filapxd = mysqli_fetch_array($respxd)){ 
-                      $aux_pxd[$filapxd['id_programa']] = $filapxd;
-                  }
-                  
+              $respxd = mysqli_query($conn, $conspxd);
+              $aux_pxd=array();
+              if($respxd) {
+                while($filapxd = mysqli_fetch_array($respxd)){ 
+                    $aux_pxd[$filapxd['id_programa']] = $filapxd;
+                }
+              }
               $consp="SELECT * FROM programas where estado=1 order by programa";
               $resp = mysqli_query($conn, $consp);  
               $cont=1;
