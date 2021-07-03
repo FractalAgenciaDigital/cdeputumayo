@@ -38,7 +38,7 @@
 		<div class="col-sm-12">
 			<div class="card">
 				<div class="card-header">
-                    <strong>Progdramas</strong> 
+                    <strong>Programas</strong> 
 				</div>
 				<div class="card-body">
 					<button type="button" class="btn btn-ghost-primary active" name="nuevo" id="nuevo" data-toggle="modal" data-target="#exampleModal" onClick="limpiar()">
