@@ -10,7 +10,8 @@
 	function ruta() {
 		var tb = document.getElementById("txtBuscar").value;
 		var prog = document.getElementById("proyectos").value;
-		var proyecto = "info_d.php?tipoDoc="+td+"&txtBuscar="+tb+"&proyecto="+prog;
+		var cft = document.getElementById("contenidoFormControlTextarea1").value;
+		var proyecto = "info_d.php?tipoDoc="+td+"&txtBuscar="+tb+"&contenidoFormControlTextarea1="+cft+"&proyecto="+prog;
 		
 		window.open(proyecto, "_blank"); 
 	}
@@ -43,8 +44,8 @@
 						</div>
 						<div class="form-group row">
 						<div class="col-md-12">
-							<label for="exampleFormControlTextarea1" class="form-label">Contenido</label>
-							<textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+							<label for="contenidoFormControlTextarea1" class="form-label">Contenido</label>
+							<textarea  id="contenidoFormControlTextarea1" name="contenidoFormControlTextarea1" rows="3" class="form-control"></textarea>
 						</div>
 					</div>
 					<div class="col-md-1">
@@ -67,14 +68,15 @@
     function listar()
     {
 		let cuerpo = {
-		    listar : '1', 
+		    enviar : '1', 
 		    proyecto: $('#proyectos').val(),
-		    
-		    txtBuscar: $('#txtBuscar').val()
+		    txtBuscar: $('#txtBuscar').val(),
+			contenidoFormControlTextarea1: $('#contenidoFormControlTextarea1').val()
+			
 		};
 
 	
-        $.post('../correos_masivos_ajax.php', cuerpo).done(function ( resp ) {
+        $.post('correos_masivos_ajax.php', cuerpo).done(function ( resp ) {
             $('#cuerpo').html(resp);
         });
     }
@@ -83,8 +85,8 @@
 		let cuerpo = {
 		    listar : '1', 
 		    proyecto: $('#proyectos').val(),
-		    
-		    txtBuscar: $('#txtBuscar').val()
+		    txtBuscar: $('#txtBuscar').val(),
+			contenidoFormControlTextarea1: $('#contenidoFormControlTextarea1').val()
 		};
 		
 		$.post('proyectos_ajax.php', cuerpo).done(function ( resp ) {
