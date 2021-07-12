@@ -1,24 +1,24 @@
 <?php return array (
   'root' => 
   array (
-    'pretty_version' => 'dev-main',
-    'version' => 'dev-main',
+    'pretty_version' => '1.0.0+no-version-set',
+    'version' => '1.0.0.0',
     'aliases' => 
     array (
     ),
-    'reference' => '395553df49a4222338125b47625eb9b2f1bbdffb',
-    'name' => '__root__',
+    'reference' => NULL,
+    'name' => 'desarrolloweb/probando-composer',
   ),
   'versions' => 
   array (
-    '__root__' => 
+    'desarrolloweb/probando-composer' => 
     array (
-      'pretty_version' => 'dev-main',
-      'version' => 'dev-main',
+      'pretty_version' => '1.0.0+no-version-set',
+      'version' => '1.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '395553df49a4222338125b47625eb9b2f1bbdffb',
+      'reference' => NULL,
     ),
     'guzzlehttp/guzzle' => 
     array (
@@ -40,21 +40,30 @@
     ),
     'guzzlehttp/psr7' => 
     array (
-      'pretty_version' => '2.0.0',
-      'version' => '2.0.0.0',
+      'pretty_version' => '1.8.2',
+      'version' => '1.8.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1dc8d9cba3897165e16d12bb13d813afb1eb3fe7',
+      'reference' => 'dc960a912984efb74d0a90222870c72c87f10c91',
     ),
     'mailchimp/transactional' => 
     array (
-      'pretty_version' => '1.0.29',
-      'version' => '1.0.29.0',
+      'pretty_version' => '1.0.30',
+      'version' => '1.0.30.0',
       'aliases' => 
       array (
       ),
-      'reference' => '6bdd7899e3f9ce1be5e01d880b6b15077d22016c',
+      'reference' => 'ffacea4ae9ea102109a9e105de7ba4e186bf4d17',
+    ),
+    'phpmailer/phpmailer' => 
+    array (
+      'pretty_version' => 'v5.2.28',
+      'version' => '5.2.28.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'acba50393dd03da69a50226c139722af8b153b11',
     ),
     'psr/http-client' => 
     array (
@@ -66,22 +75,6 @@
       'reference' => '2dfb5f6c5eff0e91e20e913f8c5452ed95b86621',
     ),
     'psr/http-client-implementation' => 
-    array (
-      'provided' => 
-      array (
-        0 => '1.0',
-      ),
-    ),
-    'psr/http-factory' => 
-    array (
-      'pretty_version' => '1.0.1',
-      'version' => '1.0.1.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '12ac7fcd07e5b077433f5f2bee95b3a771bf61be',
-    ),
-    'psr/http-factory-implementation' => 
     array (
       'provided' => 
       array (

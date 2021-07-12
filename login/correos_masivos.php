@@ -1,10 +1,10 @@
 <?php
 		include "cabecera.php";
-		
+
 	if (isset($_POST["nuevo"])) {
-		
-	}	
-	
+
+	}
+
 ?>
 <script>
 	function ruta() {
@@ -20,7 +20,7 @@
 	<div class="col-sm-12">
 		<div class="card">
 			<div class="card-header">
-				<strong>Correos masivos</strong> 
+				<strong>Correos masivos</strong>
 			</div>
 			<div class="card-body">
 			<style>
@@ -41,21 +41,21 @@
 						<div class="col-md-4">
 							<input id="txtBuscar" name="txtBuscar" type="text" class="form-control">
 						</div>
-						</div>
-						<div class="form-group row">
+					</div>
+					<div class="form-group row">
 						<div class="col-md-12">
 							<label for="contenidoFormControlTextarea1" class="form-label">Contenido</label>
-							<textarea  id="contenidoFormControlTextarea1" name="contenidoFormControlTextarea1" rows="3" class="form-control"></textarea>
+							<textarea id="contenidoFormControlTextarea1" name="contenidoFormControlTextarea1" rows="3" class="form-control"></textarea>
 						</div>
 					</div>
 					<div class="col-md-1">
 						<button type="button" class="btn btn-ghost-primary active" name="nuevo" onClick="listar()" >
-						Buscar
+						Enviar
 						</button>
 					</div>
 				</form>
 				<tbody id="cuerpo">
-    							
+
     			</tbody>
 		    </div>
 		</div>
@@ -94,10 +94,9 @@
         });
 		
     }
-    
+
     $( document ).ready(function () {
        // listar();
         listar_proyects();
     });
 </script>
-	

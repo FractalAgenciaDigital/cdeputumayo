@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c79345925befad2af681af056352779a",
+    "content-hash": "27aee92e1564174043b23e3a9caf6abe",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -246,16 +246,16 @@
         },
         {
             "name": "mailchimp/transactional",
-            "version": "1.0.29",
+            "version": "1.0.30",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mailchimp/mailchimp-transactional-php.git",
-                "reference": "6bdd7899e3f9ce1be5e01d880b6b15077d22016c"
+                "reference": "ffacea4ae9ea102109a9e105de7ba4e186bf4d17"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mailchimp/mailchimp-transactional-php/zipball/6bdd7899e3f9ce1be5e01d880b6b15077d22016c",
-                "reference": "6bdd7899e3f9ce1be5e01d880b6b15077d22016c",
+                "url": "https://api.github.com/repos/mailchimp/mailchimp-transactional-php/zipball/ffacea4ae9ea102109a9e105de7ba4e186bf4d17",
+                "reference": "ffacea4ae9ea102109a9e105de7ba4e186bf4d17",
                 "shasum": ""
             },
             "require": {
@@ -294,9 +294,9 @@
                 "swagger"
             ],
             "support": {
-                "source": "https://github.com/mailchimp/mailchimp-transactional-php/tree/v1.0.29"
+                "source": "https://github.com/mailchimp/mailchimp-transactional-php/tree/v1.0.30"
             },
-            "time": "2021-06-28T20:49:36+00:00"
+            "time": "2021-07-02T14:07:36+00:00"
         },
         {
             "name": "psr/http-client",

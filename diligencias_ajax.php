@@ -1,14 +1,16 @@
 <?php
   include 'funciones.php';
   
-  if(isset($_POST['email'])) {
+  if(isset($_POST['email'])) 
+  {
     $mensaje = "Nombre:".$_POST['nombre']."\r\n";
     $mensaje .= "Email:".$_POST['email']."\r\n";
     $mensaje = "Teléfono:".$_POST['telefono']."\r\n";
     //mail('caffeinated@example.com', 'Mi título', $mensaje);
   }
 
-  if(isset($_POST['elimin_d'])){
+  if(isset($_POST['elimin_d']))
+  {
       $cons="DELETE FROM diligencias WHERE id =".$_POST['id_elim'];
       $res = mysqli_query($conn, $cons);
   }
@@ -464,7 +466,8 @@
     echo $tbody;
   } 
 
-  if (isset( $_GET['exportar'] )) {
+  if (isset( $_GET['exportar'] )) 
+  {
     //header("Content-Type: application/; charset=utf-8"); -> .xls
     header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=utf-8");
     header('Content-Disposition: attachment; filename=diligencias.xlsx');
