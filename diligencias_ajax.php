@@ -389,8 +389,7 @@
                   <td>".$fila2['matricula']."</td>
                   <td>".$fila2['fecha_matricula']."</td>
                   <td>".$fila2['programa_ccp']."</td>";
-                    foreach($programas3 as $p) {  
-                        
+                    foreach($programas3 as $p) {
                         if(isset($aux_pxd_x_id_pro[$p['id']])){
                            $tbody.="<td>Si</td><td>".$aux_pxd_x_id_pro[$p['id']]['recive_apoyo']."</td><td>".$aux_pxd_x_id_pro[$p['id']]['dinero_espcie']."</td><td>".$aux_pxd_x_id_pro[$p['id']]['descrip_val']."</td>";
                         }
@@ -399,7 +398,7 @@
                         }
             			//	$tbody.="<td>".$p['programa']."</td><td >Recibe apoyo1</td><td >Tipo apoyo1</td><td >Descripción / Valor1</td>";
         			}
-                
+
                   /*$tbody.="<td>".$fila2['nom_progr']."</td>
                   <td>".$fila2['apoyo']."</td>
                   <td>".$fila2['dinero_espcie']."</td>
@@ -424,7 +423,7 @@
                   <td>".$fila2['apoyo6']."</td>
                   <td>".$fila2['dinero_espcie6']."</td>
                   <td>".$fila2['especie6']."</td>";*/
-                  
+
                 $tbody.="<td>".$fila2['estado_solicitud']."</td>
                   <td>".$fila2['fecha_solicitud']."</td>
                   <td>".$fila2['enero']."</td>
@@ -459,14 +458,14 @@
                     <i class='cui-trash'></i></button>
                   </td>
                 </tr>";
-            
+
         }
     }
     //echo utf8_encode($tbody);
     echo $tbody;
-  } 
+  }
 
-  if (isset( $_GET['exportar'] )) 
+  if (isset( $_GET['exportar'] ))
   {
     //header("Content-Type: application/; charset=utf-8"); -> .xls
     header("Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; charset=utf-8");
@@ -490,7 +489,7 @@
       }
     }
     $cons .= $donde;
-    
+
     $stmt = NULL;
     $tipoDocumento = $documento = $nombres = $apellido1 = $apellido2 = $apellidos = $razonSocial = $razonSocial2 = $razonSocial2 = $activEcon = $direccDomic = $ciudad = $email = $telocel1 = $telocel2 = $nitEmpr = $activEconEmpr = $direccEmpr = $emailPersonalEmpr = $emailEmpr = $telocel = $ctde = $dp = $forme = $forte = $solicitud = $updated_at = '';
     if ($tipoCons == 'nn') {
@@ -514,9 +513,9 @@
       mysqli_stmt_execute($stmt);
       mysqli_stmt_bind_result($stmt, $tipoDocumento, $documento, $nombres, $apellido1, $apellido2, $apellidos, $razonSocial, $razonSocial2, $razonSocial3, $activEcon, $direccDomic, $ciudad, $email, $telocel1, $telocel2, $nitEmpr, $activEconEmpr, $direccEmpr, $emailPersonalEmpr, $emailEmpr, $telocel, $ctde, $dp, $forme, $forte, $solicitud, $updated_at);
     }
-    
+
     //'ssssssssssssssssssssssssss'
-    
+
     echo '
       <table>
         <thead>

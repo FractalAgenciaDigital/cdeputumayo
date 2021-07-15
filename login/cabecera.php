@@ -68,7 +68,7 @@ if(isset($_GET['ruta'])){
 				<strong><?= $_SESSION['nombre'] ?></strong>
 			</li>
 			<li class="nav-item dropdown">
-				<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">            
+				<a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 					<i class="nav-icon cui-cog"></i>
 				</a>
 				<div class="dropdown-menu dropdown-menu-right">
@@ -91,8 +91,8 @@ if(isset($_GET['ruta'])){
 		<main class="main">
 			<ol class="breadcrumb">
 				<li class="breadcrumb-item"><a href="principal.php?ruta=">Home</a></li>
-				<li class="breadcrumb-item"><?= $ruta?></li>				
-				<!-- Breadcrumb Menu-->				
+				<li class="breadcrumb-item"><?= $ruta?></li>
+				<!-- Breadcrumb Menu-->
 			</ol>
 			<div class="container-fluid">
 				<div class="animated fadeIn">

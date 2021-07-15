@@ -65,7 +65,7 @@ if (!$conn) {
                 : ($fila['ciudad'] == 10 ? 'SAN MIGUEL'
                 : ($fila['ciudad'] == 11 ? 'SIBUNDOY'
                 : ($fila['ciudad'] == 12 ? 'VALLE DEL GUAMUEZ' : 'VILLAGARZÓN')))))))))));
-            
+
             $forte = $fila['forte'] == '1' ? 'Innovación'
                 : ($fila['forte'] == '2'? 'Fábricas de productividad'
                 : ($fila['forte'] == '3'? 'Propiedad industrial'
@@ -99,8 +99,8 @@ if (!$conn) {
 <!doctype html>
 <html lang="es">
     <head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        
-        <title>Infome CDE</title>    
+
+        <title>Infome CDE</title>
     </head>
     <body>
         <table border="1" class="table table-responsive table-bordered table-striped table-sm" style="font-size: 12px;">

@@ -21,7 +21,7 @@
             $donde .= $donde? " AND $fechaHasta" : " WHERE $fechaHasta";
         }
         $cons .= $donde;
-        
+
         $res = mysqli_query($conn, $cons);
         //echo mysqli_error($conn);
         $cont = 0;
@@ -45,16 +45,18 @@
                 : ($fila['ciudad'] == 10 ? 'SAN MIGUEL'
                 : ($fila['ciudad'] == 11 ? 'SIBUNDOY'
                 : ($fila['ciudad'] == 12 ? 'VALLE DEL GUAMUEZ' : 'VILLAGARZÓN')))))))))));
-            
+
             $forte = $fila['forte'] == '1' ? 'Innovación'
                 : ($fila['forte'] == '2'? 'Fábricas de productividad'
                 : ($fila['forte'] == '3'? 'Propiedad industrial'
                 : ($fila['forte'] == '4'? 'Ferias, Misiones, otros.' : '')));
 
             $fechaSol = explode('-', explode(' ', $fila['create_at'])[0]);
-            $create_at = $fechaSol[2]."/".$fechaSol[1]."/".$fechaSol[0];
+            $create_at = $fechaSol[2] . "/" . $fechaSol[1] . "/" . $fechaSol[0];
+
             $fechaSol = explode('-', explode(' ', $fila['updated_at'])[0]);
             $update_at = $fechaSol[2]."/".$fechaSol[1]."/".$fechaSol[0];
+
             $tbody .= "
             <tr>
                 <td>$cont</td>
