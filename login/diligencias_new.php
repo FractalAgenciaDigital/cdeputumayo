@@ -1,117 +1,94 @@
 <?php
 include "cabecera.php";
 include '../funciones.php';
+include 'controller.php';
+
+
+
+
+
+
+
+// if (isset($_GET['id_edit'])) {
+//   $cons_edit = "UPDATE diligencias_new SET tipoDocumento='$tipoDocumento', documento='$documento', nombres='$nombres', apellidos='$apellidos', ciudad='$ciudad', email='$email', celular='$celular', direccEmpr='$direccEmpr', activEcon='$activEcon', otro_activEcon='$otro_activEcon', des_productivo='$des_productivo', princ_drod_serv='$princ_prod_serv', fort_empresarial='$fort_empresarial', form_empresarial='$form_empresarial', nombre_representante='$nombre_representante', celular_representante='$celular_representante', email_representante='$email_representante', poblacion='$poblacion', otro_poblacion='$otro_poblacion', fecha_matricula='$fecha_matricula', matricula='$matricula', registrado='$registrado', num_cam_comercio='$num_cam_comercio',programa_ccp='$programa_ccp', estado_solicitud='$estado_solicitud', fecha_solicitud='$fecha_solicitud'";
+
+//   $query=mysqli_query($conn, $cons_edit);
+
+//   $sql ="SELECT * FROM diligencias_new WHERE id='id_edit'";
+//   $ejecutar=mysqli_query($conn, $sql);
+
+//   $row = mysqli_fetch_array($ejecutar);
+
+// }
+
+
+
+
+// if (isset($_GET['id_edit'])) {
+//   $id_edit = $id_registro = $_GET['id_edit'];
+//   $cons_edit = "SELECT * FROM diligencias_new where id=" . $id_registro;
+//   $res = mysqli_query($conn, $cons_edit);
+//   $datos_usu = mysqli_fetch_array($res);
+
+//   $cons_edit = "SELECT * FROM extras_usus where id_usu=" . $id_registro;
+//   $res = mysqli_query($conn, $cons_edit);
+//   $datos_extra = mysqli_fetch_array($res);
+
+// } else {
+//   $tipoDocumento = "";
+//   $documento = "";
+//   $nitEmpr = "";
+//   $nombres = "";
+//   $apellidos = "";
+//   $ciudad = "";
+//   $email = "";
+//   $celular = "";
+//   $direccEmpr = "";
+//   $activEcon = "";
+//   $otro_activEcon = "";
+//   $des_productivo = "";
+//   $princ_prod_serv = "";
+//   $fort_empresarial = "";
+//   $form_empresarial = "";
+//   $nombre_representante = "";
+//   $celular_representante = "";
+//   $email_representante = "";
+//   $poblacion = "";
+//   $otro_poblacion = "";
+//   $fecha_matricula = "";
+//   $matricula = "";
+//   $registrado = "";
+//   $num_cam_comercio = "";
+//   $programa_ccp = "";
+//   $estado_solicitud = "";
+//   $fecha_solicitud = "";
+// }
+
+
+
+
 $id_edit = '';
 $id_registro = '';
+// if (isset($_GET['id_edit'])) {
+//   $id_edit = $id_registro = $_GET['id_edit'];
+//   $cons = "SELECT * FROM diligencias_new where id=" . $id_registro;
+//   $res = mysqli_query($conn, $cons);
+//   $datos_usu = mysqli_fetch_array($res);
 
-// $tipoDocumento = isset($_POST['tipoDocumento']) ? $_POST['tipoDocumento'] : "";
-
-
-if (isset($_POST['registrar'])) {
-  $tipoDocumento = trim($_POST['tipoDocumento']);
-  $documento = trim($_POST['documento']);
-  $nombres = trim($_POST['nombres']);
-  $apellidos = trim($_POST['apellidos']);
-  $ciudad = trim($_POST['ciudad']);
-  $email = trim($_POST['email']);
-  $celular = trim($_POST['celular']);
-  $activEcon = trim($_POST['activEcon']);
-  $des_productivo = trim($_POST['des_productivo']);
-  $princ_prod_serv = trim($_POST['princ_prod_serv']);
-  $fort_empresarial = trim($_POST['fort_empresarial']);
-  $form_empresarial = trim($_POST['form_empresarial']);
-  $nombre_representante = trim($_POST['nombre_representante']);
-  $celular_representante = trim($_POST['celular_representante']);
-  $email_representante = trim($_POST['email_representante']);
-  $poblacion = trim($_POST['poblacion']);
-  $otro_poblacion = trim($_POST['otro_poblacion']);
-  $fecha_matricula = trim($_POST['fecha_matricula']);
-  $matricula = trim($_POST['matricula']);
-  $registrado = trim($_POST['registrado']);
-  $num_cam_comercio = trim($_POST['num_cam_comercio']);
-  $programa_ccp = trim($_POST['programa_ccp']);
-  $estado_solicitud = trim($_POST['estado_solicitud']);
-  $fecha_solicitud = trim($_POST['fecha_solicitud']);
+//   $cons = "SELECT * FROM extras_usus where id_usu=" . $id_registro;
+//   $res = mysqli_query($conn, $cons);
+//   $datos_extra = mysqli_fetch_array($res);
+// } elseif (isset($_POST['id_edit'])) {
+//   $id_edit = $id_registro = $_POST['id_edit'];
+// }
 
 
-  $consulta = "INSERT INTO diligencias_new ( `tipoDocumento`, `documento`, `nombres`, `apellidos`, `ciudad`, `email`, `celular`, `activEcon`, `des_productivo`, `princ_prod_serv`, `fort_empresarial`, `form_empresarial`, `nombre_representante`, `celular_representante`, `email_representante`, `poblacion`, `otro_poblacion`, `fecha_matricula`, `matricula`, `registrado`, `num_cam_comercio`, `programa_ccp`, `estado_solicitud`, `fecha_solicitud`) VALUES ( '$tipoDocumento','$documento','$nombres','$apellidos','$ciudad','$email','$celular','$activEcon','$des_productivo','$princ_prod_serv','$fort_empresarial','$form_empresarial','$nombre_representante','$celular_representante','$email_representante','$poblacion','$otro_poblacion','$fecha_matricula' ,'$matricula','$registrado','$num_cam_comercio','$programa_ccp','$estado_solicitud','$fecha_solicitud') ";
-
-  $ejecutar = mysqli_query($conn, $consulta);
-  $consulta = "SELECT id FROM diligencias_new ORDER BY id desc LIMIT 1";
-  //$aux = mysqli_fetch_array($ejecutar);
-  $ejecutar = mysqli_query($conn, $consulta);
-  // $id_aux = xmysqli_fetch_array($res);
 
 
-  // print_r($ejecutar);
-?>
-  <script>
-    //documento.location.href = "diligencias.php";
-  </script>
-<?php
 
-} elseif (isset($_GET['id_edit'])) {
-  $id_edit = $id_registro = $_GET['id_edit'];
-  $cons = "SELECT * FROM diligencias_new where id=" . $id_registro;
-  $res = mysqli_query($conn, $cons);
-  $datos_usu = mysqli_fetch_array($res);
 
-  $cons = "SELECT * FROM extras_usus where id_usu=" . $id_registro;
-  $res = mysqli_query($conn, $cons);
-  $datos_extra = mysqli_fetch_array($res);
 
-  $tipoDocumento = isset($datos_extra['tipoDocumento']) ? $datos_extra['tipoDocumento'] : "";
-  $documento = isset($datos_extra['documento']) ? $datos_extra['documento'] : "";
-  $nitEmpr = isset($datos_extra['nitEmpr']) ? $datos_extra['nitEmpr'] : "";
-  $nombres = isset($datos_extra['nombres']) ? $datos_extra['nombres'] : "";
-  $apellidos = isset($datos_extra['apellidos']) ? $datos_extra['apellidos'] : "";
-  $ciudad = isset($datos_extra['ciudad']) ? $datos_extra['ciudad'] : "";
-  $email = isset($datos_extra['email']) ? $datos_extra['email'] : "";
-  $celular = isset($datos_extra['celular']) ? $datos_extra['celular'] : "";
-  $activEcon = isset($datos_extra['activEcon']) ? $datos_extra['activEcon'] : "";
-  $des_productivo = isset($datos_extra['des_productivo']) ? $datos_extra['des_productivo'] : "";
-  $princ_prod_serv = isset($datos_extra['princ_prod_serv']) ? $datos_extra['princ_prod_serv'] : "";
-  $fort_empresarial = isset($datos_extra['fort_empresarial']) ? $datos_extra['fort_empresarial'] : "";
-  $form_empresarial = isset($datos_extra['form_empresarial']) ? $datos_extra['form_empresarial'] : "";
-  $nombre_representante = isset($datos_extra['nombre_representante']) ? $datos_extra['nombre_representante'] : "";
-  $celular_representante = isset($datos_extra['celular_representante']) ? $datos_extra['celular_representante'] : "";
-  $email_representante = isset($datos_extra['email_representante']) ? $datos_extra['email_representante'] : "";
-  $poblacion = isset($datos_extra['poblacion']) ? $datos_extra['poblacion'] : "";
-  $otro_poblacion = isset($datos_extra['otro_poblacion']) ? $datos_extra['otro_poblacion'] : "";
-  $fecha_matricula = isset($datos_extra['fecha_matricula']) ? $datos_extra['fecha_matricula'] : "";
-  $matricula = isset($datos_extra['matricula']) ? $datos_extra['matricula'] : "";
-  $registrado = isset($datos_extra['registrado']) ? $datos_extra['registrado'] : "";
-  $num_cam_comercio = isset($datos_extra['num_cam_comercio']) ? $datos_extra['num_cam_comercio'] : "";
-  $programa_ccp = isset($datos_extra['programa_ccp']) ? $datos_extra['programa_ccp'] : "";
-  $estado_solicitud = isset($datos_extra['estado_solicitud']) ? $datos_extra['estado_solicitud'] : "";
-  $fecha_solicitud = isset($datos_extra['fecha_solicitud']) ? $datos_extra['fecha_solicitud'] : "";
-} else {
-  $tipoDocumento = "";
-  $documento = "";
-  $nitEmpr = "";
-  $nombres = "";
-  $apellidos = "";
-  $ciudad = "";
-  $email = "";
-  $celular = "";
-  $activEcon = "";
-  $des_productivo = "";
-  $princ_prod_serv = "";
-  $fort_empresarial = "";
-  $form_empresarial = "";
-  $nombre_representante = "";
-  $celular_representante = "";
-  $email_representante = "";
-  $poblacion = "";
-  $otro_poblacion = "";
-  $fecha_matricula = "";
-  $matricula = "";
-  $registrado = "";
-  $num_cam_comercio = "";
-  $programa_ccp = "";
-  $estado_solicitud = "";
-  $fecha_solicitud = "";
-}
+
 
 
 
@@ -124,11 +101,11 @@ if (isset($_POST['registrar'])) {
 </style>
 
 <div class=" bg-light">
-  <form name="registro_diligencia" method="POST">
+  <form action="controller.php" name="registro_diligencia" method="POST">
     <div class="container bg-white mb-4">
       <div class="form-row pt-2">
         <div class="form-group col-12">
-          <strong>DATOS PRINCIPALES </strong>
+          <strong>DATOS PRINCIPALES</strong>
           <div class="dropdown-divider"></div>
         </div>
       </div>
@@ -138,15 +115,15 @@ if (isset($_POST['registrar'])) {
           <label for="tipoDocumento">Tipo Documento</label>
           <select required name="tipoDocumento" id="tipoDocumento" class="form-control">
             <option value="">Seleccione</option>
-            <option value="CC" <?php if ($tipoDocumento == "CC") {
-                                  echo "selected";
-                                } ?>>Cedula de Ciudadania</option>
-            <option value="NIT" <?php if ($tipoDocumento == "NIT") {
-                                  echo "selected";
-                                } ?>>NIT</option>
-            <option value="CE" <?php if ($tipoDocumento == "CE") {
-                                  echo "selected";
-                                } ?>>Cedula de Extranjeria</option>
+            <option value="1" <?php if ($tipoDocumento == "1") {
+                                echo "selected";
+                              } ?>>Cedula de Ciudadania</option>
+            <option value="2" <?php if ($tipoDocumento == "2") {
+                                echo "selected";
+                              } ?>>NIT</option>
+            <option value="3" <?php if ($tipoDocumento == "3") {
+                                echo "selected";
+                              } ?>>Cedula de Extranjeria</option>
             <option value="NA" <?php if ($tipoDocumento == "NA") {
                                   echo "selected";
                                 } ?>>Otro</option>
@@ -176,6 +153,7 @@ if (isset($_POST['registrar'])) {
           <input type="text" class="form-control" value="<?php echo $ciudad ?>" id="ciudad" name="ciudad" placeholder="Ciudad">
         </div>
         <div class="form-group col-3">
+
           <label for="email" class="form-label">Email</label>
           <input type="email" class="form-control" value="<?php echo $email ?>" id="email" name="email" placeholder="Email">
         </div>
@@ -183,17 +161,13 @@ if (isset($_POST['registrar'])) {
           <label for="celular">Celular</label>
           <input type="number" id="celular" value="<?php echo $celular ?>" name="celular" v-model="celular" class="form-control" placeholder="Celular">
         </div>
-        <div class="form-group col-md-3">
-          <label for="activEcon">Act. Económica:</label>
-          <input type="text" id="activEcon" value="<?php echo $activEcon ?>" v-model="activEcon" name="activEcon" class="form-control" placeholder="example" aria-label="ActEconómica">
-        </div>
-      </div>
-
-      <div class="form-row">
         <div class="form-group col-3">
           <label for="des_productivo">Des. Productivo:</label>
           <input type="text" id="des_productivo" value="<?php echo $des_productivo ?>" name="des_productivo" class="form-control" placeholder="example" aria-label="DesProductivo">
         </div>
+      </div>
+
+      <div class="form-row">
         <div class="form-group col-3">
           <label for="princ_prod_serv">Principal Prod/Serv:</label>
           <input type="text" id="princ_prod_serv" value="<?php echo $princ_prod_serv ?>" name="princ_prod_serv" class="form-control" placeholder="Principal Prod/Serv" aria-label="PrincipalProd/Serv">
@@ -202,20 +176,199 @@ if (isset($_POST['registrar'])) {
           <label for="fort_empresarial">Fortalecimiento Empresarial</label>
           <input type="text" id="fort_empresarial" value="<?php echo $fort_empresarial ?>" name="fort_empresarial" class="form-control" placeholder="Fortalecimiento Empresarial" aria-label="fort_empresarial">
         </div>
-        <div class="form-group col-3">
-          <label for="form_empresarial">Formación Empresarial:</label>
-          <input type="text" id="form_empresarial" value="<?php echo $form_empresarial ?>" name="form_empresarial" class="form-control" placeholder="Formación Empresarial" aria-label="form_empresarial">
+        <div class="form-group col-md-3">
+          <label for="direccEmpr">Dirección Empresa:</label>
+          <input type="text" id="direccEmpr" value="<?php echo $direccEmpr ?>" v-model="direccEmpr" name="direccEmpr" class="form-control" placeholder="Dirección Empresa" aria-label="DirEmpresa">
         </div>
       </div>
+      <!-- ---------------------------------------------- -->
+
+      <div class="form-row">
+        <!-- ---------------------------------------------- -->
+        <div class="form-group col-3">
+          <label for="form_empresarial">Formación Empresarial:</label>
+          <select class="form-control" name="form_empresarial" v-model="select" onChange="tipoPobla(this.value)">
+            <option value="Mercadeo y Ventas" <?php if (isset($form_empresarial) && $form_empresarial == "Mercadeo y Ventas") {
+                                                echo "selected";
+                                              } ?>>
+              Mercadeo y Ventas</option>
+
+            <option value="Administrativo" <?php if (isset($form_empresarial) && $form_empresarial == "Administrativo") {
+                                              echo "selected";
+                                            } ?>>
+              Administrativo</option>
+
+            <option value="Desarrollo del Empresario " <?php if (isset($form_empresarial) && $form_empresarial == "Desarrollo del Empresario ") {
+                                                          echo "selected";
+                                                        } ?>>
+              Desarrollo del Empresario </option>
+
+            <option value="Entidades sin ánimo de lucro" <?php if (isset($form_empresarial) && $form_empresarial == "Entidades sin ánimo de lucro") {
+                                                            echo "selected";
+                                                          } ?>>
+              Entidades sin ánimo de lucro</option>
+
+            <option value="Financiero y Tributario" <?php if (isset($form_empresarial) && $form_empresarial == "Financiero y Tributario") {
+                                                      echo "selected";
+                                                    } ?>>
+              Financiero y Tributario</option>
+
+            <option value="Juridico" <?php if (isset($form_empresarial) && $form_empresarial == "Juridico") {
+                                        echo "selected";
+                                      } ?>>Jurídico
+            </option>
+
+            <option value="Emprendimiento e Innovacion" <?php if (isset($form_empresarial) && $form_empresarial == "Emprendimiento e Innovacion") {
+                                                          echo "selected";
+                                                        } ?>>
+              Emprendimiento e Innovación</option>
+
+            <option value="Produccion" <?php if (isset($form_empresarial) && $form_empresarial == "Produccion") {
+                                          echo "selected";
+                                        } ?>>
+              Producción</option>
+
+            <option value="Comercio Exterior" <?php if (isset($form_empresarial) && $form_empresarial == "Comercio Exterior") {
+                                                echo "selected";
+                                              } ?>>
+              Comercio Exterior</option>
+
+          </select>
+        </div>
+        <!-- ---------------------------------------------- -->
+        <div class="form-group col-3">
+          <label for="activEcon">Actividad Económica:</label>
+          <select class="form-control" name="activEcon" v-model="select" onChange="activEconomica(this.value)">
+            <option value="Supermercados - Tiendas - Autoservicios - Minimercados" <?php if (isset($activEcon) && $activEcon == "Supermercados - Tiendas - Autoservicios - Minimercados") {
+                                                                                      echo "selected";
+                                                                                    } ?>>
+              Supermercados - Tiendas - Autoservicios - Minimercados</option>
+
+            <option value="Venta de celulares - Accesorios - Tecnologia - Internet" <?php if (isset($activEcon) && $activEcon == "Venta de celulares - Accesorios - Tecnologia - Internet") {
+                                                                                      echo "selected";
+                                                                                    } ?>>
+              Venta de celulares - Accesorios - Tecnologia - Internet</option>
+
+            <option value="Calzado - Boutique - Prendas de Vestir - Confecciones" <?php if (isset($activEcon) && $activEcon == "Calzado - Boutique - Prendas de Vestir - Confecciones") {
+                                                                                    echo "selected";
+                                                                                  } ?>>
+              Calzado - Boutique - Prendas de Vestir - Confecciones</option>
+
+            <option value="Resturantes - Piqueteaderos - Asaderos" <?php if (isset($activEcon) && $activEcon == "Resturantes - Piqueteaderos - Asaderos") {
+                                                                      echo "selected";
+                                                                    } ?>>
+              Resturantes - Piqueteaderos - Asaderos</option>
+
+            <option value="Cafeteria - Panaderia - Heladeria" <?php if (isset($activEcon) && $activEcon == "Cafeteria - Panaderia - Heladeria") {
+                                                                echo "selected";
+                                                              } ?>>
+              Cafeteria - Panaderia - Heladeria</option>
+
+            <option value="Ferreterias - Obras civiles" <?php if (isset($activEcon) && $activEcon == "Ferreterias - Obras civiles") {
+                                                          echo "selected";
+                                                        } ?>>
+              Ferreterias - Obras civiles</option>
+
+            <option value="Publicidad - Imprentas" <?php if (isset($activEcon) && $activEcon == "Publicidad - Imprentas") {
+                                                      echo "selected";
+                                                    } ?>>Publicidad
+              - Imprentas</option>
+
+            <option value="Taller de motos y bicicletas- Venta de Respuestos - Montallantas" <?php if (isset($activEcon) && $activEcon == "Taller de motos y bicicletas- Venta de Respuestos - Montallantas") {
+                                                                                                echo "selected";
+                                                                                              } ?>>
+              Taller de motos y bicicletas- Venta de Respuestos - Montallantas</option>
+
+            <option value="Discotekas - Bares - Licoreras - Estancos" <?php if (isset($activEcon) && $activEcon == "Discotekas - Bares - Licoreras - Estancos") {
+                                                                        echo "selected";
+                                                                      } ?>>
+              Discotekas - Bares - Licoreras - Estancos</option>
+
+            <option value="Billares" <?php if (isset($activEcon) && $activEcon == "Billares") {
+                                        echo "selected";
+                                      } ?>>
+              Billares</option>
+
+            <option value="Cacharrerias - Variedades - Accesorios - Distribuidoras" <?php if (isset($activEcon) && $activEcon == "Cacharrerias - Variedades - Accesorios - Distribuidoras") {
+                                                                                      echo "selected";
+                                                                                    } ?>>
+              Cacharrerias - Variedades - Accesorios - Distribuidoras</option>
+
+            <option value="Publicidad - Imprentas" <?php if (isset($activEcon) && $activEcon == "Publicidad - Imprentas") {
+                                                      echo "selected";
+                                                    } ?>>Publicidad
+              - Imprentas</option>
+
+            <option value="Droguerias - Servicios medicos (odontologia-citologia-otros)" <?php if (isset($activEcon) && $activEcon == "Droguerias - Servicios medicos (odontologia-citologia-otros)") {
+                                                                                            echo "selected";
+                                                                                          } ?>>
+              Droguerias - Servicios medicos (odontologia-citologia-otros)</option>
+
+            <option value="Tapicerias - Venta de muebles - Carpinterias" <?php if (isset($activEcon) && $activEcon == "Tapicerias - Venta de muebles - Carpinterias") {
+                                                                            echo "selected";
+                                                                          } ?>>
+              Tapicerias - Venta de muebles - Carpinterias</option>
+
+            <option value="Papelerias - Fotocopiadoras" <?php if (isset($activEcon) && $activEcon == "Papelerias - Fotocopiadoras") {
+                                                          echo "selected";
+                                                        } ?>>
+              Papelerias - Fotocopiadoras</option>
+
+            <option value="Hoteles - Residencias - Hostales - Moteles - Reservados" <?php if (isset($activEcon) && $activEcon == "Hoteles - Residencias - Hostales - Moteles - Reservados") {
+                                                                                      echo "selected";
+                                                                                    } ?>>
+              Hoteles - Residencias - Hostales - Moteles - Reservados</option>
+
+            <option value="Casa de lenocidio" <?php if (isset($activEcon) && $activEcon == "Casa de lenocidio") {
+                                                echo "selected";
+                                              } ?>>Casa de
+              lenocidio</option>
+
+            <option value="Expendio de carnes (Cerdo - Res - Pollo - Pescado)" <?php if (isset($activEcon) && $activEcon == "Expendio de carnes (Cerdo - Res - Pollo - Pescado)") {
+                                                                                  echo "selected";
+                                                                                } ?>>
+              Expendio de carnes (Cerdo - Res - Pollo - Pescado)</option>
+
+            <option value="Peluquerias - Barberias - Spa" <?php if (isset($activEcon) && $activEcon == "Peluquerias - Barberias - Spa") {
+                                                            echo "selected";
+                                                          } ?>>
+              Peluquerias - Barberias - Spa</option>
+
+            <option value="Espectáculos musicales en vivo" <?php if (isset($activEcon) && $activEcon == "Espectáculos musicales en vivo") {
+                                                              echo "selected";
+                                                            } ?>>
+              Espectáculos musicales en vivo</option>
+
+            <option value="Servicios ambientales" <?php if (isset($activEcon) && $activEcon == "Servicios ambientales") {
+                                                    echo "selected";
+                                                  } ?>>Servicios
+              ambientales</option>
+
+            <option value="Other" onclick="mostrarOther();" <?php if (isset($activEcon) && $activEcon == "Other") {
+                                                              echo "selected";
+                                                            } ?>>Otro</option>
+          </select>
+        </div>
+
+        <div class="form-group col-3 act_econ" style="display:none">
+          <label for="otro_activEcon">¿Cual es su Actividad Económica?</label>
+          <input class="form-control" type="text" placeholder="Escriba su tipo de población" name="otro_activEcon" value="<?php echo $otro_activEcon ?>">
+        </div>
+
+        <!-- ------------------------------------- -->
 
 
+      </div>
+
+      <!-- ------------------------------------- -->
+
+      <br>
       <div class="form-row">
         <div class="form-group col-12">
           <b>DATOS ADICIONALES</b>
           <div class="dropdown-divider"></div><br>
         </div>
       </div>
-
       <div class="form-row ">
         <div class="form-group col-3">
           <label for="nombre_representante">Nombre Representante</label>
@@ -253,9 +406,9 @@ if (isset($_POST['registrar'])) {
                                                       echo "selected";
                                                     } ?>>Condición Discapacidad</option>
 
-            <option value="Otro" onclick="mostrarOtro();" <?php if (isset($poblacion) && $poblacion == "Otro") {
-                                                            echo "selected";
-                                                          } ?>>Otro</option>
+            <option value="Otro" <?php if (isset($poblacion) && $poblacion == "Otro") {
+                                    echo "selected";
+                                  } ?>>Otro</option>
           </select>
         </div>
 
@@ -345,95 +498,97 @@ if (isset($_POST['registrar'])) {
           <label for="fecha_solicitud">Fecha respuesta:</label>
           <input class="form-control" type="date" name="fecha_solicitud" id="fecha_solicitud" value="<?= $fecha_solicitud ?>">
         </div>
+        <!-- --------------------------------------------------------- -->
+        <br><br>
+        <div class="form-group col-12">
+          <b>PROYECTOS - PROGRAMAS</b>
+          <div class="dropdown-divider"></div><br>
 
-    </div>
-    <div class="d-flex justify-content-between">
-      <div class="form-group col-12">
-        <input type="button" value="Regresar" class="btn btn-danger" onClick="document.location.href='diligencias.php?ruta=Diligencias'">
-        <input type="submit" value="Guardar" class="btn btn-success" name="registrar">
-        <!-- <input type="submit" value="Guardar" class="btn btn-success" name="Guardar"> -->
-      </div>
-    </div>
-  </form>
-  <!-- ----------------------------------- -->
-  <form action="">
-    <div class="form-row">
-      <div class="form-group col-12">
-        <div class="table-responsive" id="datos_extra">
-          <table class="table" style="font-size: 12px;">
-            <tr>
-              <th>#</th>
-              </tg>
-              <th width="40%">Nom Proyecto/ Programa</th>
-              <th>Participa</th>
-              <th>Recibe apoyo</th>
-              <th>Tipo de apoyo</th>
-              <th>Descripción/ Valor</th>
-            </tr>
-            <?php
-            $conspxd = "SELECT * FROM progsxdiligendias where id_diligencia=$id_registro";
-            $respxd = mysqli_query($conn, $conspxd);
-            $aux_pxd = array();
-            if ($respxd) {
-              while ($filapxd = mysqli_fetch_array($respxd)) {
-                $aux_pxd[$filapxd['id_programa']] = $filapxd;
-              }
-            }
+          <div class="form-group col-12">
+            <div class="table-responsive" id="datos_extra">
+              <table class="table" style="font-size: 12px;">
+                <tr>
+                  <th>#</th>
+                  </tg>
+                  <th width="40%">Nom Proyecto/ Programa</th>
+                  <th>Participa</th>
+                  <th>Recibe apoyo</th>
+                  <th>Tipo de apoyo</th>
+                  <th>Descripción/ Valor</th>
+                </tr>
+                <?php
+                $conspxd = "SELECT * FROM progsxdiligendias where id_diligencia=$id_registro";
+                $respxd = mysqli_query($conn, $conspxd);
+                $aux_pxd = array();
+                if ($respxd) {
+                  while ($filapxd = mysqli_fetch_array($respxd)) {
+                    $aux_pxd[$filapxd['id_programa']] = $filapxd;
+                  }
+                }
 
 
 
 
-            $consp = "SELECT * FROM programas where estado=1 order by programa";
-            $resp = mysqli_query($conn, $consp);
-            $cont = 1;
-            while ($filap = mysqli_fetch_array($resp)) {  ?>
-              <tr>
-                <td><?= $cont++ ?></td>
-                <td>
-                  <?= $filap['programa'] ?>
-                </td>
-                <td>
-                  <input type="checkbox" name="si_programa[]" value="<?= $filap['id'] ? $filap['id'] : '' ?>" <?php if (isset($aux_pxd[$filap['id']]) && $aux_pxd[$filap['id']]) echo "checked"; ?>>
-                </td>
-                <td>
-                  <select class="form-control " style="width: 5em;" name="apoyo_l['<?= $filap['id'] ?>']" id="apoyo">
-                    <option value="No" <?php if (isset($aux_pxd[$filap['id']]['recive_apoyo']) && $aux_pxd[$filap['id']]['recive_apoyo'] == "No") {
-                                          echo "selected";
-                                        } ?>>No</option>
-                    <option value="Si" <?php if (isset($aux_pxd[$filap['id']]['recive_apoyo']) && $aux_pxd[$filap['id']]['recive_apoyo'] == "Si") {
-                                          echo "selected";
-                                        } ?>>Si</option>
-                  </select>
-                </td>
-                <td>
-                  <select class="form-control " name="dinero_espcie_l['<?= isset($filap['id']) ? $filap['id'] : '' ?>']" id="dinero_espcie">
-                    <option value="Dinero" <?php
-                                            if (isset($aux_pxd[$filap['id']]['dinero_espcie']) && ($aux_pxd[$filap['id']]['dinero_espcie'] == "Dinero"
-                                              || $aux_pxd[$filap['id']] == "Di")) {
+                $consp = "SELECT * FROM programas where estado=1 order by programa";
+                $resp = mysqli_query($conn, $consp);
+                $cont = 1;
+                while ($filap = mysqli_fetch_array($resp)) {  ?>
+                  <tr>
+                    <td><?= $cont++ ?></td>
+                    <td>
+                      <?= $filap['programa'] ?>
+                    </td>
+                    <td>
+                      <input type="checkbox" name="si_programa[]" value="<?= $filap['id'] ? $filap['id'] : '' ?>" <?php if (isset($aux_pxd[$filap['id']]) && $aux_pxd[$filap['id']]) echo "checked"; ?>>
+                    </td>
+                    <td>
+                      <select class="form-control " style="width: 5em;" name="apoyo_l['<?= $filap['id'] ?>']" id="apoyo">
+                        <option value="No" <?php if (isset($aux_pxd[$filap['id']]['recive_apoyo']) && $aux_pxd[$filap['id']]['recive_apoyo'] == "No") {
                                               echo "selected";
-                                            } ?>>
-                      Dinero
-                    </option>
-                    <option value="Especie" <?php if (isset($aux_pxd[$filap['id']]['dinero_espcie']) && ($aux_pxd[$filap['id']]['dinero_espcie'] != "Dinero" && $aux_pxd[$filap['id']] != "Di")) {
+                                            } ?>>No</option>
+                        <option value="Si" <?php if (isset($aux_pxd[$filap['id']]['recive_apoyo']) && $aux_pxd[$filap['id']]['recive_apoyo'] == "Si") {
                                               echo "selected";
-                                            } ?>>Especie</option>
-                  </select>
-                </td>
-                <td>
-                  <input class="form-control " type="text" name="especie_l['<?= isset($filap['id']) ? $filap['id'] : '' ?>']" id="especie" value="<?= isset($aux_pxd[$filap['id']]['descrip_val']) ? $aux_pxd[$filap['id']]['descrip_val'] : '' ?>">
-                </td>
-              </tr> <?php
-                  } ?>
-          </table>
+                                            } ?>>Si</option>
+                      </select>
+                    </td>
+                    <td>
+                      <select class="form-control " name="dinero_espcie_l['<?= isset($filap['id']) ? $filap['id'] : '' ?>']" id="dinero_espcie">
+                        <option value="Dinero" <?php
+                                                if (isset($aux_pxd[$filap['id']]['dinero_espcie']) && ($aux_pxd[$filap['id']]['dinero_espcie'] == "Dinero"
+                                                  || $aux_pxd[$filap['id']] == "Di")) {
+                                                  echo "selected";
+                                                } ?>>
+                          Dinero
+                        </option>
+                        <option value="Especie" <?php if (isset($aux_pxd[$filap['id']]['dinero_espcie']) && ($aux_pxd[$filap['id']]['dinero_espcie'] != "Dinero" && $aux_pxd[$filap['id']] != "Di")) {
+                                                  echo "selected";
+                                                } ?>>Especie</option>
+                      </select>
+                    </td>
+                    <td>
+                      <input class="form-control " type="text" name="especie_l['<?= isset($filap['id']) ? $filap['id'] : '' ?>']" id="especie" value="<?= isset($aux_pxd[$filap['id']]['descrip_val']) ? $aux_pxd[$filap['id']]['descrip_val'] : '' ?>">
+                    </td>
+                  </tr> <?php
+                      } ?>
+              </table>
+            </div>
+          </div>
+
         </div>
-      </div>
 
+        <!-- --------- -->
+        <div class="d-flex justify-content-between">
+          <div class="form-group col-12">
+            <input type="button" value="Regresar" class="btn btn-danger" onClick="document.location.href='diligencias.php?ruta=Diligencias'">
+            <input type="submit" value="Guardar" class="btn btn-success" name="registrar">
+            <!-- <input type="submit" value="Guardar" class="btn btn-success" name="Guardar"> -->
+          </div>
+        </div>
     </div>
   </form>
 </div>
 
 <?php
-
 include "pie.php";
 ?>
 
@@ -446,6 +601,9 @@ include "pie.php";
     if ($poblacion == "Otro") { ?>
       $(".aux_cual").show();
     <?php   }
+    if ($activEcon == "Other") { ?>
+      $(".act_econ").show();
+    <?php  }
     if ($registrado == "Si") { ?>
       $(".aux_regis").show();
     <?php   } ?>
@@ -472,6 +630,14 @@ include "pie.php";
       $(".aux_cual").hide();
     } else {
       $(".aux_cual").show();
+    }
+  }
+
+  function activEconomica(activ_econ) {
+    if (activ_econ != "Other") {
+      $(".act_econ").hide();
+    } else {
+      $(".act_econ").show();
     }
   }
 

@@ -93,6 +93,14 @@ while ($afila = mysqli_fetch_array($res_a)) {
 	}
 </script>
 <div class="row">
+	<!-- <?php if(isset($_SESSION['message'])) {?>
+		<div class="alert alert-<? $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
+			<?php $_SESSION['message'] ?>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	<?php session_unset(); } ?>limpiar datos en la sesion -->
 	<div class="col-sm-12">
 		<div class="card">
 			<div class="card-header">
@@ -145,14 +153,15 @@ while ($afila = mysqli_fetch_array($res_a)) {
 						<tr>
 							<th class="text-center align-middle">#</th>
 							<th class="text-center align-middle">Tipo documento</th>
-							<!-- <th class="text-center align-middle">Nit</th> -->
 							<th class="text-center align-middle">Doc. persona</th>
 							<th class="text-center align-middle">Nombres</th>
 							<th class="text-center align-middle">Apellidos</th>
 							<th class="text-center align-middle">Ciudad</th>
 							<th class="text-center align-middle">Email</th>
 							<th class="text-center align-middle">Celular</th>
+							<th class="text-center align-middle">Dirección Empresa</th>
 							<th class="text-center align-middle">Act. Económica</th>
+							<th class="text-center align-middle">Otra Act. Económica</th>
 							<th class="text-center align-middle">Des. Productivo</th>
 							<th class="text-center align-middle">Principal Prod/Serv</th>
 							<th class="text-center align-middle">Fortalecimiento Empresarial</th>

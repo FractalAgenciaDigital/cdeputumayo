@@ -1,7 +1,7 @@
 
 CREATE TABLE `diligencias_new` (
   `id` int(11) NOT NULL,
-  `tipoDocumento` tinyint(1) DEFAULT NULL,
+  `tipoDocumento` varchar(15) DEFAULT NULL,
   `documento` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `nitEmpr` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `nombres` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -10,6 +10,7 @@ CREATE TABLE `diligencias_new` (
   `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `celular` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `activEcon` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `otro_activEcon` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `des_productivo` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `princ_prod_serv` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
   `fort_empresarial` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
