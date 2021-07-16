@@ -4,92 +4,8 @@ include '../funciones.php';
 include 'controller.php';
 
 
-
-
-
-
-
-// if (isset($_GET['id_edit'])) {
-//   $cons_edit = "UPDATE diligencias_new SET tipoDocumento='$tipoDocumento', documento='$documento', nombres='$nombres', apellidos='$apellidos', ciudad='$ciudad', email='$email', celular='$celular', direccEmpr='$direccEmpr', activEcon='$activEcon', otro_activEcon='$otro_activEcon', des_productivo='$des_productivo', princ_drod_serv='$princ_prod_serv', fort_empresarial='$fort_empresarial', form_empresarial='$form_empresarial', nombre_representante='$nombre_representante', celular_representante='$celular_representante', email_representante='$email_representante', poblacion='$poblacion', otro_poblacion='$otro_poblacion', fecha_matricula='$fecha_matricula', matricula='$matricula', registrado='$registrado', num_cam_comercio='$num_cam_comercio',programa_ccp='$programa_ccp', estado_solicitud='$estado_solicitud', fecha_solicitud='$fecha_solicitud'";
-
-//   $query=mysqli_query($conn, $cons_edit);
-
-//   $sql ="SELECT * FROM diligencias_new WHERE id='id_edit'";
-//   $ejecutar=mysqli_query($conn, $sql);
-
-//   $row = mysqli_fetch_array($ejecutar);
-
-// }
-
-
-
-
-// if (isset($_GET['id_edit'])) {
-//   $id_edit = $id_registro = $_GET['id_edit'];
-//   $cons_edit = "SELECT * FROM diligencias_new where id=" . $id_registro;
-//   $res = mysqli_query($conn, $cons_edit);
-//   $datos_usu = mysqli_fetch_array($res);
-
-//   $cons_edit = "SELECT * FROM extras_usus where id_usu=" . $id_registro;
-//   $res = mysqli_query($conn, $cons_edit);
-//   $datos_extra = mysqli_fetch_array($res);
-
-// } else {
-//   $tipoDocumento = "";
-//   $documento = "";
-//   $nitEmpr = "";
-//   $nombres = "";
-//   $apellidos = "";
-//   $ciudad = "";
-//   $email = "";
-//   $celular = "";
-//   $direccEmpr = "";
-//   $activEcon = "";
-//   $otro_activEcon = "";
-//   $des_productivo = "";
-//   $princ_prod_serv = "";
-//   $fort_empresarial = "";
-//   $form_empresarial = "";
-//   $nombre_representante = "";
-//   $celular_representante = "";
-//   $email_representante = "";
-//   $poblacion = "";
-//   $otro_poblacion = "";
-//   $fecha_matricula = "";
-//   $matricula = "";
-//   $registrado = "";
-//   $num_cam_comercio = "";
-//   $programa_ccp = "";
-//   $estado_solicitud = "";
-//   $fecha_solicitud = "";
-// }
-
-
-
-
 $id_edit = '';
 $id_registro = '';
-// if (isset($_GET['id_edit'])) {
-//   $id_edit = $id_registro = $_GET['id_edit'];
-//   $cons = "SELECT * FROM diligencias_new where id=" . $id_registro;
-//   $res = mysqli_query($conn, $cons);
-//   $datos_usu = mysqli_fetch_array($res);
-
-//   $cons = "SELECT * FROM extras_usus where id_usu=" . $id_registro;
-//   $res = mysqli_query($conn, $cons);
-//   $datos_extra = mysqli_fetch_array($res);
-// } elseif (isset($_POST['id_edit'])) {
-//   $id_edit = $id_registro = $_POST['id_edit'];
-// }
-
-
-
-
-
-
-
-
-
 
 
 ?>
@@ -179,6 +95,10 @@ $id_registro = '';
         <div class="form-group col-md-3">
           <label for="direccEmpr">Dirección Empresa:</label>
           <input type="text" id="direccEmpr" value="<?php echo $direccEmpr ?>" v-model="direccEmpr" name="direccEmpr" class="form-control" placeholder="Dirección Empresa" aria-label="DirEmpresa">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="solicitud">Solicitud:</label>
+          <input type="text" id="solicitud" value="<?php echo $solicitud ?>" v-model="solicitud" name="solicitud" class="form-control" placeholder="Solicitud" aria-label="Solicitud">
         </div>
       </div>
       <!-- ---------------------------------------------- -->
@@ -465,11 +385,79 @@ $id_registro = '';
           <input class="form-control" type="text" placeholder="Número cámara comercio" name="registrado" id="registrado" value="<?= $registrado ?>">
         </div> -->
 
-      <d class="form-row">
+      <div class="form-row">
         <div class="form-group col-3">
           <label for="celular_representante">Celular Representante</label>
           <input type="number" value="<?php echo $celular_representante ?>" id="celular_representante" name="celular_representante" class="form-control" placeholder="Celular Representante">
         </div>
+        <!-- -------------------------- -->
+        <div class="form-group col-3">
+          <label for="genero">Género:</label>
+          <select required class="form-control" name="genero" v-model="select">
+            <option value="">Seleccione</option>
+            <option value="Mujer" <?php if (isset($genero) && $genero == "Mujer") {
+                                    echo "selected";
+                                  } ?>>Mujer</option>
+
+            <option value="Hombre" <?php if (isset($genero) && $genero == "Hombre") {
+                                      echo "selected";
+                                    } ?>>Hombre</option>
+          </select>
+        </div>
+        <!-- -------------- -->
+        <div class="form-group col-3">
+          <label for="escolaridad">Escolaridad:</label>
+          <select class="form-control" name="escolaridad" v-model="select">
+            <option value="Ninguna" <?php if (isset($escolaridad) && $escolaridad == "Ninguna") {
+                                      echo "selected";
+                                    } ?>>Ninguna</option>
+
+            <option value="Basica" <?php if (isset($escolaridad) && $escolaridad == "'Basica") {
+                                      echo "selected";
+                                    } ?>>Básica (Primaria)</option>
+
+            <option value="Media" <?php if (isset($escolaridad) && $escolaridad == "Media") {
+                                    echo "selected";
+                                  } ?>>Media (Secundaria)</option>
+            <option value="Superior" <?php if (isset($escolaridad) && $escolaridad == "Superior") {
+                                        echo "selected";
+                                      } ?>>Superior (Técnico, Tecnólogo)</option>
+            <option value="Universitario" <?php if (isset($escolaridad) && $escolaridad == "Universitario") {
+                                            echo "selected";
+                                          } ?>>Universitario</option>
+            <option value="Posgrado" <?php if (isset($escolaridad) && $escolaridad == "Posgrado") {
+                                        echo "selected";
+                                      } ?>>Posgrado (Especialización, Maestría, Doctorado)</option>
+          </select>
+        </div>
+        <!-- -------------------------- -->
+        <div class="form-group col-3">
+          <label for="rango_edad">Rango de edad:</label>
+          <select class="form-control" name="rango_edad" v-model="select">
+            <option value="Menor a 18" <?php if (isset($rango_edad) && $rango_edad == "Menor a 18") {
+                                          echo "selected";
+                                        } ?>>Menor a 18</option>
+
+            <option selected value="18 a 24 años" <?php if (isset($rango_edad) && $rango_edad == "'18 a 24 años") {
+                                                    echo "selected";
+                                                  } ?>>18 a 24 años</option>
+
+            <option value="25 a 34 años" <?php if (isset($rango_edad) && $rango_edad == "25 a 34 años") {
+                                            echo "selected";
+                                          } ?>>25 a 34 años</option>
+            <option value="25 a 44 años" <?php if (isset($rango_edad) && $rango_edad == "25 a 44 años") {
+                                            echo "selected";
+                                          } ?>>25 a 44 años</option>
+            <option value="45 a 54 años" <?php if (isset($rango_edad) && $rango_edad == "45 a 54 años") {
+                                            echo "selected";
+                                          } ?>>45 a 54 años</option>
+            <option value="Más de 54" <?php if (isset($rango_edad) && $rango_edad == "Más de 54") {
+                                        echo "selected";
+                                      } ?>>Más de 54</option>
+          </select>
+        </div>
+        <!-- ------ -->
+
 
         <div class="form-group col-3">
           <label for="programa_ccp">Pertenece a programa/proyecto de CCP u otras organizaciones:</label>
@@ -486,6 +474,7 @@ $id_registro = '';
         <div class="form-group col-3 aux_program">
           <label for="estado_solicitud">Estado solicitud:</label>
           <select class="form-control " name="estado_solicitud" id="estado_solicitud">
+            <option value="">Seleccione</option>
             <option value="En proceso" <?php if (isset($estado_solicitud) && $estado_solicitud == "En proceso") {
                                           echo "selected";
                                         } ?>>En proceso</option>
@@ -527,8 +516,6 @@ $id_registro = '';
                 }
 
 
-
-
                 $consp = "SELECT * FROM programas where estado=1 order by programa";
                 $resp = mysqli_query($conn, $consp);
                 $cont = 1;
@@ -539,34 +526,34 @@ $id_registro = '';
                       <?= $filap['programa'] ?>
                     </td>
                     <td>
-                      <input type="checkbox" name="si_programa[]" value="<?= $filap['id'] ? $filap['id'] : '' ?>" <?php if (isset($aux_pxd[$filap['id']]) && $aux_pxd[$filap['id']]) echo "checked"; ?>>
+                      <input type="checkbox" name="si_programa[]" value="<?= $filap['id_programa'] ? $filap['id_programa'] : '' ?>" <?php if (isset($aux_pxd[$filap['id_programa']]) && $aux_pxd[$filap['id_programa']]) echo "checked"; ?>>
                     </td>
                     <td>
                       <select class="form-control " style="width: 5em;" name="apoyo_l['<?= $filap['id'] ?>']" id="apoyo">
-                        <option value="No" <?php if (isset($aux_pxd[$filap['id']]['recive_apoyo']) && $aux_pxd[$filap['id']]['recive_apoyo'] == "No") {
+                        <option value="No" <?php if (isset($aux_pxd[$filap['id_programa']]['recibe_apoyo']) && $aux_pxd[$filap['id_programa']]['recibe_apoyo'] == "No") {
                                               echo "selected";
                                             } ?>>No</option>
-                        <option value="Si" <?php if (isset($aux_pxd[$filap['id']]['recive_apoyo']) && $aux_pxd[$filap['id']]['recive_apoyo'] == "Si") {
+                        <option value="Si" <?php if (isset($aux_pxd[$filap['id_programa']]['recibe_apoyo']) && $aux_pxd[$filap['id_programa']]['recibe_apoyo'] == "Si") {
                                               echo "selected";
                                             } ?>>Si</option>
                       </select>
                     </td>
                     <td>
-                      <select class="form-control " name="dinero_espcie_l['<?= isset($filap['id']) ? $filap['id'] : '' ?>']" id="dinero_espcie">
+                      <select class="form-control " name="dinero_espcie_l['<?= isset($filap['id_programa']) ? $filap['id_programa'] : '' ?>']" id="dinero_espcie">
                         <option value="Dinero" <?php
-                                                if (isset($aux_pxd[$filap['id']]['dinero_espcie']) && ($aux_pxd[$filap['id']]['dinero_espcie'] == "Dinero"
-                                                  || $aux_pxd[$filap['id']] == "Di")) {
+                                                if (isset($aux_pxd[$filap['id_programa']]['dinero_espcie']) && ($aux_pxd[$filap['id_programa']]['dinero_espcie'] == "Dinero"
+                                                  || $aux_pxd[$filap['id_programa']] == "Di")) {
                                                   echo "selected";
                                                 } ?>>
                           Dinero
                         </option>
-                        <option value="Especie" <?php if (isset($aux_pxd[$filap['id']]['dinero_espcie']) && ($aux_pxd[$filap['id']]['dinero_espcie'] != "Dinero" && $aux_pxd[$filap['id']] != "Di")) {
+                        <option value="Especie" <?php if (isset($aux_pxd[$filap['id_programa']]['dinero_espcie']) && ($aux_pxd[$filap['id_programa']]['dinero_espcie'] != "Dinero" && $aux_pxd[$filap['id_programa']] != "Di")) {
                                                   echo "selected";
                                                 } ?>>Especie</option>
                       </select>
                     </td>
                     <td>
-                      <input class="form-control " type="text" name="especie_l['<?= isset($filap['id']) ? $filap['id'] : '' ?>']" id="especie" value="<?= isset($aux_pxd[$filap['id']]['descrip_val']) ? $aux_pxd[$filap['id']]['descrip_val'] : '' ?>">
+                      <input class="form-control " type="text" name="especie_l['<?= isset($filap['id_programa']) ? $filap['id_programa'] : '' ?>']" id="especie" value="<?= isset($aux_pxd[$filap['id_programa']]['descrip_val']) ? $aux_pxd[$filap['id_programa']]['descrip_val'] : '' ?>">
                     </td>
                   </tr> <?php
                       } ?>
@@ -584,7 +571,7 @@ $id_registro = '';
             <!-- <input type="submit" value="Guardar" class="btn btn-success" name="Guardar"> -->
           </div>
         </div>
-    </div>
+      </div>
   </form>
 </div>
 

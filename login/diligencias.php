@@ -71,7 +71,7 @@ $cons_a = "SELECT * FROM programas   order by programa";
 $res_a = mysqli_query($conn, $cons_a);
 $programas2 = array();
 while ($afila = mysqli_fetch_array($res_a)) {
-	$programas2[$afila['id']] = $afila['programa'];
+	$programas2[$afila['id_programa']] = $afila['programa'];
 }
 
 $cons_a = "SELECT * FROM programas where estado = 1 order by programa";
@@ -93,14 +93,15 @@ while ($afila = mysqli_fetch_array($res_a)) {
 	}
 </script>
 <div class="row">
-	<!-- <?php if(isset($_SESSION['message'])) {?>
+	<!-- <?php if (isset($_SESSION['message'])) { ?>
 		<div class="alert alert-<? $_SESSION['message_type'] ?> alert-dismissible fade show" role="alert">
 			<?php $_SESSION['message'] ?>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-	<?php session_unset(); } ?>limpiar datos en la sesion -->
+	<?php session_unset();
+			} ?>limpiar datos en la sesion -->
 	<div class="col-sm-12">
 		<div class="card">
 			<div class="card-header">
@@ -178,6 +179,10 @@ while ($afila = mysqli_fetch_array($res_a)) {
 							<th class="text-center align-middle">Pertenece a programa/proyecto de CCP u otras organizaciones:</th>
 							<th class="text-center align-middle">Estado solicitudds</th>
 							<th class="text-center align-middle">Fecha solicitud</th>
+							<th class="text-center align-middle">Genero</th>
+							<th class="text-center align-middle">Escolaridad</th>
+							<th class="text-center align-middle">Solicitud</th>
+							<th class="text-center align-middle">Rango de Edad</th>
 
 							<!-- <th class="text-center align-middle">Proyecto CPP u otros</th>
 							<?php foreach ($programas2 as $p) { ?>
