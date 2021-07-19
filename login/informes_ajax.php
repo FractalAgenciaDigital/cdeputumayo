@@ -2,7 +2,7 @@
     include 'funciones.php';
 
     if (isset( $_POST['listar'] )) {
-        $cons = 'SELECT tipoDocumento, nitEmpr, documento, nombres, apellido1, apellido2, apellidos, razonSocial, activEcon, ciudad, email, emailPersonalEmpr, emailEmpr, telocel1, telocel2, telocel, ctde, dp, forme, forte, create_at, solicitud FROM diligencias';
+       echo $cons = 'SELECT tipoDocumento, nitEmpr, documento, nombres, apellido1, apellido2, apellidos, razonSocial, activEcon, ciudad, email, emailPersonalEmpr, emailEmpr, telocel1, telocel2, telocel, ctde, dp, forme, forte, create_at, solicitud FROM diligencias_new';
         $donde = '';
         if ($_POST['tipoDoc']) {
             $donde .= ' WHERE tipoDocumento = '.$_POST['tipoDoc'];

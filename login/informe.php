@@ -1,10 +1,10 @@
 <?php
 //include 'funciones.php';
 
-	header('Content-type: application/vnd.ms-excel; charset=utf8');
+	/*header('Content-type: application/vnd.ms-excel; charset=utf8');
 	header("Content-Disposition: attachment; filename=innforme.xls");
 	header("Pragma: no-cache");
-	header("Expires: 0");
+	header("Expires: 0");*/
 
     $usuario = "ccputuma_CDE";
 $contrasena = "C4m1l0.M2017!";  // en mi caso tengo contraseña pero en casa caso introducidla aquí.

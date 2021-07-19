@@ -14,7 +14,7 @@
       $cons="DELETE FROM diligencias WHERE id =".$_POST['id_elim'];
       $res = mysqli_query($conn, $cons);
   }
-  
+
   if (isset( $_GET['buscar'] ))
   {
     $id = $documento = $nombres = $razonSocial = $razonSocial2 = $razonSocial3 = $activEcon = $direccDomic = $ciudad = $email = $telocel1 = $telocel2 = $ctde = $dp = $forme = $forte = $solicitud = '';
@@ -226,7 +226,7 @@
 
   if (isset( $_POST['listar'] ))
   {
-      
+
     $cons = 'SELECT * FROM diligencias';
     $donde = '';
     if ($_POST['tipoDoc']) {
@@ -237,8 +237,9 @@
       $bloque = "nombres $txt OR apellido1 $txt OR apellido2 $txt OR apellidos $txt OR razonSocial $txt or documento $txt OR nitEmpr $txt";
       $donde .= $donde? " AND ($bloque)" : " WHERE $bloque";
     }
-     $cons .= $donde;
-    
+
+    $cons .= $donde;
+
     $res = $stmt = mysqli_query($conn, $cons);
     $tbody = '';
     $cont = 0;
@@ -254,7 +255,6 @@
     $sectores["10"]="Sector de comunicaciones";
     $sectores["11"]="Sector agroindustrial";
     $sectores["12"]="Otro";
-    
     $formtal["1"] = "Alianzas para la innovación";
     $formtal["2"] = "Fábricas de productividad";
     $formtal["3"] = "Propiedad industrial";
@@ -285,23 +285,23 @@
     //while (list($tipoDocumento, $documento, $nombre, $apellido1, $apellido2, $razonSocial, $actividadEconomica, $direccDomicilio, $ciudad, $email, $telocel1, $telocel2, $nitEmpr, $actividadEconomicaEmpr, $direccEmpr, $emailPersonaEmpr, $emailEmpr, $telocel) = mysqli_fetch_array($res))
     while ($fila = mysqli_fetch_array($res))
     {
-      
+
         $filt_proyecto='';
-       
+
         if(isset($_POST['proyecto']) && $_POST['proyecto']!='' ){
             //$aux_proyect=$_POST['proyecto'];
             //$filt_proyecto=" and nom_progr='$aux_proyect'";
             $filt_proyecto=" and id_programa=".$_POST['proyecto'];
            // echo "$filt_proyecto=$filt_proyecto<br>";
-            
+
         }
         $fila2=array();
         $cons2="select * from extras_usus where id_usu=".$fila['id'];
         //echo $cons2."<br>";  exit; die;
-        
+
         $res2 = $stmt = mysqli_query($conn, $cons2);
         $fila2 = mysqli_fetch_array($res2);
-        
+
         $consp="select * from progsxdiligendias where id_diligencia=".$fila['id']." ".$filt_proyecto;
         $aux_pxd_x_id_pro = array();
         $resp = $stmt = mysqli_query($conn, $consp);
@@ -312,8 +312,7 @@
         if( ($_POST['proyecto']!=''&&count($aux_pxd_x_id_pro)>0)||$_POST['proyecto']=='')
         {
                 // echo $consp."<br>";  exit; die;
-               
-                
+
                 //echo ' '.$_POST['proyecto'].' --- '.$cons2."<br>"; exit; die;
                 $cont++;
               /*$tbody .= "
@@ -323,7 +322,7 @@
               ";*/
               $tipoDocumento = $fila['tipoDocumento'] == '1' ? 'CÉDULA DE CIUDADANÍA'
                 : ($fila['tipoDocumento'] == '2' ? 'NIT' : 'OTROS');
-        
+
               $ciudad = $fila['ciudad'] == 1? 'COLÓN'
                 : ($fila['ciudad'] == 2 ? 'MOCOA'
                 : ($fila['ciudad'] == 3 ? 'ORITO'
@@ -336,19 +335,19 @@
                 : ($fila['ciudad'] == 10 ? 'SAN MIGUEL'
                 : ($fila['ciudad'] == 11 ? 'SIBUNDOY'
                 : ($fila['ciudad'] == 12 ? 'VALLE DEL GUAMUEZ' : 'VILLAGARZÓN')))))))))));
-        
+
                 $forte = $fila['forte'] == '1' ? 'Innovación'
                         : ($fila['forte'] == '2'? 'Fábricas de productividad'
                         : ($fila['forte'] == '3'? 'Propiedad industrial'
                         : ($fila['forte'] == '4'? 'Ferias, Misiones, otros.' : '')));
-                
+
               $fechaSol = explode('-', explode(' ', $fila['create_at'])[0]);
               $create_at = $fechaSol[2]."/".$fechaSol[1]."/".$fechaSol[0];
               $fechaSol = explode('-', explode(' ', $fila['updated_at'])[0]);
               $updated_at = $fechaSol[2]."/".$fechaSol[1]."/".$fechaSol[0];
               $id_f = '"'.$fila['id'].'"';
               $auxsector = $fila['sectorEcon']? $fila['sectorEcon'] : '';
-              
+
               $tbody .= "
               <tr>
                   <td>$cont</td>
