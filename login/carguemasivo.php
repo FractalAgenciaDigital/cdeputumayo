@@ -1,7 +1,6 @@
 <?php
 include "cabecera.php";
 include '../funciones.php';
-include '../funciones.php';
 
 ?>
 
@@ -31,6 +30,16 @@ include '../funciones.php';
             <div class="form">
                 <div class="form-row pt-1">
                     <form class="form-group" id="frmSubirArchivo" name="frmSubirArchivo" method="POST" enctype="multipart/form-data">
+                        <?php
+                        if (isset($_SESSION['message'])) { ?>
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                <?= $_SESSION['message'] ?>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        <?php
+                            // session_unset();
+                        }
+                        ?>
                         <div class="form-group col-12>
                             <label for=" documento"></label>
                             <input id="excel" type="file" name="excel" class="form-control">
