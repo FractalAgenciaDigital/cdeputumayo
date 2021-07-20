@@ -8,11 +8,17 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
     <title>CDE 2 - Camara de comercio</title>
-
+    <!-- Styles Barra lateral Redes sociales -->
+    <link rel="stylesheet" href="assets/css/media_socials.css">
+    <link rel="stylesheet" href="assets/css/font.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <!--<link rel="canonical" href="https://">-->
+    <!-- Styles checkbox de Terminos -->
+    <link rel="stylesheet" href="assets/css/checkbox.css">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css"><!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="assets/css/styles_cde.css" />
     <!-- Custom styles for this template -->
@@ -366,8 +372,16 @@
             </div>
 
             <section class="container">
+                
+              
+                <div class="social-bar">
+                  <a href="https://www.facebook.com/Centro de desarrollo empresarial Putumayo" class="icon icon-facebook" target="_blank"></a>
+                  <a href="https://www.instagram.com/@cdeputumayo" class="icon icon-instagram" target="_blank"></a>
+                </div>
+
+
                 <div id="app" class="col-md-10 offset-md-1 ">
-                <form class="" method="POST" onsubmit="enviando()">                  
+                <form class="" method="POST" onsubmit="enviando()" name="contactform">                  
                   <div class="row mb-2">
                     <div class="col-sm-12 col-md-6">
                       <div class="row mb-2">
@@ -435,22 +449,33 @@
                             <label for="tratamientoDatos">
                               <div class="row">
                                 <div class="col-1">
-                                  <input type="checkbox" class="form-controll mt-3" id="tratamientoDatos" required name="tratamientoDato    
-                                  s"/>
+                                  <!-- ----------------------- -->
+                                  <!-- <script type="text/javascript">
+                                      function enableSending() {
+                                        document.contactform.submit.disabled = !document.contactform.tratamientoDatos.checked;
+                                      }
+                                  </script> -->
+                                  <!-- <div class="roundedOne">
+                                    <input type="checkbox" onclick="enableSending()" id="roundedOne" name="tratamientoDatos"/>
+                                    <label for="roundedOne"></label>
+                                  </div> -->
+                                  <!-- ----------------------- -->
+                                  <input type="checkbox" required onclick="enableSending()" class="form-controll mt-3" id="tratamientoDatos" name="tratamientoDatos"/>
                                 </div>
                                 <div class="col-11">
                                   Acepto la
-                                  <button type="button" class="btn btn-link pb-2" data-toggle="modal" data-target="#acuerdo-mdl"> política de tratamiento de datos</button>
+                                  <button type="button" class="btn btn-link pb-2" data-toggle="modal" data-target="#acuerdo-mdl">política de tratamiento de datos</button>
                                 </div>
                               </div>
                             </label>
                           </div>
                         </div>
                         <div class="col-12 ">                          
-                          <button type="sbumit" class="btn btn-lg btn-block" style="color: white; background-color: #ae206b;">Enviar</button>                          
+                          <button type="sbumit" name="submit"  class="btn btn-lg btn-block" style="color: white; background-color: #ae206b;">Enviar</button>                          
                         </div>
                       </div>                      
                     </div>
+                    
                   </div>
                   
                     <!--
