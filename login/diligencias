@@ -44,30 +44,31 @@
     						<thead>
     							<tr>
     								<th class="text-center align-middle">#</th>
-    								<th class="text-center align-middle">Tipo documento</th>
-    								<th class="text-center align-middle">Nit</th>
-    								<th class="text-center align-middle">Doc. persona</th>
-    								<th class="text-center align-middle">Nombre</th>
-    								<th class="text-center align-middle">Ape. 1</th>
-    								<th class="text-center align-middle">Ape. 2</th>
-    								<th class="text-center align-middle">Raz&oacute;n social</th>
-    								<th class="text-center align-middle">Act. econ&oacute;mica</th>
-    								<th class="text-center align-middle">Dir. domicilio</th>
-    								<th class="text-center align-middle">Ciudad</th>
-    								<th class="text-center align-middle">Correo</th>
-    								<th class="text-center align-middle">Tel. o cel. 1</th>
-    								<th class="text-center align-middle">Tel. o cel. 2</th>
-    								<th class="text-center align-middle">Act. econ&oacute;mica empresa</th>
-    								<th class="text-center align-middle">Dir. empresa</th>
-    								<th class="text-center align-middle">Correo empresarial</th>
-    								<th class="text-center align-middle">Correo empresa</th>
-    								<th class="text-center align-middle">Tel. o cel.</th>
-    								<th class="text-center align-middle">Ctde</th>
-    								<th class="text-center align-middle">Desarrollo prod.</th>
-    								<th class="text-center align-middle">Form. empresarial</th>
-    								<th class="text-center align-middle">Fort. empresarial</th>
-    								<th class="text-center align-middle">Fecha solicitud</th>
-    								<th class="text-center align-middle">Solicitud</th>
+									<th class="text-center align-middle">Tipo documento</th>
+									<th class="text-center align-middle">Doc. persona</th>
+									<th class="text-center align-middle">Nombres completos</th>
+									<th class="text-center align-middle">Correos</th>
+									<th class="text-center align-middle">Celulares</th>
+									<th class="text-center align-middle">Ciudad</th>
+									<th class="text-center align-middle">Direcc. Empresa</th>
+									<th class="text-center align-middle">Actividad Económica</th>
+									<th class="text-center align-middle">Des. Productivo</th>
+									<th class="text-center align-middle">Princ. Prod. Serv</th>
+									<th class="text-center align-middle">Fort. Empresarial</th>
+									<th class="text-center align-middle">Form. Empresarial</th>
+									<th class="text-center align-middle">Nombre Representante</th>
+									<th class="text-center align-middle">Población</th>
+									<th class="text-center align-middle">Fecha Matricula</th>
+									<th class="text-center align-middle">Matricula</th>
+									<th class="text-center align-middle">Registrado</th>
+									<th class="text-center align-middle">Num. Cam. Comercio</th>
+									<th class="text-center align-middle">Programa CCP</th>
+									<th class="text-center align-middle">Estado Solicitud</th>
+									<th class="text-center align-middle">Fecha Solicitud</th>
+									<th class="text-center align-middle">Genero</th>
+									<th class="text-center align-middle">Escolaridad</th>
+									<th class="text-center align-middle">Rango edad</th>
+									<th class="text-center align-middle">Solicitud</th>
     								<th>-</th>
     							</tr>
     						</thead>
