@@ -11,18 +11,21 @@ $res_a = mysqli_query($conn, $cons_a);
 $programas2 = array();
 $programas3 = array();
 while ($afila = mysqli_fetch_array($res_a)) {
-	$programas2[$afila['id']] = $afila['programa'];
-	$programas3[$afila['id']] = $afila;
+	$programas2[$afila['id_programa']] = $afila['programa'];
+	$programas3[$afila['id_programa']] = $afila;
 }
+
+
+
 $cons = 'SELECT * FROM diligencias_new';
 $donde = '';
 
-if (isset($_GET['tipoDoc']) && $_GET['tipoDoc'] != '') {
+if (isset($_GET['tipoDocumento']) && $_GET['tipoDocumento'] != '') {
 	$donde .= ' WHERE tipoDocumento = ' . $_GET['tipoDoc'];
 }
 if (isset($_GET['txtBuscar']) && $_GET['txtBuscar'] != '') {
 	$txt = "LIKE '%" . $_GET['txtBuscar'] . "%'";
-	$bloque = "nombres $txt OR apellido1 $txt OR apellido2 $txt OR apellidos $txt OR razonSocial $txt or documento $txt or nitEmpr $txt";
+	$bloque = "nombres $txt OR apellidos $txt or documento $txt";
 	$donde .= $donde ? " AND ($bloque)" : " WHERE $bloque";
 }
 $cons .= $donde;
@@ -58,6 +61,31 @@ $cont = 0;
 							<tr>
 								<th class="text-center align-middle">#</th>
 								<th class="text-center align-middle">Tipo documento</th>
+								<th class="text-center align-middle">Doc. persona</th>
+								<th class="text-center align-middle">Nombres completos</th>
+								<th class="text-center align-middle">Correos</th>
+								<th class="text-center align-middle">Celulares</th>
+								<th class="text-center align-middle">Ciudad</th>
+								<th class="text-center align-middle">Direcc. Empresa</th>
+								<th class="text-center align-middle">Actividad Económica</th>
+								<th class="text-center align-middle">Des. Productivo</th>
+								<th class="text-center align-middle">Princ. Prod. Serv</th>
+								<th class="text-center align-middle">Fort. Empresarial</th>
+								<th class="text-center align-middle">Form. Empresarial</th>
+								<th class="text-center align-middle">Nombre Representante</th>
+								<th class="text-center align-middle">Población</th>
+								<th class="text-center align-middle">Fecha Matricula</th>
+								<th class="text-center align-middle">Matricula</th>
+								<th class="text-center align-middle">Registrado</th>
+								<th class="text-center align-middle">Num. Cam. Comercio</th>
+								<th class="text-center align-middle">Programa CCP</th>
+								<th class="text-center align-middle">Estado Solicitud</th>
+								<th class="text-center align-middle">Fecha Solicitud</th>
+								<th class="text-center align-middle">Genero</th>
+								<th class="text-center align-middle">Escolaridad</th>
+								<th class="text-center align-middle">Rango edad</th>
+								<th class="text-center align-middle">Solicitud</th>
+								<!-- <th class="text-center align-middle">Tipo documento</th>
 								<th class="text-center align-middle">Nit</th>
 								<th class="text-center align-middle">Doc. persona</th>
 								<th class="text-center align-middle">Nombre</th>
@@ -98,7 +126,7 @@ $cont = 0;
 									<th class="text-center align-middle">Recibe apoyo1</th>
 									<th class="text-center align-middle">Tipo apoyo1</th>
 									<th class="text-center align-middle">Descripción / Valor1</th>
-								<?php   } ?>
+								<?php   } ?> -->
 								<!--
         								<th class="text-center align-middle">Nombre Proyecto 1</th>
         								<th class="text-center align-middle">Recibe apoyo1</th>
@@ -130,7 +158,7 @@ $cont = 0;
         								<th class="text-center align-middle">Tipo apoyo6</th>
         								<th class="text-center align-middle">Descripción / Valor6</th>
         								-->
-
+								<!-- 
 								<th class="text-center align-middle">Estado Solicitud</th>
 								<th class="text-center align-middle">Fecha Respuesta</th>
 								<th class="text-center align-middle">Enero</th>
@@ -157,7 +185,7 @@ $cont = 0;
 								<th class="text-center align-middle">Observación</th>
 								<th class="text-center align-middle">Diciembre</th>
 								<th class="text-center align-middle">Observación</th>
-								<th>Fec. Actualiza</th>
+								<th>Fec. Actualiza</th> -->
 							</tr>
 						</thead>
 						<tbody id="cuerpo">
@@ -195,9 +223,9 @@ $cont = 0;
 								}
 
 
-								$cons2 = "select * from extras_usus where id_usu=" . $fila['id'] . " " . $filt_proyecto;
-								$res2 = $stmt = mysqli_query($conn, $cons2);
-								$fila2 = mysqli_fetch_array($res2);
+								// $cons2 = "SELECT * FROM extras_usus WHERE id_usu=" . $fila['id'] . " " . $filt_proyecto;
+								// $res2 = $stmt = mysqli_query($conn, $cons2);
+								// $fila2 = mysqli_fetch_array($res2);
 
 
 
@@ -220,80 +248,63 @@ $cont = 0;
 																			: ($fila['ciudad'] == 11 ? 'SIBUNDOY'
 																				: ($fila['ciudad'] == 12 ? 'VALLE DEL GUAMUEZ' : 'VILLAGARZÓN')))))))))));
 
-									$forte = $fila['forte'] == '1' ? 'Innovación'
-										: ($fila['forte'] == '2' ? 'Fábricas de productividad'
-											: ($fila['forte'] == '3' ? 'Propiedad industrial'
-												: ($fila['forte'] == '4' ? 'Ferias, Misiones, otros.' : '')));
+
 
 									$fechaSol = explode('-', explode(' ', $fila['create_at'])[0]);
 									$updated_at = $fechaSol[2] . "/" . $fechaSol[1] . "/" . $fechaSol[0];
-									$apellido = $fila['apellido1'];
-									$apellido2 = $fila['apellido2'];
+									$apellido = $fila['apellidos'];
 									if ($fila['tipoDocumento'] == '2') {
 										$aux = explode(" ", $fila['apellidos']);
 										$apellido =  $aux[0];
-										if (isset($aux[1])) {
-											$apellido2 =  $aux[1];
-										}
 									}
 
-									$consp = "select * from progsxdiligendias where id_diligencia=" . $fila['id'];
+									// $consp = "SELECT * FROM progsxdiligendias WHERE id=" . $fila['id'];
 									//echo $cons2."<br>";  exit; die;
-									$aux_pxd_x_id_pro = array();
-									$resp = $stmt = mysqli_query($conn, $consp);
-									while ($filap = mysqli_fetch_array($resp)) {
-										$aux_pxd_x_id_pro[$filap['id_programa']] = $filap;
-									}
+									// $aux_pxd_x_id_pro = array();
+									// $resp = $stmt = mysqli_query($conn, $consp);
+									// while ($filap = mysqli_fetch_array($resp)) {
+									// 	$aux_pxd_x_id_pro[$filap['id_programa']] = $filap;
+									// }
 
 									echo "
         									<tr>
         										<td>$cont</td>
         										<td>" . $tipoDocumento . "</td>
-        										<td>" . $fila['nitEmpr'] . "</td>
         										<td>" . $fila['documento'] . "</td>
-        										<td>" . $fila['nombres'] . " " . $apellido . " " . $apellido2 . "</td>
-        										<td>" . $fila['razonSocial'] . "</td>
-        										<td>" . $fila['activEcon'] . "</td>
-        										<td>" . $fila['direccDomic'] . "</td>
-        										<td>" . $ciudad . "</td>
-        										<td>" . $fila['email'] . "</td>
-        										<td>" . $fila['telocel1'] . "</td>
-        										<td>" . $fila['telocel2'] . "</td>
-        										<td>" . $fila['activEconEmpr'] . "</td>
-        										<td>" . $fila['direccEmpr'] . "</td>
-        										<td>" . $fila['emailPersonalEmpr'] . "</td>
-        										<td>" . $fila['emailEmpr'] . "</td>
-        										<td>" . $fila['telocel'] . "</td>
-        										
-        										<td>" . $sectores[$fila['sectorEcon']] . "</td>
-        										<td>" . $fila['sectorEconOtro'] . "</td>
-        										<td>" . $fila['ppalProdServ'] . "</td>
-        										<td>" . $fila['formeTema'] . "</td>
-        										<td>" . $formtal[$fila['forte']] . "</td>
-        										<td>" . $fila['forteOtro'] . "</td>
-        										<td>" . $fila['solicitud'] . "</td>
-        										
-        										
-        								
-        										  <td>" . $fila2['sexo'] . "</td>
-                                                  <td>" . $fila2['poblacion'] . "</td>
-                                                  <td>" . $fila2['otro_poblacion'] . "</td>
-                                                  <td>" . $fila2['escolaridad'] . "</td>
-                                                  <td>" . $fila2['rango_edad'] . "</td>
-                                                  <td>" . $fila2['registrado'] . "</td>
-                                                  <td>" . $fila2['matricula'] . "</td>
-                                                  <td>" . $fila2['fecha_matricula'] . "</td>
-                                                  <td>" . $fila2['programa_ccp'] . "</td>";
+												<td>" . $fila['documento'] . "</td>
+                								<|td>" . $fila['nombres'] . ' ' . (!is_null($fila['apellidos']) ? $fila['apellidos'] : '') . "</								td>
+                								<td>" . $fila['email'] . '<br>' . $fila['email_representante'] . "</td>
+                								<td>" . $fila['celular'] . '<br>' . $fila['celular_representante'] . "</td>
+                								<td>" . $fila['ciudad'] . "</td>
+                								<td>" . $fila['direccEmpr'] . "</td>
+                								<td>" . $fila['activEcon'] . '<br>' . $fila['otro_activEcon'] . "</td>
+                								<td>" . $fila['des_productivo'] . "</td>
+                								<td>" . $fila['princ_prod_serv'] . "</td>
+                								<td>" . $fila['fort_empresarial'] . "</td>
+                								<td>" . $fila['form_empresarial'] . "</td>
+                								<td>" . $fila['nombre_representante'] . "</td>
+                								<td>" . $fila['poblacion'] . '<br>' . $fila['otro_poblacion'] . "</td>
+                								<td>" . $fila['fecha_matricula'] . "</td>
+                								<td>" . $fila['matricula'] . "</td>
+                								<td>" . $fila['registrado'] . "</td>
+                								<td>" . $fila['num_cam_comercio'] . "</td>
+                								<td>" . $fila['programa_ccp'] . "</td>
+                								<td>" . $fila['estado_solicitud'] . "</td>
+                								<td>" . $fila['solicitud'] . "</td>
+                								<td>" . $fila['genero'] . "</td>
+                								<td>" . $fila['escolaridad'] . "</td>
+                								<td>" . $fila['rango_edad'] . "</td>
+                								<td>" . $fila['solicitud'] . "</td>";
 
-									foreach ($programas3 as $p) {
+									// foreach ($programas3 as $p) {
 
-										if ($aux_pxd_x_id_pro[$p['id']]) {
-											echo "<td>Si</td><td>" . $aux_pxd_x_id_pro[$p['id']]['recive_apoyo'] . "</td><td>" . $aux_pxd_x_id_pro[$p['id']]['dinero_espcie'] . "</td><td>" . $aux_pxd_x_id_pro[$p['id']]['descrip_val'] . "</td>";
-										} else {
-											echo "<td>No</td><td></td><td></td><td></td>";
-										}
-										//	$tbody.="<td>".$p['programa']."</td><td >Recibe apoyo1</td><td >Tipo apoyo1</td><td >Descripción / Valor1</td>";
-									}
+									// if ($aux_pxd_x_id_pro[$p['id']]) {
+									// 	echo "<td>Si</td><td>" . $aux_pxd_x_id_pro[$p['id']]['recive_apoyo'] . "</td><td>" . $aux_pxd_x_id_pro[$p['id']]['dinero_espcie'] . "</td><td>" . $aux_pxd_x_id_pro[$p['id']]['descrip_val'] . "</td>";
+									// } else {
+									// 	echo "<td>No</td><td></td><td></td><td></td>";
+									// }
+									//	$tbody.="<td>".$p['programa']."</td><td >Recibe apoyo1</td><td >Tipo apoyo1</td><td >Descripción / Valor1</td>";
+									// }
 
 
 									/*
@@ -327,34 +338,35 @@ $cont = 0;
                                                   <td>".$fila2['dinero_espcie6']."</td>
                                                   <td>".$fila2['especie6']."</td>";"
                                                   */
-									echo  "<td>" . $fila2['estado_solicitud'] . "</td>
-                                                  <td>" . $fila2['fecha_solicitud'] . "</td>
-                                                  <td>" . $fila2['enero'] . "</td>
-                                                  <td>" . $fila2['obs_ene'] . "</td>
-                                                  <td>" . $fila2['febrero'] . "</td>
-                                                  <td>" . $fila2['obs_feb'] . "</td>
-                                                  <td>" . $fila2['marzo'] . "</td>
-                                                  <td>" . $fila2['obs_mar'] . "</td>
-                                                  <td>" . $fila2['abril'] . "</td>
-                                                  <td>" . $fila2['obs_abr'] . "</td>
-                                                  <td>" . $fila2['mayo'] . "</td>
-                                                  <td>" . $fila2['obs_may'] . "</td>
-                                                  <td>" . $fila2['junio'] . "</td>
-                                                  <td>" . $fila2['obs_jun'] . "</td>
-                                                  <td>" . $fila2['julio'] . "</td>
-                                                  <td>" . $fila2['obs_jul'] . "</td>
-                                                  <td>" . $fila2['agosto'] . "</td>
-                                                  <td>" . $fila2['obs_ago'] . "</td>
-                                                  <td>" . $fila2['septiembre'] . "</td>
-                                                  <td>" . $fila2['obs_sep'] . "</td>
-                                                  <td>" . $fila2['octubre'] . "</td>
-                                                  <td>" . $fila2['obs_oct'] . "</td>
-                                                  <td>" . $fila2['noviembre'] . "</td>
-                                                  <td>" . $fila2['obs_nov'] . "</td>
-                                                  <td>" . $fila2['diciembre'] . "</td>
-                                                  <td>" . $fila2['obs_dic'] . "</td>
-        										<td>$updated_at</td>
-        									</tr>";
+									// echo  "<td>" . $fila2['estado_solicitud'] . "</td>
+									//   <td>" . $fila2['fecha_solicitud'] . "</td>
+									//   <td>" . $fila2['enero'] . "</td>
+									//   <td>" . $fila2['obs_ene'] . "</td>
+									//   <td>" . $fila2['febrero'] . "</td>
+									//   <td>" . $fila2['obs_feb'] . "</td>
+									//   <td>" . $fila2['marzo'] . "</td>
+									//   <td>" . $fila2['obs_mar'] . "</td>
+									//   <td>" . $fila2['abril'] . "</td>
+									//   <td>" . $fila2['obs_abr'] . "</td>
+									//   <td>" . $fila2['mayo'] . "</td>
+									//   <td>" . $fila2['obs_may'] . "</td>
+									//   <td>" . $fila2['junio'] . "</td>
+									//   <td>" . $fila2['obs_jun'] . "</td>
+									//   <td>" . $fila2['julio'] . "</td>
+									//   <td>" . $fila2['obs_jul'] . "</td>
+									//   <td>" . $fila2['agosto'] . "</td>
+									//   <td>" . $fila2['obs_ago'] . "</td>
+									//   <td>" . $fila2['septiembre'] . "</td>
+									//   <td>" . $fila2['obs_sep'] . "</td>
+									//   <td>" . $fila2['octubre'] . "</td>
+									//   <td>" . $fila2['obs_oct'] . "</td>
+									//   <td>" . $fila2['noviembre'] . "</td>
+									//   <td>" . $fila2['obs_nov'] . "</td>
+									//   <td>" . $fila2['diciembre'] . "</td>
+									//   <td>" . $fila2['obs_dic'] . "</td>
+									// <td>$updated_at</td>
+
+									"</tr>";
 								}
 							}
 							?>

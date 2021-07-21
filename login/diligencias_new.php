@@ -16,8 +16,8 @@ $id_registro = '';
   }
 </style>
 
-<div class=" bg-light">
-  <form action="controller.php" name="registro_diligencia" method="POST">
+<div class="bg-light">
+  <form action=" controller.php" name="registro_diligencia" method="POST">
     <div class="container bg-white mb-4">
       <div class="form-row pt-2">
         <div class="form-group col-12">
