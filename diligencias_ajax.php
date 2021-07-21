@@ -331,66 +331,68 @@ if (isset($_POST['listar'])) {
     if (isset($_POST['proyecto']) && $_POST['proyecto'] != '') {
       //$aux_proyect=$_POST['proyecto'];
       //$filt_proyecto=" and nom_progr='$aux_proyect'";
-      $filt_proyecto = " and id_programa=" . $_POST['proyecto'];
+      $filt_proyecto = " AND id_programa=" . $_POST['proyecto'];
       // echo "$filt_proyecto=$filt_proyecto<br>";
 
     }
 
     // $fila2 = array();
     // $cons2 = "SELECT * FROM extras_usus where id_usu=" . $fila['id'];
-    // //echo $cons2."<br>";  exit; die;
-
+    // echo $cons2 . "<br>";
+    // exit;
+    // die;
     // $res2 = $stmt = mysqli_query($conn, $cons2);
     // $fila2 = mysqli_fetch_array($res2);
 
-    // $consp = "SELECT * FROM progsxdiligendias where id_diligencia=" . $fila['id'] . " " . $filt_proyecto;
-    // $aux_pxd_x_id_pro = array();
-    // $resp = $stmt = mysqli_query($conn, $consp);
-    // while ($filap = mysqli_fetch_array($resp)) {
-    //   $aux_pxd_x_id_pro[$filap['id_programa']] = $filap;
-    // }
-    // if (($_POST['proyecto'] != '' && count($fila2) > 0) || $_POST['proyecto'] != '')
+    $consp = "SELECT * FROM progsxdiligencias WHERE id_diligencia=" . $fila['id_diligencia'] . " " . $filt_proyecto;
+    $aux_pxd_x_id_pro = array();
+    $resp = $stmt = mysqli_query($conn, $consp);
+    // print_r($resp);
+    while ($filap = mysqli_fetch_array($resp)) {
+      $aux_pxd_x_id_pro[$filap['id_programa']] = $filap;
+    }
+    if (($_POST['proyecto'] != '' && count($fila2) > 0) || $_POST['proyecto'] != '')
 
-    if (($_POST['proyecto'] != '' && count($aux_pxd_x_id_pro) > 0) || $_POST['proyecto'] == '') {
-      // echo $consp."<br>";  exit; die;
+      if (($_POST['proyecto'] != '' && count($aux_pxd_x_id_pro) > 0) || $_POST['proyecto'] == '') {
+        // echo $consp."<br>";  exit; die;
 
 
-      //echo ' '.$_POST['proyecto'].' --- '.$cons2."<br>"; exit; die;
-      $cont++;
-      /*$tbody .= "
+        //echo ' '.$_POST['proyecto'].' --- '.$cons2."<br>"; exit; die;
+        $cont++;
+        /*$tbody .= "
                 <tr>
                   <td>$cont</td><td>$tipoDocumento</td><td>$documento</td><td>$nombre</td><td>$apellido1</td><td>$apellido2</td><td>$razonSocial</td><td>$actividadEconomica</td><td>$direccDomicilio</td><td>$ciudad</td><td>$email</td><td>$telocel1</td><td>$telocel2</td><td>$nitEmpr</td><td>$actividadEconomicaEmpr</td><td>$direccEmpr</td><td>$emailPersonaEmpr</td><td>$emailEmpr</td><td>$telocel</td>
                 </tr>
               ";*/
-      $tipoDocumento = $fila['tipoDocumento'] == '1' ? 'CÉDULA DE CIUDADANÍA'
-        : ($fila['tipoDocumento'] == '2' ? 'NIT' : 'OTROS');
+        $tipoDocumento = $fila['tipoDocumento'] == '1' ? 'CÉDULA DE CIUDADANÍA'
+          : ($fila['tipoDocumento'] == '2' ? 'NIT' : 'OTROS');
 
-      $ciudad = $fila['ciudad'] == 1 ? 'COLÓN'
-        : ($fila['ciudad'] == 2 ? 'MOCOA'
-          : ($fila['ciudad'] == 3 ? 'ORITO'
-            : ($fila['ciudad'] == 4 ? 'PUERTO ASÍS'
-              : ($fila['ciudad'] == 5 ? 'PUERTO CAICEDO'
-                : ($fila['ciudad'] == 6 ? 'PUERTO GUZMÁN'
-                  : ($fila['ciudad'] == 7 ? 'PUERTO LEGUÍZAMO'
-                    : ($fila['ciudad'] == 8 ? 'SANTIAGO'
-                      : ($fila['ciudad'] == 9 ? 'SAN FRANCISCO'
-                        : ($fila['ciudad'] == 10 ? 'SAN MIGUEL'
-                          : ($fila['ciudad'] == 11 ? 'SIBUNDOY'
-                            : ($fila['ciudad'] == 12 ? 'VALLE DEL GUAMUEZ' : 'VILLAGARZÓN')))))))))));
+        $ciudad = $fila['ciudad'] == 1 ? 'COLÓN'
+          : ($fila['ciudad'] == 2 ? 'MOCOA'
+            : ($fila['ciudad'] == 3 ? 'ORITO'
+              : ($fila['ciudad'] == 4 ? 'PUERTO ASÍS'
+                : ($fila['ciudad'] == 5 ? 'PUERTO CAICEDO'
+                  : ($fila['ciudad'] == 6 ? 'PUERTO GUZMÁN'
+                    : ($fila['ciudad'] == 7 ? 'PUERTO LEGUÍZAMO'
+                      : ($fila['ciudad'] == 8 ? 'SANTIAGO'
+                        : ($fila['ciudad'] == 9 ? 'SAN FRANCISCO'
+                          : ($fila['ciudad'] == 10 ? 'SAN MIGUEL'
+                            : ($fila['ciudad'] == 11 ? 'SIBUNDOY'
+                              : ($fila['ciudad'] == 12 ? 'VALLE DEL GUAMUEZ' : 'VILLAGARZÓN')))))))))));
 
-      $fort_empresarial = $fila['fort_empresarial'] == '1' ? 'Innovación'
-        : ($fila['fort_empresarial'] == '2' ? 'Fábricas de productividad'
-          : ($fila['fort_empresarial'] == '3' ? 'Propiedad industrial'
-            : ($fila['fort_empresarial'] == '4' ? 'Ferias, Misiones, otros.' : '')));
+        $fort_empresarial = $fila['fort_empresarial'] == '1' ? 'Innovación'
+          : ($fila['fort_empresarial'] == '2' ? 'Fábricas de productividad'
+            : ($fila['fort_empresarial'] == '3' ? 'Propiedad industrial'
+              : ($fila['fort_empresarial'] == '4' ? 'Ferias, Misiones, otros.' : '')));
 
-      $fechaSol = explode('-', explode(' ', $fila['create_at'])[0]);
-      $create_at = $fechaSol[2] . "/" . $fechaSol[1] . "/" . $fechaSol[0];
-      $fechaSol = explode('-', explode(' ', $fila['updated_at'])[0]);
-      $updated_at = $fechaSol[2] . "/" . $fechaSol[1] . "/" . $fechaSol[0];
-      $id_f = '"' . $fila['id_diligencia'] . '"';
-      // $auxsector = $fila['sectorEcon'] ? $fila['sectorEcon'] : '';
+        $fechaSol = explode('-', explode(' ', $fila['create_at'])[0]);
+        $create_at = $fechaSol[2] . "/" . $fechaSol[1] . "/" . $fechaSol[0];
+        $fechaSol = explode('-', explode(' ', $fila['updated_at'])[0]);
+        $updated_at = $fechaSol[2] . "/" . $fechaSol[1] . "/" . $fechaSol[0];
+        $id_f = '"' . $fila['id_diligencia'] . '"';
+        // $auxsector = $fila['sectorEcon'] ? $fila['sectorEcon'] : '';
 
-      $tbody .= "
+        $tbody .= "
               <tr>
                   <td>$cont</td>
                   <td>" . $tipoDocumento . "</td>
@@ -418,18 +420,21 @@ if (isset($_POST['listar'])) {
                   <td>" . $fila['num_cam_comercio'] . "</td>
                   <td>" . $fila['programa_ccp'] . "</td>
                   <td>" . $fila['estado_solicitud'] . "</td>
-                  <td>" . $fila['fecha_solicitud'] . "</td>";
-      foreach ($programas as $programa) {
-
-        if (isset($aux_pxd_x_id_pro[$programa['id_programa']])) {
-          $tbody .= "<td>Si</td><td>" . $aux_pxd_x_id_pro[$programa['id']]['recive_apoyo'] . "</td><td>" . $aux_pxd_x_id_pro[$programa['id']]['dinero_espcie'] . "</td><td>" . $aux_pxd_x_id_pro[$programa['id']]['descrip_val'] . "</td>";
-        } else {
-          $tbody .= "<td>No</td></td></td></td>";
+                  <td>" . $fila['fecha_solicitud'] . "</td>
+                  <td>" . $fila['genero'] . "</td>
+                  <td>" . $fila['escolaridad'] . "</td>
+                  <td>" . $fila['solicitud'] . "</td>
+                  <td>" . $fila['rango_edad'] . "</td>";
+        foreach ($programas as $programa) {
+          if (isset($aux_pxd_x_id_pro[$programa['id_programa']])) {
+            $tbody .= "<td>Si</td><td>" . $aux_pxd_x_id_pro[$programa['id']]['recibe_apoyo'] . "</td><td>" . $aux_pxd_x_id_pro[$programa['id']]['dinero_espcie'] . "</td><td>" . $aux_pxd_x_id_pro[$programa['id']]['descrip_val'] . "</td>";
+          } else {
+            $tbody .= "<td>No</td>";
+          }
+          // $tbody .= "<td>" . $programa['recibe_apoyo'] . "</td><td >" . $fila['recibe_apoyo'] . "</td><td >Tipo apoyo1</td><td >Descripción / Valor1</td>";
         }
-        //	$tbody.="<td>".$p['programa']."</td><td >Recibe apoyo1</td><td >Tipo apoyo1</td><td >Descripción / Valor1</td>";
-      }
 
-      $tbody .= "
+        $tbody .= "
                   
                   <td style='vertical-align: middle;'>
                     <a href='edit_diligencias_new.php?id_diligencia=" . $fila['id_diligencia'] . "' class='btn btn-success' title='Editar'><i class='cui-pencil'></i></a>
@@ -439,7 +444,7 @@ if (isset($_POST['listar'])) {
                     <i class='cui-trash'></i></button>
                   </td>
                   </tr>";
-    }
+      }
   }
   //echo utf8_encode($tbody);
   echo $tbody;

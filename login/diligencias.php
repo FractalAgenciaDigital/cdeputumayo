@@ -184,13 +184,14 @@ while ($afila = mysqli_fetch_array($res_a)) {
 							<th class="text-center align-middle">Solicitud</th>
 							<th class="text-center align-middle">Rango de Edad</th>
 
-							<!-- <th class="text-center align-middle">Proyecto CPP u otros</th>
+							<th class="text-center align-middle">Proyecto CPP u otros</th>
 							<?php foreach ($programas2 as $p) { ?>
 								<th class="text-center align-middle">Proyecto = <?= $p ?></th>
 								<th class="text-center align-middle">Recibe apoyo1</th>
 								<th class="text-center align-middle">Tipo apoyo1</th>
 								<th class="text-center align-middle">Descripción / Valor1</th>
-							<?php   } ?> -->
+							<?php   } ?>
+							<!-- 							
 							<th class="text-center align-middle">Descripción / Valor</th>
 							<th class="text-center align-middle">Estado Solicitudss</th>
 							<th class="text-center align-middle">Fecha Respuesta</th>
@@ -217,8 +218,8 @@ while ($afila = mysqli_fetch_array($res_a)) {
 							<th class="text-center align-middle">Noviembre</th>
 							<th class="text-center align-middle">Observación</th>
 							<th class="text-center align-middle">Diciembre</th>
-							<th class="text-center align-middle">Observación</th>
-							<th class="text-center align-middle" colspan="2">-</th>
+							<th class="text-center align-middle">Observación</th> -->
+							<th class="text-center align-middle" colspan="2">Acciones</th>
 						</tr>
 					</thead>
 					<tbody id="cuerpo">

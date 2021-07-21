@@ -60,7 +60,7 @@ if (isset($_POST['registrar'])) {
   //       $res2 = mysqli_query($conn, $info_progsxdiligendias);
   //     }
   //   }
-  if (isset($_POST['']))
+  if (isset($_POST['registrar']))
 
     header("location: diligencias.php");
 }
