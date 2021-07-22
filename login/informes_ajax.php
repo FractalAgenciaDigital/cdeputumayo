@@ -81,7 +81,6 @@ if (isset($_POST['listar'])) {
                 <td>" . $fila['genero'] . "</td>
                 <td>" . $fila['escolaridad'] . "</td>
                 <td>" . $fila['rango_edad'] . "</td>
-                <td>" . $fila['solicitud'] . "</td>
             </tr>";
     }
     echo $tbody;
