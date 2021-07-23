@@ -116,9 +116,9 @@ if (isset($_POST['listar'])) {
 
   $cons = 'SELECT * FROM diligencias_new';
   $donde = '';
-  // if ($_POST['tipoDo']) {
-  //   $donde .= ' WHERE tipoDocumento = ' . $_POST['tipoDo'];
-  // }
+  if ($_POST['tipoDoc']) {
+    $donde .= ' WHERE tipoDocumento = ' . $_POST['tipoDoc'];
+  }
   if ($_POST['txtBuscar']) {
     $txt = "LIKE '%" . $_POST['txtBuscar'] . "%'";
     $bloque = "nombres $txt OR apellidos $txt OR documento $txt OR email $txt OR nombre_representante $txt";
@@ -266,15 +266,19 @@ if (isset($_POST['listar'])) {
                   <td>" . $fila['matricula'] . "</td>
                   <td>" . $fila['registrado'] . "</td>
                   <td>" . $fila['num_cam_comercio'] . "</td>
-                  <td>" . $fila['programa_ccp'] . "</td>
                   <td>" . $fila['estado_solicitud'] . "</td>
-                  <td>" . $fila['fecha_solicitud'] . "</td>";
+                  <td>" . $fila['fecha_solicitud'] . "</td>
+                  <td>" . $fila['solicitud'] . "</td>
+                  <td>" . $fila['genero'] . "</td>
+                  <td>" . $fila['escolaridad'] . "</td>
+                  <td>" . $fila['rango_edad'] . "</td>
+                  <td>" . $fila['programa_ccp'] . "</td>";
       foreach ($programas as $programa) {
 
         if (isset($aux_pxd_x_id_pro[$programa['id_programa']])) {
           $tbody .= "<td>Si</td><td>" . $aux_pxd_x_id_pro[$programa['id']]['recive_apoyo'] . "</td><td>" . $aux_pxd_x_id_pro[$programa['id']]['dinero_espcie'] . "</td><td>" . $aux_pxd_x_id_pro[$programa['id']]['descrip_val'] . "</td>";
         } else {
-          $tbody .= "<td>No</td></td></td></td>";
+          $tbody .= "<td>No</td><td><td></td><td></td>";
         }
         //	$tbody.="<td>".$p['programa']."</td><td >Recibe apoyo1</td><td >Tipo apoyo1</td><td >Descripción / Valor1</td>";
       }
@@ -283,8 +287,6 @@ if (isset($_POST['listar'])) {
                   
                   <td style='vertical-align: middle;'>
                     <a href='edit_diligencias_new.php?id_diligencia=" . $fila['id_diligencia'] . "' class='btn btn-success' title='Editar'><i class='cui-pencil'></i></a>
-                  </td>
-                  <td style='vertical-align: middle;'>
                     <button class='btn btn-danger' title='Eliminar' onClick='Eliminar($id_f)'>
                     <i class='cui-trash'></i></button>
                   </td>

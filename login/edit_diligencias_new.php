@@ -610,7 +610,7 @@ if (isset($_POST['update'])) {
                       <input type="checkbox" name="si_programa[]" value="<?= $filap['id_programa'] ? $filap['id_programa'] : '' ?>" <?php if (isset($aux_pxd[$filap['id_programa']]) && $aux_pxd[$filap['id_programa']]) echo "checked"; ?>>
                     </td>
                     <td>
-                      <select class="form-control " style="width: 5em;" name="apoyo_l['<?= $filap['id'] ?>']" id="apoyo">
+                      <select class="form-control " style="width: 5em;" name="apoyo_l['<?= isset($filap['id_programa']) ? $filap['id_programa'] : '' ?>']" id="apoyo">
                         <option value="No" <?php if (isset($aux_pxd[$filap['id_programa']]['recibe_apoyo']) && $aux_pxd[$filap['id_programa']]['recibe_apoyo'] == "No") {
                                               echo "selected";
                                             } ?>>No</option>

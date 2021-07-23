@@ -16,12 +16,12 @@ while ($fila3 = mysqli_fetch_array($res3)) {
 
 
 
-// $cons3 = "SELECT id, programa FROM programas ";
-// $aux_progs = array();
-// $res3 = mysqli_query($conn, $cons3);
-// while ($fila3 = mysqli_fetch_array($res3)) {
-// 	$aux_progs[$fila3['programa']] = $fila3;
-// }
+$cons3 = "SELECT id_programa, programa FROM programas ";
+$aux_progs = array();
+$res3 = mysqli_query($conn, $cons3);
+while ($fila3 = mysqli_fetch_array($res3)) {
+	$aux_progs[$fila3['programa']] = $fila3;
+}
 
 // $cons = "SELECT * FROM extras_usus ";
 // $res = mysqli_query($conn, $cons);
@@ -149,21 +149,20 @@ while ($afila = mysqli_fetch_array($res_a)) {
 							<th class="text-center align-middle">Número Matricula</th>
 							<th class="text-center align-middle">Registrado</th>
 							<th class="text-center align-middle"># Cámara Comercio</th>
-							<th class="text-center align-middle">Pertenece a programa/proyecto de CCP u otras organizaciones:</th>
 							<th class="text-center align-middle">Estado solicitudds</th>
 							<th class="text-center align-middle">Fecha solicitud</th>
+							<th class="text-center align-middle">Solicitud</th>
 							<th class="text-center align-middle">Genero</th>
 							<th class="text-center align-middle">Escolaridad</th>
-							<th class="text-center align-middle">Solicitud</th>
 							<th class="text-center align-middle">Rango de Edad</th>
 
-							<!-- <th class="text-center align-middle">Proyecto CPP u otros</th>
+							<th class="text-center align-middle">Pertenece a programa/proyecto de CCP u otras organizaciones:</th>
 							<?php foreach ($programas2 as $p) { ?>
 								<th class="text-center align-middle">Proyecto = <?= $p ?></th>
 								<th class="text-center align-middle">Recibe apoyo1</th>
 								<th class="text-center align-middle">Tipo apoyo1</th>
 								<th class="text-center align-middle">Descripción / Valor1</th>
-							<?php   } ?> -->
+							<?php   } ?>
 
 							<th class="text-center align-middle" colspan="2">-</th>
 						</tr>

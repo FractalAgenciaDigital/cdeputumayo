@@ -34,6 +34,14 @@ $escolaridad = isset($_POST['escolaridad']) ? $_POST['escolaridad'] : "";
 $rango_edad = isset($_POST['rango_edad']) ? $_POST['rango_edad'] : "";
 $solicitud = isset($_POST['solicitud']) ? $_POST['solicitud'] : "";
 
+// ---------------------------------------------
+
+$id_diligencia = isset($_POST['id_diligencia']) ? $_POST['id_diligencia'] : "";
+$id_programa = isset($_POST['id_programa']) ? $_POST['id_programa'] : "";
+$recibe_apoyo = isset($_POST['recibe_apoyo']) ? $_POST['recibe_apoyo'] : "";
+$dinero_espcie = isset($_POST['dinero_espcie']) ? $_POST['dinero_espcie'] : "";
+$descrip_val = isset($_POST['descrip_val']) ? $_POST['descrip_val'] : "";
+
 
 
 if (isset($_POST['registrar'])) {
@@ -41,6 +49,26 @@ if (isset($_POST['registrar'])) {
   $info_diligencias_new = "INSERT INTO diligencias_new ( `tipoDocumento`, `documento`, `nombres`, `apellidos`, `ciudad`, `email`, `celular`,`direccEmpr`, `activEcon`, `otro_activEcon`, `des_productivo`, `princ_prod_serv`, `fort_empresarial`, `form_empresarial`, `nombre_representante`, `celular_representante`, `email_representante`, `poblacion`, `otro_poblacion`, `fecha_matricula`, `matricula`, `registrado`, `num_cam_comercio`, `programa_ccp`, `estado_solicitud`, `fecha_solicitud`, `genero`, `escolaridad`, `rango_edad`, `solicitud`) VALUES ( '$tipoDocumento','$documento','$nombres','$apellidos','$ciudad','$email','$celular','$direccEmpr','$activEcon','$otro_activEcon','$des_productivo','$princ_prod_serv','$fort_empresarial','$form_empresarial','$nombre_representante','$celular_representante','$email_representante','$poblacion','$otro_poblacion','$fecha_matricula' ,'$matricula','$registrado','$num_cam_comercio','$programa_ccp','$estado_solicitud','$fecha_solicitud', '$genero', '$escolaridad', '$rango_edad', '$solicitud') ";
 
   $exe_diligencias_new = mysqli_query($conn, $info_diligencias_new);
+  if ($exe_diligencias_new != false) {
+    $info_new_diligencias = "SELECT id_diligencia FROM diligencias_new ORDER BY id_diligencia desc LIMIT 1";
+    // $info_programas = "SELECT id_programa FROM programas ORDER BY id_programa desc LIMIT 1";
+
+    // return $info_diligencias_new;
+    if (count($_POST['si_programa']) > 0) {
+      foreach ($_POST['si_programa'] as $prog) {
+        //echo "test".$aux_apoyo["'".$prog."'"]."<br>";
+        echo "<pre>";
+        print_r($_POST['si_programa']);
+        echo "</pre>";
+        exit;
+
+        $info_progsxdiligencias = "INSERT INTO progsxdiligencias ( `id_diligencia`, `id_programa`, `recibe_apoyo`, `dinero_espcie`, `descrip_val`) VALUES ( '$info_new_diligencias->id_diligencia','$id_programa','$recibe_apoyo','$dinero_espcie','$descrip_val') ";
+
+        $exe_progsxdiligencias = mysqli_query($conn, $info_progsxdiligencias);
+      }
+    }
+  }
+
   // $info_diligencias_new = "SELECT id_diligencia FROM diligencias_new ORDER BY id_diligencia desc LIMIT 1";
   // echo "<pre>";
   // print_r($info_diligencias_new);
@@ -48,29 +76,15 @@ if (isset($_POST['registrar'])) {
   // echo "</pre>";
   // // die();
 
-  // ---------------------------------------------
-
-  $id_diligencia = isset($_POST['id_diligencia']) ? $_POST['id_diligencia'] : "";
-  $id_programa = isset($_POST['id_programa']) ? $_POST['id_programa'] : "";
-  $recibe_apoyo = isset($_POST['recibe_apoyo']) ? $_POST['recibe_apoyo'] : "";
-  $dinero_espcie = isset($_POST['dinero_espcie']) ? $_POST['dinero_espcie'] : "";
-  $descrip_val = isset($_POST['descrip_val']) ? $_POST['descrip_val'] : "";
 
 
-  if (count($_POST['si_programa']) > 0) {
-    foreach ($_POST['si_programa'] as $prog) {
-      //echo "test".$aux_apoyo["'".$prog."'"]."<br>";
-
-      $info_progsxdiligencias = "INSERT INTO progsxdiligencias ( `id_diligencia`, `id_programa`, `recibe_apoyo`, `dinero_espcie`, `descrip_val`) VALUES ( '$id_diligencia','$id_programa','$recibe_apoyo','$dinero_espcie','$descrip_val') ";
-
-      $exe_progsxdiligencias = mysqli_query($conn, $info_progsxdiligencias);
-    }
-  }
 
 
-  echo "<pre>";
-  print_r($info_progsxdiligencias);
-  echo "</pre>";
+
+
+  // echo "<pre>";
+  // print_r($exe_progsxdiligencias);
+  // echo "</pre>";
   // header("location: diligencias.php");
 }
 

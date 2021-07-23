@@ -9,7 +9,7 @@ if (isset($_POST['listar'])) {
     }
     if ($_POST['txtBuscar']) {
         $txt = "LIKE '%" . $_POST['txtBuscar'] . "%'";
-        $bloque = "nombres $txt OR apellidos $txt OR razonSocial $txt or documento $txt";
+        $bloque = "nombres $txt OR apellidos $txt OR documento $txt";
         $donde .= $donde ? " AND ($bloque)" : " WHERE $bloque";
     }
     if ($_POST['fechaDesde']) {
@@ -23,7 +23,7 @@ if (isset($_POST['listar'])) {
     $cons .= $donde;
 
     $res = mysqli_query($conn, $cons);
-    //echo mysqli_error($conn);
+    echo mysqli_error($conn);
     $cont = 0;
     $tbody = '';
     //echo json_encode(mysqli_fetch_array($res));
@@ -81,7 +81,6 @@ if (isset($_POST['listar'])) {
                 <td>" . $fila['genero'] . "</td>
                 <td>" . $fila['escolaridad'] . "</td>
                 <td>" . $fila['rango_edad'] . "</td>
-                <td>" . $fila['solicitud'] . "</td>
             </tr>";
     }
     echo $tbody;
