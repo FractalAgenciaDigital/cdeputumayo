@@ -19,7 +19,7 @@ if (isset($_POST['elimin_d'])) {
 
 
 
-if (isset($_GET['buscar'])) {
+/* if (isset($_GET['buscar'])) {
   $id_diligencia = $tipoDocumento = $documento = $nombres = $apellidos = $ciudad = $email = $celular = $direccEmpr = $activEcon = $otro_activEcon = $des_productivo = $princ_prod_serv = $fort_empresarial = $form_empresarial = $nombre_representante = $celular_representante = $email_representante = $poblacion = $otro_poblacion = $fecha_matricula = $matricula = $registrado = $num_cam_comercio = $programa_ccp = $estado_solicitud = $fecha_solicitud = '';
   $cons = 'SELECT id_diligencia, tipoDocumento, documento, nombres, apellidos, ciudad, direccEmpr, email, celular, activEcon, otro_activEcon, des_productivo, princ_prod_serv, fort_empresarial, form_empresarial, nombre_representante, celular_representante, email_representante, poblacion, otro_poblacion, fecha_matricula, matricula, registrado, num_cam_comercio, programa_ccp, estado_solicitud, fecha_solicitud';
   if (isset($_GET['nitEmpr'])) {
@@ -108,162 +108,9 @@ if (isset($_GET['buscar'])) {
     ]);
     mysqli_stmt_close($stmt);
   }
-  mysqli_close($conn);*/
-}
-
-/* if (isset($_POST['documento'])) {
-  $cons = '';
-  if ($_POST['documento']) {
-    // if ($_POST['idSolicitud'] == 0) {
-    $cons = 'INSERT INTO diligencias_new (tipoDocumento, documento, nombres, apellidos, ciudad, direccEmpr, email, celular, activEcon, des_productivo, princ_prod_serv, fort_empresarial, form_empresarial, nombre_representante, celular_representante, email_representante, poblacion, otro_poblacion, fecha_matricula, matricula, registrado, num_cam_comercio, programa_ccp, estado_solicitud, fecha_solicitud';
-    if ($_POST['tipoDocumento'] == 2) {
-      $cons .= 'nombres, apellidos, ciudad, activEconEmpr, direccEmpr, emailPersonalEmpr, emailEmpr) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-      $stmt = mysqli_prepare($conn, $cons);
-      mysqli_stmt_bind_param(
-        $stmt,
-        'ssssssssssssssssssssss',
-        $_POST['tipoDocumento'],
-        $_POST['documento'],
-        $_POST['nombres'],
-        $_POST['apellidos'],
-        $_POST['ciudad'],
-        $_POST['email'],
-        $_POST['celular'],
-        $_POST['direccEmpr'],
-        $_POST['activEcon'],
-        $_POST['otro_activEcon'],
-        $_POST['des_productivo'],
-        $_POST['princ_prod_serv'],
-        $_POST['fort_empresarial'],
-        $_POST['form_empresarial'],
-        $_POST['nombre_representante'],
-        $_POST['celular_representante'],
-        $_POST['email_representante'],
-        $_POST['poblacion'],
-        $_POST['otro_poblacion'],
-        $_POST['fecha_matricula'],
-        $_POST['matricula'],
-        $_POST['registrado'],
-        $_POST['num_cam_comercio'],
-        $_POST['programa_ccp'],
-        $_POST['estado_solicitud'],
-        $_POST['fecha_solicitud']
-      );
-      mysqli_stmt_execute($stmt);
-      mysqli_stmt_close($stmt);
-    } else {
-      $cons .= 'apellido1, apellido2) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
-      $stmt = mysqli_prepare($conn, $cons);
-      mysqli_stmt_bind_param(
-        $stmt,
-        'ssssssssssiiiisss',
-        $_POST['tipoDocumento'],
-        $_POST['documento'],
-        $_POST['nombres'],
-        $_POST['apellidos'],
-        $_POST['ciudad'],
-        $_POST['email'],
-        $_POST['celular'],
-        $_POST['direccEmpr'],
-        $_POST['activEcon'],
-        $_POST['otro_activEcon'],
-        $_POST['des_productivo'],
-        $_POST['princ_prod_serv'],
-        $_POST['fort_empresarial'],
-        $_POST['form_empresarial'],
-        $_POST['nombre_representante'],
-        $_POST['celular_representante'],
-        $_POST['email_representante'],
-        $_POST['poblacion'],
-        $_POST['otro_poblacion'],
-        $_POST['fecha_matricula'],
-        $_POST['matricula'],
-        $_POST['registrado'],
-        $_POST['num_cam_comercio'],
-        $_POST['programa_ccp'],
-        $_POST['estado_solicitud'],
-        $_POST['fecha_solicitud']
-      );
-      mysqli_stmt_execute($stmt);
-      mysqli_stmt_close($stmt);
-    }
-    mysqli_close($conn);
-  } else {
-    $cons = 'UPDATE diligencias_new SET tipoDocumento = ?, documento = ?, nombres = ?, apellidos= ?, ciudad= ?, email= ?, celular = ?, direccEmpr = ?, activEcon = ?, otro_activEcon = ?, des_productivo = ?, princ_prod_serv = ?, fort_empresarial = ?, form_empresarial = ?, nombre_representante = ?, celular_representante = ?, email_representante = ?, poblacion = ?, otro_poblacion = ?,  fecha_matricula = ?, matricula = ?, registrado = ?, num_cam_comercio = ?, programa_ccp = ?, estado_solicitud = ?, fecha_solicitud = ?, ';
-    if ($_POST['tipoDocumento'] == 2) {
-      $cons .= 'tipoDocumento = ?, documento = ?, nombres = ?, apellidos= ?, ciudad= ?, email= ?, celular = ?, direccEmpr = ?, activEcon = ?, des_productivo = ?, princ_prod_serv = ?, fort_empresarial = ?, form_empresarial = ?, nombre_representante = ?, celular_representante = ?, email_representante = ?, poblacion = ?, otro_poblacion = ?,  fecha_matricula = ?, matricula = ?, registrado = ?, num_cam_comercio = ?, programa_ccp = ?, estado_solicitud = ?, fecha_solicitud = ? WHERE id = ?';
-      $stmt = mysqli_prepare($conn, $cons);
-      mysqli_stmt_bind_param(
-        $stmt,
-        'ssssssssssiiiissssssssi',
-        $_POST['tipoDocumento'],
-        $_POST['documento'],
-        $_POST['nombres'],
-        $_POST['apellidos'],
-        $_POST['ciudad'],
-        $_POST['email'],
-        $_POST['celular'],
-        $_POST['direccEmpr'],
-        $_POST['activEcon'],
-        $_POST['otro_activEcon'],
-        $_POST['des_productivo'],
-        $_POST['princ_prod_serv'],
-        $_POST['fort_empresarial'],
-        $_POST['form_empresarial'],
-        $_POST['nombre_representante'],
-        $_POST['celular_representante'],
-        $_POST['email_representante'],
-        $_POST['poblacion'],
-        $_POST['otro_poblacion'],
-        $_POST['fecha_matricula'],
-        $_POST['matricula'],
-        $_POST['registrado'],
-        $_POST['num_cam_comercio'],
-        $_POST['programa_ccp'],
-        $_POST['estado_solicitud'],
-        $_POST['fecha_solicitud']
-      );
-      mysqli_stmt_execute($stmt);
-      mysqli_stmt_close($stmt);
-    } else {
-      $cons .= 'nombres = ?, apellidos = ? WHERE id = ?';
-      $stmt = mysqli_prepare($conn, $cons);
-      mysqli_stmt_bind_param(
-        $stmt,
-        'ssssssssssiiiisssi',
-        $_POST['tipoDocumento'],
-        $_POST['documento'],
-        $_POST['nombres'],
-        $_POST['apellidos'],
-        $_POST['ciudad'],
-        $_POST['email'],
-        $_POST['celular'],
-        $_POST['direccEmpr'],
-        $_POST['activEcon'],
-        $_POST['otro_activEcon'],
-        $_POST['des_productivo'],
-        $_POST['princ_prod_serv'],
-        $_POST['fort_empresarial'],
-        $_POST['form_empresarial'],
-        $_POST['nombre_representante'],
-        $_POST['celular_representante'],
-        $_POST['email_representante'],
-        $_POST['poblacion'],
-        $_POST['otro_poblacion'],
-        $_POST['fecha_matricula'],
-        $_POST['matricula'],
-        $_POST['registrado'],
-        $_POST['num_cam_comercio'],
-        $_POST['programa_ccp'],
-        $_POST['estado_solicitud'],
-        $_POST['fecha_solicitud']
-      );
-      mysqli_stmt_execute($stmt);
-      mysqli_stmt_close($stmt);
-    }
-    mysqli_close($conn);
-  }
+  mysqli_close($conn);
 } */
+
 
 if (isset($_POST['listar'])) {
 
@@ -339,17 +186,20 @@ if (isset($_POST['listar'])) {
     // $fila2 = array();
     // $cons2 = "SELECT * FROM extras_usus where id_usu=" . $fila['id'];
     // //echo $cons2."<br>";  exit; die;
-
     // $res2 = $stmt = mysqli_query($conn, $cons2);
     // $fila2 = mysqli_fetch_array($res2);
 
-    // $consp = "SELECT * FROM progsxdiligendias where id_diligencia=" . $fila['id'] . " " . $filt_proyecto;
+
+
+    // $consp = "SELECT * FROM progsxdiligendias WHERE id_diligencia=" . $fila['id_diligencia'] . " " . $filt_proyecto;
     // $aux_pxd_x_id_pro = array();
     // $resp = $stmt = mysqli_query($conn, $consp);
     // while ($filap = mysqli_fetch_array($resp)) {
     //   $aux_pxd_x_id_pro[$filap['id_programa']] = $filap;
     // }
     // if (($_POST['proyecto'] != '' && count($fila2) > 0) || $_POST['proyecto'] != '')
+
+
 
     if (($_POST['proyecto'] != '' && count($aux_pxd_x_id_pro) > 0) || $_POST['proyecto'] == '') {
       // echo $consp."<br>";  exit; die;

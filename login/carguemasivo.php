@@ -27,14 +27,14 @@ include '../funciones.php';
 
             <!-- <div style="background:orange; padding:10px" class="form"> -->
 
-            <form style="background:orange; padding:10px" class="container" id="frmSubirArchivo" name="frmSubirArchivo" method="POST" enctype="multipart/form-data">
-                <div class="form-group col-5" style="background:black">
+            <form style="padding:10px" class="container" id="frmSubirArchivo" name="frmSubirArchivo" method="POST" enctype="multipart/form-data">
+                <div class="form-group col-5">
                     <strong>Diligencias-Clientes</strong>
-                    <div class=" form-group" style="background:blue">
+                    <div class=" form-group">
                         <label for=" documento"></label>
                         <input id="excel" type="file" name="excel" class="">
                     </div>
-                    <div class="form-group" style="margin-left: 0.5rem; background:yellow">
+                    <div class="form-group" style="margin-left: 0.5rem;">
                         <input type="submit" style="margin-left: 2rem;" class="btn btn-info" value="Subir" onclick="subirArchivoExcel()">
                     </div>
 
@@ -56,7 +56,7 @@ include '../funciones.php';
                     <?php
                     } ?>
                     <div id=" alertSI" class="alert alert-success alert-dismissible fade" role="alert">¡OK!</div>
-                    <div class="form-group" style="background:red">
+                    <div class="form-group">
                         here
                     </div>
                 </div>

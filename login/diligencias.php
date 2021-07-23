@@ -1,72 +1,45 @@
 <?php
 include "cabecera.php";
 include '../funciones.php';
-/*
-		echo  $cons3="SELECT * FROM `extras_usus` WHERE nom_progr4 like '%CISP%'  ";
-	    $res3 = mysqli_query($conn, $cons3);
-		while($fila3= mysqli_fetch_array($res3)){
-		    $cons2="insert into progsxdiligendias (id_diligencia,id_programa,recive_apoyo, dinero_espcie, descrip_val) values (".$fila3['id_usu'].", 17,'".$fila3['apoyo4']."','"
-    		    .$fila3['dinero_espcie4']."','".$fila3['especie4']."')";
-    		    echo "$cons2 <br>";
-    		    $res2 = mysqli_query($conn, $cons2);
-		}
-		 
-		 $cons3="select id, programa from programas ";
-        $aux_progs = array();
-        $res3 = mysqli_query($conn, $cons3);
-		while($fila3= mysqli_fetch_array($res3)){
-		    $aux_progs[$fila3['programa']] = $fila3;
-		}
-		$cons="select * from extras_usus ";
-		$res = mysqli_query($conn, $cons);
-		while($fila = mysqli_fetch_array($res)){
-		    //echo $fila['nom_progr']."siiiiii <br>";
-		    if($fila['nom_progr'] && $aux_progs[$fila['nom_progr']]){
-	       
-    		    $cons2="insert into progsxdiligendias (id_diligencia,id_programa,recive_apoyo, dinero_espcie, descrip_val) values (".$fila['id_usu'].",".$aux_progs[$fila['nom_progr']]['id'].",'".$fila['apoyo']."','"
-    		    .$fila['dinero_espcie']."','".$fila['especie']."')";
-    		    $res2 = mysqli_query($conn, $cons2);
-        	   // echo "<br>$cons2";
-		    }
-		    if($fila['nom_progr2'] && $aux_progs[$fila['nom_progr2']]){
-	       
-    		    $cons2="insert into progsxdiligendias (id_diligencia,id_programa,recive_apoyo, dinero_espcie, descrip_val) values (".$fila['id_usu'].",".$aux_progs[$fila['nom_progr2']]['id'].",'".$fila['apoyo2']."','"
-    		    .$fila['dinero_espcie2']."','".$fila['especie2']."')";
-    		    $res2 = mysqli_query($conn, $cons2);
-        	    //echo "<br>$cons2";
-		    }
-		    if($fila['nom_progr3'] && $aux_progs[$fila['nom_progr3']]){
-	       
-    		    $cons2="insert into progsxdiligendias (id_diligencia,id_programa,recive_apoyo, dinero_espcie, descrip_val) values (".$fila['id_usu'].",".$aux_progs[$fila['nom_progr3']]['id'].",'".$fila['apoyo3']."','"
-    		    .$fila['dinero_espcie3']."','".$fila['especie3']."')";
-    		   $res2 = mysqli_query($conn, $cons2);
-        	    //echo "<br>$cons2";
-		    }
-		    if($fila['nom_progr4'] && $aux_progs[$fila['nom_progr4']]){
-	       
-    		    $cons2="insert into progsxdiligendias (id_diligencia,id_programa,recive_apoyo, dinero_espcie, descrip_val) values (".$fila['id_usu'].",".$aux_progs[$fila['nom_progr4']]['id'].",'".$fila['apoyo4']."','"
-    		    .$fila['dinero_espcie4']."','".$fila['especie4']."')";
-    		   $res2 = mysqli_query($conn, $cons2);
-        	    //echo "<br>$cons2";
-		    }
-		    if($fila['nom_progr5'] && $aux_progs[$fila['nom_progr5']]){
-	       
-    		    $cons2="insert into progsxdiligendias (id_diligencia,id_programa,recive_apoyo, dinero_espcie, descrip_val) values (".$fila['id_usu'].",".$aux_progs[$fila['nom_progr5']]['id'].",'".$fila['apoyo5']."','"
-    		    .$fila['dinero_espcie5']."','".$fila['especie5']."')";
-    		   $res2 = mysqli_query($conn, $cons2);
-        	    //echo "<br>$cons2";
-		    }
-		    if($fila['nom_progr6'] && $aux_progs[$fila['nom_progr6']]){
-	       
-    		    $cons2="insert into progsxdiligendias (id_diligencia,id_programa,recive_apoyo, dinero_espcie, descrip_val) values (".$fila['id_usu'].",".$aux_progs[$fila['nom_progr6']]['id'].",'".$fila['apoyo6']."','"
-    		    .$fila['dinero_espcie6']."','".$fila['especie6']."')";
-    		   $res2 = mysqli_query($conn, $cons2);
-        	    //echo "<br>$cons2";
-		    }
-		    
-		} 
-		//echo "acaaaa";
-		exit;*/
+
+
+
+
+$cons3 = "SELECT * FROM programas WHERE programa like '%CISP%'  ";
+$res3 = mysqli_query($conn, $cons3);
+while ($fila3 = mysqli_fetch_array($res3)) {
+	$cons2 = "INSERT INTO progsxdiligencias (id_diligencia,id_programa,recibe_apoyo, dinero_espcie, descrip_val) VALUES (" . $fila3['0'] . ",'" . $fila3['1'] . "','" . $fila3['2'] . "')";
+	// echo "$cons2 <br>";
+	$res2 = mysqli_query($conn, $cons2);
+}
+
+
+
+
+// $cons3 = "SELECT id, programa FROM programas ";
+// $aux_progs = array();
+// $res3 = mysqli_query($conn, $cons3);
+// while ($fila3 = mysqli_fetch_array($res3)) {
+// 	$aux_progs[$fila3['programa']] = $fila3;
+// }
+
+// $cons = "SELECT * FROM extras_usus ";
+// $res = mysqli_query($conn, $cons);
+// while ($fila = mysqli_fetch_array($res)) {
+// 	//echo $fila['nom_progr']."siiiiii <br>";
+// 	if ($fila['nom_progr'] && $aux_progs[$fila['nom_progr']]) {
+
+// 		$cons2 = "INSERT INTO progsxdiligencias (id_diligencia,id_programa,recibe_apoyo, dinero_espcie, descrip_val) VALUES (" . $fila['id_usu'] . "," . $aux_progs[$fila['nom_progr']]['id'] . ",'" . $fila['apoyo'] . "','"
+// 			. $fila['dinero_espcie'] . "','" . $fila['especie'] . "')";
+// 		$res2 = mysqli_query($conn, $cons2);
+// 		// echo "<br>$cons2";
+// 	}
+// }
+
+
+
+
+//echo "acaaaa";
 $cons_a = "SELECT * FROM programas   order by programa";
 $res_a = mysqli_query($conn, $cons_a);
 $programas2 = array();
@@ -100,7 +73,7 @@ while ($afila = mysqli_fetch_array($res_a)) {
 				<span aria-hidden="true">&times;</span>
 			</button>
 		</div>
-	<?php session_unset();
+		<?php session_unset();
 			} ?>limpiar datos en la sesion -->
 	<div class="col-sm-12">
 		<div class="card">
@@ -191,33 +164,7 @@ while ($afila = mysqli_fetch_array($res_a)) {
 								<th class="text-center align-middle">Tipo apoyo1</th>
 								<th class="text-center align-middle">Descripción / Valor1</th>
 							<?php   } ?> -->
-							<th class="text-center align-middle">Descripción / Valor</th>
-							<th class="text-center align-middle">Estado Solicitudss</th>
-							<th class="text-center align-middle">Fecha Respuesta</th>
-							<th class="text-center align-middle">Enero</th>
-							<th class="text-center align-middle">Observación</th>
-							<th class="text-center align-middle">Febrero</th>
-							<th class="text-center align-middle">Observación</th>
-							<th class="text-center align-middle">Marzo</th>
-							<th class="text-center align-middle">Observación</th>
-							<th class="text-center align-middle">Abril</th>
-							<th class="text-center align-middle">Observación</th>
-							<th class="text-center align-middle">Mayo</th>
-							<th class="text-center align-middle">Observación</th>
-							<th class="text-center align-middle">Junio</th>
-							<th class="text-center align-middle">Observación</th>
-							<th class="text-center align-middle">Julio</th>
-							<th class="text-center align-middle">Observación</th>
-							<th class="text-center align-middle">Agosto</th>
-							<th class="text-center align-middle">Observación</th>
-							<th class="text-center align-middle">Septiembre</th>
-							<th class="text-center align-middle">Observación</th>
-							<th class="text-center align-middle">Octubre</th>
-							<th class="text-center align-middle">Observación</th>
-							<th class="text-center align-middle">Noviembre</th>
-							<th class="text-center align-middle">Observación</th>
-							<th class="text-center align-middle">Diciembre</th>
-							<th class="text-center align-middle">Observación</th>
+
 							<th class="text-center align-middle" colspan="2">-</th>
 						</tr>
 					</thead>

@@ -29,7 +29,7 @@ $id_registro = '';
       <div class="form-row">
         <div class="form-group col-3">
           <label for="tipoDocumento">Tipo Documento</label>
-          <select required name="tipoDocumento" id="tipoDocumento" class="form-control">
+          <select required name="tipoDocumento" v-model="select" id="tipoDocumento" class="form-control">
             <option value="">Seleccione</option>
             <option value="1" <?php if ($tipoDocumento == "1") {
                                 echo "selected";
@@ -107,7 +107,7 @@ $id_registro = '';
         <!-- ---------------------------------------------- -->
         <div class="form-group col-3">
           <label for="form_empresarial">Formación Empresarial:</label>
-          <select class="form-control" name="form_empresarial" v-model="select" onChange="tipoPobla(this.value)">
+          <select class="form-control" name="form_empresarial" v-model="select">
             <option value="Mercadeo y Ventas" <?php if (isset($form_empresarial) && $form_empresarial == "Mercadeo y Ventas") {
                                                 echo "selected";
                                               } ?>>
@@ -506,20 +506,20 @@ $id_registro = '';
                   <th>Descripción/ Valor</th>
                 </tr>
                 <?php
-                $conspxd = "SELECT * FROM progsxdiligendias where id_diligencia=$id_registro";
-                $respxd = mysqli_query($conn, $conspxd);
+                $conspxd = "SELECT * FROM progsxdiligencias WHERE id_diligencia=$id_registro";
+                $query_pxd = mysqli_query($conn, $conspxd);
                 $aux_pxd = array();
-                if ($respxd) {
-                  while ($filapxd = mysqli_fetch_array($respxd)) {
+                if ($query_pxd) {
+                  while ($filapxd = mysqli_fetch_array($query_pxd)) {
                     $aux_pxd[$filapxd['id_programa']] = $filapxd;
                   }
                 }
 
 
-                $consp = "SELECT * FROM programas where estado=1 order by programa";
-                $resp = mysqli_query($conn, $consp);
+                $consp = "SELECT * FROM programas WHERE estado=1 ORDER BY programa";
+                $query_programas = mysqli_query($conn, $consp);
                 $cont = 1;
-                while ($filap = mysqli_fetch_array($resp)) {  ?>
+                while ($filap = mysqli_fetch_array($query_programas)) {  ?>
                   <tr>
                     <td><?= $cont++ ?></td>
                     <td>
@@ -529,7 +529,7 @@ $id_registro = '';
                       <input type="checkbox" name="si_programa[]" value="<?= $filap['id_programa'] ? $filap['id_programa'] : '' ?>" <?php if (isset($aux_pxd[$filap['id_programa']]) && $aux_pxd[$filap['id_programa']]) echo "checked"; ?>>
                     </td>
                     <td>
-                      <select class="form-control " style="width: 5em;" name="apoyo_l['<?= $filap['id'] ?>']" id="apoyo">
+                      <select class="form-control" style="width: 5em;" name="apoyo_l['<?= $filap['id'] ?>']" id="apoyo">
                         <option value="No" <?php if (isset($aux_pxd[$filap['id_programa']]['recibe_apoyo']) && $aux_pxd[$filap['id_programa']]['recibe_apoyo'] == "No") {
                                               echo "selected";
                                             } ?>>No</option>
@@ -539,14 +539,13 @@ $id_registro = '';
                       </select>
                     </td>
                     <td>
-                      <select class="form-control " name="dinero_espcie_l['<?= isset($filap['id_programa']) ? $filap['id_programa'] : '' ?>']" id="dinero_espcie">
+                      <select class="form-control " name="dinero_espcie['<?= isset($filap['id_programa']) ? $filap['id_programa'] : '' ?>']" id="dinero_espcie">
                         <option value="Dinero" <?php
                                                 if (isset($aux_pxd[$filap['id_programa']]['dinero_espcie']) && ($aux_pxd[$filap['id_programa']]['dinero_espcie'] == "Dinero"
                                                   || $aux_pxd[$filap['id_programa']] == "Di")) {
                                                   echo "selected";
-                                                } ?>>
-                          Dinero
-                        </option>
+                                                } ?>>Dinero</option>
+
                         <option value="Especie" <?php if (isset($aux_pxd[$filap['id_programa']]['dinero_espcie']) && ($aux_pxd[$filap['id_programa']]['dinero_espcie'] != "Dinero" && $aux_pxd[$filap['id_programa']] != "Di")) {
                                                   echo "selected";
                                                 } ?>>Especie</option>
@@ -557,6 +556,9 @@ $id_registro = '';
                     </td>
                   </tr> <?php
                       } ?>
+
+
+
               </table>
             </div>
           </div>
