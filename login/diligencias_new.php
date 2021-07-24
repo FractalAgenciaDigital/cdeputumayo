@@ -530,7 +530,7 @@ $id_registro = '';
                       <input type="checkbox" name="si_programa[]" value="<?= $filap['id_programa'] ? $filap['id_programa'] : '' ?>" <?php if (isset($aux_pxd[$filap['id_programa']]) && $aux_pxd[$filap['id_programa']]) echo "checked"; ?>>
                     </td>
                     <td>
-                      <select class="form-control" style="width: 5em;" name="apoyo_l['<?= $filap['id_programa'] ?>']" id="apoyo">
+                      <select class="form-control" style="width: 5em;" name="recibe_apoyo[<?= isset($filap['id_programa']) ?  $filap['id_programa'] : '' ?>]" id="apoyo">
                         <option value="No" <?php if (isset($aux_pxd[$filap['id_programa']]['recibe_apoyo']) && $aux_pxd[$filap['id_programa']]['recibe_apoyo'] == "No") {
                                               echo "selected";
                                             } ?>>No</option>
@@ -540,7 +540,7 @@ $id_registro = '';
                       </select>
                     </td>
                     <td>
-                      <select class="form-control " name="dinero_espcie['<?= isset($filap['id_programa']) ? $filap['id_programa'] : '' ?>']" id="dinero_espcie">
+                      <select class="form-control " name="dinero_espcie[<?= isset($filap['id_programa']) ?  $filap['id_programa'] : '' ?>]" id="dinero_espcie">
                         <option value="Dinero" <?php
                                                 if (isset($aux_pxd[$filap['id_programa']]['dinero_espcie']) && ($aux_pxd[$filap['id_programa']]['dinero_espcie'] == "Dinero"
                                                   || $aux_pxd[$filap['id_programa']] == "Di")) {
@@ -553,7 +553,7 @@ $id_registro = '';
                       </select>
                     </td>
                     <td>
-                      <input class="form-control " type="text" name="especie_l['<?= isset($filap['id_programa']) ? $filap['id_programa'] : '' ?>']" id="especie" value="<?= isset($aux_pxd[$filap['id_programa']]['descrip_val']) ? $aux_pxd[$filap['id_programa']]['descrip_val'] : '' ?>">
+                      <input class="form-control " type="text" name="descrip_val['<?= isset($filap['id_programa']) ? $filap['id_programa'] : '' ?>']" id="especie" value="<?= isset($aux_pxd[$filap['id_programa']]['descrip_val']) ? $aux_pxd[$filap['id_programa']]['descrip_val'] : '' ?>">
                     </td>
                   </tr> <?php
                       } ?>
