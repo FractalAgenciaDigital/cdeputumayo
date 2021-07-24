@@ -42,106 +42,42 @@ if (isset($_POST['registrar'])) {
   $exe_diligencias_new = mysqli_query($conn, $info_diligencias_new);
   if ($exe_diligencias_new != false) {
     // $info_programas = "SELECT id_programa FROM programas ORDER BY id_programa desc LIMIT 1";
-    $info_new_diligencias = "SELECT id_diligencia FROM diligencias_new ORDER BY id_diligencia desc LIMIT 1";
+    // $info_new_diligencias = "SELECT id_diligencia FROM diligencias_new ORDER BY id_diligencia desc LIMIT 1";
+    // $info_new_diligencias = "SELECT MAX(id_diligencia) AS id_diligencia FROM diligencias_new";
+    // $info_new_diligencias = "SELECT MAX(`id_diligencia`) FROM `diligencias_new`";
+    // $info_new_diligencias = mysqli_insert_id($conn, 'id_diligencia');
+    // $info_new_diligencias = mysqli_insert_id($conn, 'id_diligencia');
+    $id_ultimo = mysqli_insert_id($conn);
+
+    // $exe = mysqli_query($conn, $info_new_diligencias);
+
+    // var_dump($id_ultimo);
 
 
 
+    // if (!$_POST['']) {
+    //   // SELECT  DILIG
+    // }
 
     // ---------------------PROGXDILIGENCIAS TABLE------------------------
 
+    // $id_diligencia = $info_new_diligencias;
     $id_diligencia = isset($_POST['id_diligencia']) ? $_POST['id_diligencia'] : "";
-    $id_programa = isset($_POST['si_programa']) ? $_POST['si_programa'] : "";
-    $recibe_apoyo = isset($_POST['recibe_apoyo']) ? $_POST['recibe_apoyo'] : "";
-    $dinero_espcie = isset($_POST['dinero_espcie']) ? $_POST['dinero_espcie'] : "";
-    $descrip_val = isset($_POST['descrip_val']) ? $_POST['descrip_val'] : "";
-
-
-    $info_new_diligencias = "SELECT id_diligencia FROM diligencias_new ORDER BY id_diligencia desc LIMIT 1";
-
+    // var_dump($id_diligencia);
+    $id_programa = 0;
+    $datos_programa = isset($_POST['datos_programa']) ? $_POST['datos_programa'] : "";
     $select_progs = "SELECT * FROM programas";
 
-    // return $info_diligencias_new;
-    // if (count($_POST['si_programa']) > 0) {
-    //   foreach ($_POST['si_programa'] as $prog) {
 
+    foreach ($datos_programa as $program) {
+      if (isset($program['si_programa'])) {
 
+        $info_progsxdiligencias = "INSERT INTO progsxdiligencias ( `id_diligencia`, `id_programa`, `recibe_apoyo`, `dinero_espcie`, `descrip_val`) VALUES ('$id_ultimo', '{$program['si_programa']}', '{$program['recibe_apoyo']}', '{$program['dinero_espcie']}', '{$program['descrip_val']}')";
 
+        $exe_diligencias_new = mysqli_query($conn, $info_progsxdiligencias);
 
-    $dpx = array(
-
-      'programa' => $id_programa,
-      'recibe_apoyo' => $recibe_apoyo,
-      'dinero_especie' => $dinero_espcie,
-      'descrip_val' => $descrip_val
-
-    );
-    // echo "<pre>";
-    // print_r($dpx);
-    // echo "</pre>";
-    // exit;
-
-    foreach ($dpx as $key => $value) {
-      $k[] = $key;
-      $v[] = "'" . $value . "'";
+        header("Location: diligencias.php");
+      }
     }
-
-    $k = implode(",", $k);
-    $v = implode(",", $v);
-
-    // $info_progsxdiligencias = "INSERT INTO progsxdiligencias ( `id_diligencia`, `id_programa`, `recibe_apoyo`, `dinero_espcie`, `descrip_val`) VALUES ( '$info_new_diligencias->id_diligencia','$id_programa','$recibe_apoyo','$dinero_espcie','$descrip_val') ";
-
-    $info_progsxdiligencias = "INSERT INTO progsxdiligencias ($k) VALUES ($v) ";
-    $exe_progsxdiligencias = mysqli_query($conn, $info_progsxdiligencias);
-
-    // echo "$k";
-    // exit;
-
-    //   }
-    // }
-
-
-    // // ---------------------------------CODE DOWN REFERENCIA
-    // if (count($_POST['si_programa']) > 0) {
-    //   foreach ($_POST['si_programa'] as $prog) {
-    //     $cons2 = "INSERT INTO progsxdiligendias (id_diligencia,id_programa,recibe_apoyo,dinero_espcie,descrip_val) values ($id_registro,$prog,'" . $aux_apoyo["'" . $prog . "'"] . "','" . $_POST['dinero_espcie_l']["'" . $prog . "'"] . "','" . $_POST['especie_l']["'" . $prog . "'"] . "')";
-    //     $res2 = mysqli_query($conn, $cons2);
-    //   }
-    // }
-
-    // -------CLOSE
   }
-
-  // $info_diligencias_new = "SELECT id_diligencia FROM diligencias_new ORDER BY id_diligencia desc LIMIT 1";
-  // echo "<pre>";
-  // print_r($info_diligencias_new);
-  // echo "new";
-  // echo "</pre>";
-  // // die();
-
-
-
-
-
-
-
-  // echo "<pre>";
-  // print_r($exe_progsxdiligencias);
-  // echo "</pre>";
-  // header("location: diligencias.php");
 }
-
-
-
-// // -----------------------
-// if (isset($_GET['id_edit'])) {
-//   $id_edit = $id_registro = $_GET['id_edit'];
-//   $cons = "SELECT * FROM diligencias where id=" . $id_registro;
-//   $res = mysqli_query($conn, $cons);
-//   $datos_usu = mysqli_fetch_array($res);
-
-//   $cons = "SELECT * FROM extras_usus where id_usu=" . $id_registro;
-//   $res = mysqli_query($conn, $cons);
-//   $datos_extra = mysqli_fetch_array($res);
-// } elseif (isset($_POST['id_edit'])) {
-//   $id_edit = $id_registro = $_POST['id_edit'];
-// }
