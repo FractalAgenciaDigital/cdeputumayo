@@ -51,6 +51,7 @@ if (isset($_GET['id_diligencia'])) {
 }
 
 if (isset($_POST['update'])) {
+
 	$id_diligencia = $_GET['id_diligencia'];
 	$tipoDocumento = $_POST['tipoDocumento'];
 	$documento = $_POST['documento'];
@@ -82,7 +83,6 @@ if (isset($_POST['update'])) {
 	$escolaridad = $_POST['escolaridad'];
 	$rango_edad = $_POST['rango_edad'];
 	$solicitud = $_POST['solicitud'];
-
 
 	$edit_diligencias_new = "UPDATE `diligencias_new` SET `tipoDocumento` = '$tipoDocumento', `documento` = '$documento', `nombres` = '$nombres', `apellidos` = '$apellidos', `ciudad` = '$ciudad', `email` = '$email', `celular` = '$celular', `direccEmpr` = '$direccEmpr', `activEcon` = '$activEcon', `otro_activEcon` = '$otro_activEcon', `des_productivo` = '$des_productivo', `princ_prod_serv` = '$princ_prod_serv', `fort_empresarial` = '$fort_empresarial', `form_empresarial` = '$form_empresarial', `nombre_representante` = '$nombre_representante', `celular_representante` = '$celular_representante', `email_representante` = '$email_representante', `poblacion` = '$poblacion', `otro_poblacion` = '$otro_poblacion', `fecha_matricula` = '$fecha_matricula', `matricula` = '$matricula', `registrado` = '$registrado', `num_cam_comercio` = '$num_cam_comercio', `programa_ccp` = '$programa_ccp', `estado_solicitud` = '$estado_solicitud', `fecha_solicitud` = '$fecha_solicitud', `genero` = '$genero', `escolaridad` = '$escolaridad', `rango_edad` = '$rango_edad', `solicitud` = '$solicitud' WHERE `diligencias_new`.`id_diligencia` = $id_diligencia";
 
@@ -500,7 +500,6 @@ if (isset($_POST['update'])) {
           <label id="registrado" for="registrado">Número C. de Comercio:</label>
           <input class="form-control" type="text" placeholder="Número cámara comercio" name="registrado" id="registrado" value="<?= $registrado ?>">
         </div> -->
-
 			<d class="form-row">
 				<div class="form-group col-3">
 					<label for="celular_representante">Celular Representante</label>
@@ -689,6 +688,7 @@ if (isset($_POST['update'])) {
 
 
 	</form>
+
 </div>
 
 <?php
