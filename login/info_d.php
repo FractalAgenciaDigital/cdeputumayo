@@ -83,26 +83,8 @@ $cont = 0;
 								<th class="text-center align-middle">Fecha Solicitud</th>
 								<th class="text-center align-middle">Genero</th>
 								<th class="text-center align-middle">Escolaridad</th>
-								<th class="text-center align-middle">Rango edad</th>
+								<th class="text-center align-middle">Rango EDAD</th>
 								<th class="text-center align-middle">Solicitud</th>
-								<!-- <th class="text-center align-middle">Tipo documento</th>
-								<th class="text-center align-middle">Nit</th>
-								<th class="text-center align-middle">Doc. persona</th>
-								<th class="text-center align-middle">Nombre</th>
-
-
-								<th class="text-center align-middle">Razón social</th>
-								<th class="text-center align-middle">Act. económica</th>
-								<th class="text-center align-middle">Dir. domicilio</th>
-								<th class="text-center align-middle">Ciudad</th>
-								<th class="text-center align-middle">Correo</th>
-								<th class="text-center align-middle">Tel. o cel. 1</th>
-								<th class="text-center align-middle">Tel. o cel. 2</th>
-								<th class="text-center align-middle">Act. económica empresa</th>
-								<th class="text-center align-middle">Dir. empresa</th>
-								<th class="text-center align-middle">Correo empresarial</th>
-								<th class="text-center align-middle">Correo empresa</th>
-								<th class="text-center align-middle">Tel. o cel.</th>
 
 								<th class="text-center align-middle">Desarrollo prod.</th>
 								<th class="text-center align-middle">Des. prod. Otro</th>
@@ -126,7 +108,7 @@ $cont = 0;
 									<th class="text-center align-middle">Recibe apoyo1</th>
 									<th class="text-center align-middle">Tipo apoyo1</th>
 									<th class="text-center align-middle">Descripción / Valor1</th>
-								<?php   } ?> -->
+								<?php   } ?>
 								<!--
         								<th class="text-center align-middle">Nombre Proyecto 1</th>
         								<th class="text-center align-middle">Recibe apoyo1</th>
@@ -258,13 +240,13 @@ $cont = 0;
 										$apellido =  $aux[0];
 									}
 
-									// $consp = "SELECT * FROM progsxdiligendias WHERE id=" . $fila['id'];
-									//echo $cons2."<br>";  exit; die;
-									// $aux_pxd_x_id_pro = array();
-									// $resp = $stmt = mysqli_query($conn, $consp);
-									// while ($filap = mysqli_fetch_array($resp)) {
-									// 	$aux_pxd_x_id_pro[$filap['id_programa']] = $filap;
-									// }
+									$consp = "SELECT * FROM progsxdiligencias WHERE id_diligencia=" . $fila['id_diligencia'];
+
+									$aux_pxd_x_id_pro = array();
+									$resp = $stmt = mysqli_query($conn, $consp);
+									while ($filap = mysqli_fetch_array($resp)) {
+										$aux_pxd_x_id_pro[$filap['id_programa']] = $filap;
+									}
 
 									echo "
         									<tr>
@@ -296,15 +278,15 @@ $cont = 0;
                 								<td>" . $fila['rango_edad'] . "</td>
                 								<td>" . $fila['solicitud'] . "</td>";
 
-									// foreach ($programas3 as $p) {
+									foreach ($programas3 as $p) {
 
-									// if ($aux_pxd_x_id_pro[$p['id']]) {
-									// 	echo "<td>Si</td><td>" . $aux_pxd_x_id_pro[$p['id']]['recive_apoyo'] . "</td><td>" . $aux_pxd_x_id_pro[$p['id']]['dinero_espcie'] . "</td><td>" . $aux_pxd_x_id_pro[$p['id']]['descrip_val'] . "</td>";
-									// } else {
-									// 	echo "<td>No</td><td></td><td></td><td></td>";
-									// }
-									//	$tbody.="<td>".$p['programa']."</td><td >Recibe apoyo1</td><td >Tipo apoyo1</td><td >Descripción / Valor1</td>";
-									// }
+										if ($aux_pxd_x_id_pro[$p['id_programa']]) {
+											echo "<td>Si</td><td>" . $aux_pxd_x_id_pro[$p['id_programa']]['recibe_apoyo'] . "</td><td>" . $aux_pxd_x_id_pro[$p['id_programa']]['dinero_espcie'] . "</td><td>" . $aux_pxd_x_id_pro[$p['id_programa']]['descrip_val'] . "</td>";
+										} else {
+											echo "<td>No</td><td></td><td></td><td></td>";
+										}
+										$tbody .= "<td>" . $p['programa'] . "</td><td >Recibe apoyo1</td><td >Tipo apoyo1</td><td >Descripción / Valor1</td>";
+									}
 
 
 									/*
