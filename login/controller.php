@@ -76,8 +76,8 @@ if (isset($_POST['registrar'])) {
 
         $exe_diligencias_new = mysqli_query($conn, $info_progsxdiligencias);
 
-        header("Location: diligencias.php");
       }
     }
+    header("Location: diligencias.php");
   }
 }

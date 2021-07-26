@@ -89,6 +89,31 @@ if (isset($_POST['update'])) {
 
 
   $ejecutar = mysqli_query($conn, $edit_diligencias_new);
+  
+  // --------------------
+  // if ($ejecutar != false) {
+    
+    // ---------------------PROGXDILIGENCIAS TABLE------------------------
+    $id_programa = 0;
+    $datos_programa = isset($_POST['datos_programa']) ? $_POST['datos_programa'] : "";
+    $select_progs = "SELECT * FROM programas";
+
+    $deletepxd = "DELETE FROM `progsxdiligencias` WHERE `progsxdiligencias`.`id_diligencia` = $id_diligencia";
+    $exe_deletepxd = mysqli_query($conn, $deletepxd);
+
+    // print_r($deletepxd);
+    // exit;
+    
+    foreach ($datos_programa as $program) {
+      if (isset($program['si_programa'])) {
+
+        $info_progsxdiligencias = "INSERT INTO progsxdiligencias ( `id_diligencia`, `id_programa`, `recibe_apoyo`, `dinero_espcie`, `descrip_val`) VALUES ('$id_diligencia', '{$program['si_programa']}', '{$program['recibe_apoyo']}', '{$program['dinero_espcie']}', '{$program['descrip_val']}')";
+
+        $exe_diligencias_new = mysqli_query($conn, $info_progsxdiligencias);
+
+      }
+    }
+// }
 }
 ?>
 
@@ -587,30 +612,31 @@ if (isset($_POST['update'])) {
                   <th>Descripción/ Valor</th>
                 </tr>
                 <?php
-                $conspxd = "SELECT * FROM progsxdiligendias where id_diligencia=$id_registro";
-                $respxd = mysqli_query($conn, $conspxd);
+                $conspxd = "SELECT * FROM progsxdiligencias WHERE id_diligencia=$id_registro";
+                $query_pxd = mysqli_query($conn, $conspxd);
                 $aux_pxd = array();
-                if ($respxd) {
-                  while ($filapxd = mysqli_fetch_array($respxd)) {
+                if ($query_pxd) {
+                  while ($filapxd = mysqli_fetch_array($query_pxd)) {
                     $aux_pxd[$filapxd['id_programa']] = $filapxd;
                   }
                 }
 
-                $consp = "SELECT * FROM programas where estado=1 order by programa";
-                $resp = mysqli_query($conn, $consp);
-                $cont = 1;
 
-                while ($filap = mysqli_fetch_array($resp)) {  ?>
+                $consp = "SELECT * FROM programas WHERE estado=1 ORDER BY programa";
+                $query_programas = mysqli_query($conn, $consp);
+                $cont = 1;
+                while ($filap = mysqli_fetch_array($query_programas)) {  ?>
                   <tr>
                     <td><?= $cont++ ?></td>
                     <td>
                       <?= $filap['programa'] ?>
                     </td>
                     <td>
-                      <input type="checkbox" name="si_programa[]" value="<?= $filap['id_programa'] ? $filap['id_programa'] : '' ?>" <?php if (isset($aux_pxd[$filap['id_programa']]) && $aux_pxd[$filap['id_programa']]) echo "checked"; ?>>
+                      <!-- <input type="checkbox" name="si_programa[]" value="<?= $filap['id_programa'] ? $filap['id_programa'] : '' ?>" <?php if (isset($aux_pxd[$filap['id_programa']]) && $aux_pxd[$filap['id_programa']]) echo "checked"; ?>> -->
+                      <input type="checkbox" name="datos_programa[<?= isset($filap['id_programa']) ?  $filap['id_programa'] : '' ?>][si_programa]" value="<?= $filap['id_programa'] ? $filap['id_programa'] : '' ?>" <?php if (isset($aux_pxd[$filap['id_programa']]) && $aux_pxd[$filap['id_programa']]) echo "checked"; ?>>
                     </td>
                     <td>
-                      <select class="form-control " style="width: 5em;" name="apoyo_l['<?= isset($filap['id_programa']) ? $filap['id_programa'] : '' ?>']" id="apoyo">
+                      <select class="form-control" style="width: 5em;" name="datos_programa[<?= isset($filap['id_programa']) ?  $filap['id_programa'] : '' ?>][recibe_apoyo]" id="apoyo">
                         <option value="No" <?php if (isset($aux_pxd[$filap['id_programa']]['recibe_apoyo']) && $aux_pxd[$filap['id_programa']]['recibe_apoyo'] == "No") {
                                               echo "selected";
                                             } ?>>No</option>
@@ -620,21 +646,20 @@ if (isset($_POST['update'])) {
                       </select>
                     </td>
                     <td>
-                      <select class="form-control " name="dinero_espcie_l['<?= isset($filap['id_programa']) ? $filap['id_programa'] : '' ?>']" id="dinero_espcie">
+                      <select class="form-control " name="datos_programa[<?= isset($filap['id_programa']) ?  $filap['id_programa'] : '' ?>][dinero_espcie]" id="dinero_espcie">
                         <option value="Dinero" <?php
                                                 if (isset($aux_pxd[$filap['id_programa']]['dinero_espcie']) && ($aux_pxd[$filap['id_programa']]['dinero_espcie'] == "Dinero"
                                                   || $aux_pxd[$filap['id_programa']] == "Di")) {
                                                   echo "selected";
-                                                } ?>>
-                          Dinero
-                        </option>
+                                                } ?>>Dinero</option>
+
                         <option value="Especie" <?php if (isset($aux_pxd[$filap['id_programa']]['dinero_espcie']) && ($aux_pxd[$filap['id_programa']]['dinero_espcie'] != "Dinero" && $aux_pxd[$filap['id_programa']] != "Di")) {
                                                   echo "selected";
                                                 } ?>>Especie</option>
                       </select>
                     </td>
                     <td>
-                      <input class="form-control " type="text" name="especie_l['<?= isset($filap['id_programa']) ? $filap['id_programa'] : '' ?>']" id="especie" value="<?= isset($aux_pxd[$filap['id_programa']]['descrip_val']) ? $aux_pxd[$filap['id_programa']]['descrip_val'] : '' ?>">
+                      <input class="form-control " type="text" name="datos_programa[<?= isset($filap['id_programa']) ?  $filap['id_programa'] : '' ?>][descrip_val]" id="especie" value="<?= isset($aux_pxd[$filap['id_programa']]['descrip_val']) ? $aux_pxd[$filap['id_programa']]['descrip_val'] : '' ?>">
                     </td>
                   </tr> <?php
                       } ?>
