@@ -98,18 +98,27 @@ if (isset($_POST['update'])) {
     $datos_programa = isset($_POST['datos_programa']) ? $_POST['datos_programa'] : "";
     $select_progs = "SELECT * FROM programas";
 
+
+    
+    $selectpxd = "SELECT * FROM `progsxdiligencias` WHERE `progsxdiligencias`.`id_diligencia` = $id_diligencia";
+    $exe_selectpxd = mysqli_query($conn, $selectpxd);
+    // INSERT INTO `progsxdiligencias` (`id`, `id_diligencia`, `id_programa`, `recibe_apoyo`, `dinero_espcie`, `descrip_val`) VALUES ('4', '154', '15', 'Si', 'Dinero', '7896541230000');
+
+    // while ($row = mysqli_fetch_array($exe_selectpxd)) {
+    //   $lista_programas[] = $row;
+    
+    // }
+
     $deletepxd = "DELETE FROM `progsxdiligencias` WHERE `progsxdiligencias`.`id_diligencia` = $id_diligencia";
     $exe_deletepxd = mysqli_query($conn, $deletepxd);
 
-    // print_r($deletepxd);
-    // exit;
     
     foreach ($datos_programa as $program) {
       if (isset($program['si_programa'])) {
-
+      
         $info_progsxdiligencias = "INSERT INTO progsxdiligencias ( `id_diligencia`, `id_programa`, `recibe_apoyo`, `dinero_espcie`, `descrip_val`) VALUES ('$id_diligencia', '{$program['si_programa']}', '{$program['recibe_apoyo']}', '{$program['dinero_espcie']}', '{$program['descrip_val']}')";
 
-        $exe_diligencias_new = mysqli_query($conn, $info_progsxdiligencias);
+        $exe_proxdiligencias = mysqli_query($conn, $info_progsxdiligencias);
 
       }
     }

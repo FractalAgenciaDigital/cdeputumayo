@@ -40,26 +40,11 @@ if (isset($_POST['registrar'])) {
   $info_diligencias_new = "INSERT INTO diligencias_new ( `tipoDocumento`, `documento`, `nombres`, `apellidos`, `ciudad`, `email`, `celular`,`direccEmpr`, `activEcon`, `otro_activEcon`, `des_productivo`, `princ_prod_serv`, `fort_empresarial`, `form_empresarial`, `nombre_representante`, `celular_representante`, `email_representante`, `poblacion`, `otro_poblacion`, `fecha_matricula`, `matricula`, `registrado`, `num_cam_comercio`, `programa_ccp`, `estado_solicitud`, `fecha_solicitud`, `genero`, `escolaridad`, `rango_edad`, `solicitud`) VALUES ( '$tipoDocumento','$documento','$nombres','$apellidos','$ciudad','$email','$celular','$direccEmpr','$activEcon','$otro_activEcon','$des_productivo','$princ_prod_serv','$fort_empresarial','$form_empresarial','$nombre_representante','$celular_representante','$email_representante','$poblacion','$otro_poblacion','$fecha_matricula' ,'$matricula','$registrado','$num_cam_comercio','$programa_ccp','$estado_solicitud','$fecha_solicitud', '$genero', '$escolaridad', '$rango_edad', '$solicitud') ";
 
   $exe_diligencias_new = mysqli_query($conn, $info_diligencias_new);
+  // ---------------------PROGXDILIGENCIAS TABLE------------------------
   if ($exe_diligencias_new != false) {
-    // $info_programas = "SELECT id_programa FROM programas ORDER BY id_programa desc LIMIT 1";
-    // $info_new_diligencias = "SELECT id_diligencia FROM diligencias_new ORDER BY id_diligencia desc LIMIT 1";
-    // $info_new_diligencias = "SELECT MAX(id_diligencia) AS id_diligencia FROM diligencias_new";
-    // $info_new_diligencias = "SELECT MAX(`id_diligencia`) FROM `diligencias_new`";
-    // $info_new_diligencias = mysqli_insert_id($conn, 'id_diligencia');
-    // $info_new_diligencias = mysqli_insert_id($conn, 'id_diligencia');
     $id_ultimo = mysqli_insert_id($conn);
 
-    // $exe = mysqli_query($conn, $info_new_diligencias);
 
-    // var_dump($id_ultimo);
-
-
-
-    // if (!$_POST['']) {
-    //   // SELECT  DILIG
-    // }
-
-    // ---------------------PROGXDILIGENCIAS TABLE------------------------
 
     // $id_diligencia = $info_new_diligencias;
     $id_diligencia = isset($_POST['id_diligencia']) ? $_POST['id_diligencia'] : "";
