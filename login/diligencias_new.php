@@ -526,7 +526,6 @@ $id_registro = '';
                       <?= $filap['programa'] ?>
                     </td>
                     <td>
-                      <!-- <input type="checkbox" name="si_programa[]" value="<?= $filap['id_programa'] ? $filap['id_programa'] : '' ?>" <?php if (isset($aux_pxd[$filap['id_programa']]) && $aux_pxd[$filap['id_programa']]) echo "checked"; ?>> -->
                       <input type="checkbox" name="datos_programa[<?= isset($filap['id_programa']) ?  $filap['id_programa'] : '' ?>][si_programa]" value="<?= $filap['id_programa'] ? $filap['id_programa'] : '' ?>" <?php if (isset($aux_pxd[$filap['id_programa']]) && $aux_pxd[$filap['id_programa']]) echo "checked"; ?>>
                     </td>
                     <td>

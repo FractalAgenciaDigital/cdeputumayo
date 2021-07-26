@@ -84,7 +84,9 @@ if (isset($_POST['update'])) {
 	$rango_edad = $_POST['rango_edad'];
 	$solicitud = $_POST['solicitud'];
 
-	$edit_diligencias_new = "UPDATE `diligencias_new` SET `tipoDocumento` = '$tipoDocumento', `documento` = '$documento', `nombres` = '$nombres', `apellidos` = '$apellidos', `ciudad` = '$ciudad', `email` = '$email', `celular` = '$celular', `direccEmpr` = '$direccEmpr', `activEcon` = '$activEcon', `otro_activEcon` = '$otro_activEcon', `des_productivo` = '$des_productivo', `princ_prod_serv` = '$princ_prod_serv', `fort_empresarial` = '$fort_empresarial', `form_empresarial` = '$form_empresarial', `nombre_representante` = '$nombre_representante', `celular_representante` = '$celular_representante', `email_representante` = '$email_representante', `poblacion` = '$poblacion', `otro_poblacion` = '$otro_poblacion', `fecha_matricula` = '$fecha_matricula', `matricula` = '$matricula', `registrado` = '$registrado', `num_cam_comercio` = '$num_cam_comercio', `programa_ccp` = '$programa_ccp', `estado_solicitud` = '$estado_solicitud', `fecha_solicitud` = '$fecha_solicitud', `genero` = '$genero', `escolaridad` = '$escolaridad', `rango_edad` = '$rango_edad', `solicitud` = '$solicitud' WHERE `diligencias_new`.`id_diligencia` = $id_diligencia";
+	$edit_diligencias_new = "UPDATE `diligencias_new` SET `tipoDocumento` = '$tipoDocumento', `documento` = '$documento', `nombres` = '$nombres', `apellidos` = '$apellidos', `ciudad` = '$ciudad', `email` = '$email', `celular` = '$celular', `direccEmpr` = '$direccEmpr', `a
+	
+	ctivEcon` = '$activEcon', `otro_activEcon` = '$otro_activEcon', `des_productivo` = '$des_productivo', `princ_prod_serv` = '$princ_prod_serv', `fort_empresarial` = '$fort_empresarial', `form_empresarial` = '$form_empresarial', `nombre_representante` = '$nombre_representante', `celular_representante` = '$celular_representante', `email_representante` = '$email_representante', `poblacion` = '$poblacion', `otro_poblacion` = '$otro_poblacion', `fecha_matricula` = '$fecha_matricula', `matricula` = '$matricula', `registrado` = '$registrado', `num_cam_comercio` = '$num_cam_comercio', `programa_ccp` = '$programa_ccp', `estado_solicitud` = '$estado_solicitud', `fecha_solicitud` = '$fecha_solicitud', `genero` = '$genero', `escolaridad` = '$escolaridad', `rango_edad` = '$rango_edad', `solicitud` = '$solicitud' WHERE `diligencias_new`.`id_diligencia` = $id_diligencia";
 
 
 
@@ -99,15 +101,31 @@ if (isset($_POST['update'])) {
 	$select_progs = "SELECT * FROM programas";
 
 
+	// $consp = "SELECT * FROM progsxdiligencias WHERE id_diligencia=" . $fila['id_diligencia'] . " " . $filt_proyecto;
 
-	$selectpxd = "SELECT * FROM `progsxdiligencias` WHERE `progsxdiligencias`.`id_diligencia` = $id_diligencia";
-	$exe_selectpxd = mysqli_query($conn, $selectpxd);
+
+	foreach ($datos_programa as $program) {
+
+		$selectpxd = "SELECT * FROM `progsxdiligencias` WHERE `progsxdiligencias`.`id_diligencia` = $id_diligencia";
+		$exe_selectpxd = mysqli_query($conn, $selectpxd);
+	}
+	// echo "<pre>";
+	// print_r($datos_programa);
+	// echo "</pre>";
+	// exit;
+
+	$lista_progsxdiligencias = array();
+
+	while ($row = mysqli_fetch_array($exe_selectpxd)) {
+		$lista_progsxdiligencias[$row['id_programa']] = $row;
+	}
+
+
+
+
+
 	// INSERT INTO `progsxdiligencias` (`id`, `id_diligencia`, `id_programa`, `recibe_apoyo`, `dinero_espcie`, `descrip_val`) VALUES ('4', '154', '15', 'Si', 'Dinero', '7896541230000');
 
-	// while ($row = mysqli_fetch_array($exe_selectpxd)) {
-	//   $lista_programas[] = $row;
-
-	// }
 
 	$deletepxd = "DELETE FROM `progsxdiligencias` WHERE `progsxdiligencias`.`id_diligencia` = $id_diligencia";
 	$exe_deletepxd = mysqli_query($conn, $deletepxd);
@@ -619,7 +637,8 @@ if (isset($_POST['update'])) {
 									<th>Descripción/ Valor</th>
 								</tr>
 								<?php
-								$conspxd = "SELECT * FROM progsxdiligencias WHERE id_diligencia=$id_registro";
+								// $conspxd = "SELECT * FROM `progsxdiligencias` WHERE `progsxdiligencias`.`id_diligencia` = $id_diligencia";
+								$conspxd = "SELECT * FROM `progsxdiligencias` WHERE `progsxdiligencias`.`id_diligencia` = $id_diligencia";
 								$query_pxd = mysqli_query($conn, $conspxd);
 								$aux_pxd = array();
 								if ($query_pxd) {
@@ -639,7 +658,6 @@ if (isset($_POST['update'])) {
 											<?= $filap['programa'] ?>
 										</td>
 										<td>
-											<!-- <input type="checkbox" name="si_programa[]" value="<?= $filap['id_programa'] ? $filap['id_programa'] : '' ?>" <?php if (isset($aux_pxd[$filap['id_programa']]) && $aux_pxd[$filap['id_programa']]) echo "checked"; ?>> -->
 											<input type="checkbox" name="datos_programa[<?= isset($filap['id_programa']) ?  $filap['id_programa'] : '' ?>][si_programa]" value="<?= $filap['id_programa'] ? $filap['id_programa'] : '' ?>" <?php if (isset($aux_pxd[$filap['id_programa']]) && $aux_pxd[$filap['id_programa']]) echo "checked"; ?>>
 										</td>
 										<td>
