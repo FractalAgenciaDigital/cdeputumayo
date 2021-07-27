@@ -1,6 +1,7 @@
 <?php
 include "cabecera.php";
 include '../funciones.php';
+include 'upload.php';
 
 ?>
 
@@ -37,27 +38,14 @@ include '../funciones.php';
                     <div class="form-group" style="margin-left: 0.5rem;">
                         <input type="submit" style="margin-left: 2rem;" class="btn btn-info" value="Subir" onclick="subirArchivoExcel()">
                     </div>
-                    <!-- <div>
-                        <h3>errorss</h3>
-                        <?php
-                        if (isset($error))
-                            echo "<p>" . $error . "</p>";
-                        ?>
+                    <div>
+                        <a href="../site/assets/Upload/Plantillas/diligencias_new.csv">Descargar PLantilla de Diligencias</a>
                     </div>
-                    <?php
-                    if (isset($error)) {
-                    ?> -->
 
-                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                        <?php echo "$error" ?>
-                        <div type="text" class="btn-close" data-bs-dismiss="alert" aria-label="Close">Nada</div>
-                    </div>
-                <?php
-                    } ?>
-                <div id=" alertSI" class="alert alert-success alert-dismissible fade" role="alert">¡OK!</div>
-                <div class="form-group">
-                    here
-                </div>
+                    <!-- <div id=" alertSI" class="alert alert-success alert-dismissible fade" role="alert">¡OK!</div>
+                        <div class="form-group">
+                            here
+                        </div> -->
                 </div>
             </form>
             <!-- </div> -->
