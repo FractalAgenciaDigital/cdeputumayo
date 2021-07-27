@@ -5,8 +5,11 @@ header("Content-Disposition: attachment; filename=diligencias.xls");
 header("Pragma: no-cache");
 header("Expires: 0");
 
-$cons_a = "SELECT * FROM programas where estado = 1 order by programa";
-$res_a = mysqli_query($conn, $cons_a);
+print_r($_GET);
+
+
+$cons_order = "SELECT * FROM programas where estado = 1 order by programa";
+$res_a = mysqli_query($conn, $cons_order);
 $programas = array();
 
 while ($afila = mysqli_fetch_array($res_a)) {
@@ -23,12 +26,11 @@ while ($afila = mysqli_fetch_array($res_a)) {
 }
 
 
-
 $cons = 'SELECT * FROM diligencias_new';
 $donde = '';
 
-if (isset($_GET['tipoDocumento']) && $_GET['tipoDocumento'] != '') {
-	$donde .= ' WHERE tipoDocumento = ' . $_GET['tipoDocumento'];
+if (isset($_GET['tipoDoc']) && $_GET['tipoDoc'] != '') {
+	$donde .= ' WHERE tipoDocumento = ' . $_GET['tipoDoc'];
 }
 if (isset($_GET['txtBuscar']) && $_GET['txtBuscar'] != '') {
 	$txt = "LIKE '%" . $_GET['txtBuscar'] . "%'";
@@ -37,12 +39,15 @@ if (isset($_GET['txtBuscar']) && $_GET['txtBuscar'] != '') {
 }
 $cons .= $donde;
 
+
 $res = mysqli_query($conn, $cons);
-//echo $cons; exit;
+
 $stmt = mysqli_query($conn, $cons);
+
 $tbody = '';
 $cont = 0;
 ?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -125,24 +130,22 @@ $cont = 0;
 							$formtal["7"] = "Marcas y Patentes";
 							$formtal["8"] = "Otro";
 
-
-
 							while ($fila = mysqli_fetch_array($res)) {
 								$filt_proyecto = '';
 
-								if (isset($_POST['proyecto']) && $_POST['proyecto'] != '') {
-									$aux_proyect = $_POST['proyecto'];
-									// $filt_proyecto=" and nom_progr='$aux_proyect'";
-									$filt_proyecto = " AND id_programa=" . $_POST['proyecto'];
-									echo "$filt_proyecto=$filt_proyecto<br>";
+								if (isset($_GET['proyecto']) && $_GET['proyecto'] != '') {
+									$filt_proyecto = " AND id_programa=" . $_GET['proyecto'];
+									"$filt_proyecto=$filt_proyecto<br>";
 								}
 
-								$consp = "SELECT * FROM progsxdiligencias WHERE id_diligencia=" . $fila['id_diligencia'] . " " . $filt_proyecto;
+								$consp = "SELECT * FROM progsxdiligencias WHERE id_diligencia = " . $fila['id_diligencia'] . " " . $filt_proyecto;
 								$aux_pxd_x_id_pro = array();
 								$resp = $stmt = mysqli_query($conn, $consp);
+
 								while ($filap = mysqli_fetch_array($resp)) {
 									$aux_pxd_x_id_pro[$filap['id_programa']] = $filap;
 								}
+								// var_dump($consp);
 
 
 								// var_dump($filt_proyecto);
@@ -166,8 +169,6 @@ $cont = 0;
 																		: ($fila['ciudad'] == 10 ? 'SAN MIGUEL'
 																			: ($fila['ciudad'] == 11 ? 'SIBUNDOY'
 																				: ($fila['ciudad'] == 12 ? 'VALLE DEL GUAMUEZ' : 'VILLAGARZÓN')))))))))));
-
-
 
 									$fechaSol = explode('-', explode(' ', $fila['create_at'])[0]);
 									$updated_at = $fechaSol[2] . "/" . $fechaSol[1] . "/" . $fechaSol[0];
@@ -214,7 +215,6 @@ $cont = 0;
 											$tbody .= "<td>No</td><td><td></td><td></td>";
 										}
 									}
-
 
 									"</tr>";
 								}

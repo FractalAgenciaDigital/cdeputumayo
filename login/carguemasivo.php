@@ -37,8 +37,6 @@ include '../funciones.php';
                     <div class="form-group" style="margin-left: 0.5rem;">
                         <input type="submit" style="margin-left: 2rem;" class="btn btn-info" value="Subir" onclick="subirArchivoExcel()">
                     </div>
-
-
                     <!-- <div>
                         <h3>errorss</h3>
                         <?php
@@ -49,6 +47,7 @@ include '../funciones.php';
                     <?php
                     if (isset($error)) {
                     ?> -->
+
                     <div class="alert alert-warning alert-dismissible fade show" role="alert">
                         <?php echo "$error" ?>
                         <div type="text" class="btn-close" data-bs-dismiss="alert" aria-label="Close">Nada</div>

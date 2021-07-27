@@ -2,9 +2,6 @@
 include "cabecera.php";
 include '../funciones.php';
 
-
-
-
 $cons3 = "SELECT * FROM programas WHERE programa like '%CISP%'  ";
 $res3 = mysqli_query($conn, $cons3);
 while ($fila3 = mysqli_fetch_array($res3)) {
@@ -12,8 +9,6 @@ while ($fila3 = mysqli_fetch_array($res3)) {
 	// echo "$cons2 <br>";
 	$res2 = mysqli_query($conn, $cons2);
 }
-
-
 
 
 $cons3 = "SELECT id_programa, programa FROM programas ";
@@ -84,7 +79,7 @@ while ($afila = mysqli_fetch_array($res_a)) {
 					<div class="align-self-center">
 						<strong>Diligencias</strong>
 					</div>
-					<button class="btn btn-success" id="btn_export" onclick="ruta();">Exportar</button>
+					<button class="btn btn-success" id="exportar" onclick="ruta();">Exportar</button>
 					<div class="col-1"></div>
 				</div>
 			</div>

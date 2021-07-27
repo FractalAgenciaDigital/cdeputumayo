@@ -26,7 +26,7 @@ if (isset($_GET)) {
     // $cons = 'SELECT tipoDocumento, nitEmpr, documento, nombres, apellido1, apellido2, apellidos, razonSocial, activEcon, ciudad, email, emailPersonalEmpr, emailEmpr, telocel1, telocel2, telocel, ctde, dp, forme, forte, create_at, solicitud FROM diligencias';
     $donde = '';
     if ($_GET['tipoDoc']) {
-        $donde .= ' WHERE tipoDocumento = ' . $_GET['tipoDocumento'];
+        $donde .= ' WHERE tipoDocumento = ' . $_GET['tipoDoc'];
     }
     if ($_GET['txtBuscar']) {
         $txt = "LIKE '%" . $_GET['txtBuscar'] . "%'";

@@ -367,23 +367,6 @@ $id_registro = '';
           <input class="form-control" type="text" placeholder="Número C. de Comercio:" name="num_cam_comercio" id="num_cam_comercio" value="<?= $num_cam_comercio ?>">
         </div>
       </div>
-      <!-- --------------------------------------------------- -->
-      <!-- 
-        <div class="form-group col-3">
-          <label for="registrado">Registrado en C. de Comercio:</label>
-          <select class="form-control" style="width: 5em;" name="registrado" v-model="" id="registrado">
-            <option value="Si" <?php if ($registrado == "Si") {
-                                  echo "selected";
-                                } ?>>Si</option>
-            <option value="No" <?php if ($registrado == "No") {
-                                  echo "selected";
-                                } ?>>No</option>
-          </select>
-        </div>
-        <div class="form-group col-3" style="display:none">
-          <label id="registrado" for="registrado">Número C. de Comercio:</label>
-          <input class="form-control" type="text" placeholder="Número cámara comercio" name="registrado" id="registrado" value="<?= $registrado ?>">
-        </div> -->
 
       <div class="form-row">
         <div class="form-group col-3">

@@ -225,8 +225,6 @@ if (isset($_POST['listar'])) {
     // $res2 = $stmt = mysqli_query($conn, $cons2);
     // $fila2 = mysqli_fetch_array($res2);
 
-
-
     $consp = "SELECT * FROM progsxdiligencias WHERE id_diligencia=" . $fila['id_diligencia'] . " " . $filt_proyecto;
     $aux_pxd_x_id_pro = array();
     $resp = $stmt = mysqli_query($conn, $consp);
@@ -236,7 +234,6 @@ if (isset($_POST['listar'])) {
 
 
     // if (($_POST['proyecto'] != '' && count($fila2) > 0) || $_POST['proyecto'] != '')
-
 
 
     if (($_POST['proyecto'] != '' && count($aux_pxd_x_id_pro) > 0) || $_POST['proyecto'] == '') {
@@ -335,14 +332,6 @@ if (isset($_POST['listar'])) {
   //echo utf8_encode($tbody);
   echo $tbody;
 }
-
-
-
-
-
-
-
-
 
 
 
