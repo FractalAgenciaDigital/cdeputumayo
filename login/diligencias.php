@@ -59,9 +59,11 @@ while ($afila = mysqli_fetch_array($res_a)) {
 	function ruta() {
 		var td = document.getElementById("tipoDoc").value;
 		var tb = document.getElementById("txtBuscar").value;
-		var prog = document.getElementById("proyectos").value;
+		var prog = document.getElementById("proyecto").value;
 		var proyecto = "info_d.php?tipoDoc=" + td + "&txtBuscar=" + tb + "&proyecto=" + prog;
 
+		console.log(td);
+		// console.log('holi');
 		window.open(proyecto, "_blank");
 	}
 </script>
@@ -90,7 +92,7 @@ while ($afila = mysqli_fetch_array($res_a)) {
 				<div class="form-group row">
 					<label class="col-md-auto col-form-label">Tipo documento:</label>
 					<div class="col-md-2">
-						<select id="tipoDoc" class="form-control">
+						<select id="tipoDoc" name="tipoDocumento" class="form-control">
 							<option value="">Seleccione</option>
 							<option value="1">CEDULA DE CIUDADANIA</option>
 							<option value="2">NIT</option>
@@ -99,7 +101,9 @@ while ($afila = mysqli_fetch_array($res_a)) {
 					</div>
 					<label class="col-md-auto col-form-label">Programa:</label>
 					<div class="col-md-2">
-						<select id="proyectos" name="proyectos" class="form-control"></select>
+						<select id="proyecto" name="proyecto" class="form-control">
+
+						</select>
 					</div>
 					<label class="col-md-auto col-form-label">Tercero o Razón social:</label>
 					<div class="col-md-3">
@@ -185,7 +189,7 @@ include "pie.php";
 		let cuerpo = {
 			listar: '1',
 			tipoDoc: $('#tipoDoc').val(),
-			proyecto: $('#proyectos').val(),
+			proyecto: $('#proyecto').val(),
 
 			txtBuscar: $('#txtBuscar').val()
 		};
@@ -200,13 +204,13 @@ include "pie.php";
 		let cuerpo = {
 			listar: '1',
 			tipoDoc: $('#tipoDoc').val(),
-			proyecto: $('#proyectos').val(),
+			proyecto: $('#proyecto').val(),
 
 			txtBuscar: $('#txtBuscar').val()
 		};
 
 		$.post('proyectos_ajax.php', cuerpo).done(function(resp) {
-			$('#proyectos').html(resp);
+			$('#proyecto').html(resp);
 		});
 
 	}

@@ -2,11 +2,11 @@
 include 'funciones.php';
 if (isset($_POST['listar'])) {
 
-	$cons = 'SELECT * FROM programas ' . $proyecto . ' order by programa';
+	$cons = 'SELECT * FROM programas  order by programa';
 	$res = $stmt = mysqli_query($conn, $cons);
 	$opts_select_proyects = "<option value=''>Seleccione</option>";
 	while ($fila = mysqli_fetch_array($res)) {
-		$opts_select_proyects .= "<option value='" . $fila['id'] . "'>" . $fila['programa'] . "</option>";
+		$opts_select_proyects .= "<option value='" . $fila['id_programa'] . "'>" . $fila['programa'] . "</option>";
 	}
 	echo $opts_select_proyects;
 }

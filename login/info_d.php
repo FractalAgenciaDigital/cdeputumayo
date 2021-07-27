@@ -1,18 +1,24 @@
 <?php
 include 'funciones.php';
-header('Content-type: application/vnd.ms-excel; charset=utf8');
-header("Content-Disposition: attachment; filename=diligencias.xls");
-header("Pragma: no-cache");
-header("Expires: 0");
+// header('Content-type: application/vnd.ms-excel; charset=utf8');
+// header("Content-Disposition: attachment; filename=diligencias.xls");
+// header("Pragma: no-cache");
+// header("Expires: 0");
+$cons_a = "SELECT * FROM programas where estado = 1 order by programa";
+$res_a = mysqli_query($conn, $cons_a);
+$programas = array();
 
+while ($afila = mysqli_fetch_array($res_a)) {
+	$programas[] = $afila['programa'];
+}
 
-$cons_a = "SELECT * FROM programas   order by programa";
+$cons_a = "SELECT * FROM programas order by programa";
 $res_a = mysqli_query($conn, $cons_a);
 $programas2 = array();
-$programas3 = array();
+$programas = array();
 while ($afila = mysqli_fetch_array($res_a)) {
 	$programas2[$afila['id_programa']] = $afila['programa'];
-	$programas3[$afila['id_programa']] = $afila;
+	$programas[$afila['id_programa']] = $afila;
 }
 
 
@@ -21,7 +27,7 @@ $cons = 'SELECT * FROM diligencias_new';
 $donde = '';
 
 if (isset($_GET['tipoDocumento']) && $_GET['tipoDocumento'] != '') {
-	$donde .= ' WHERE tipoDocumento = ' . $_GET['tipoDoc'];
+	$donde .= ' WHERE tipoDocumento = ' . $_GET['tipoDocumento'];
 }
 if (isset($_GET['txtBuscar']) && $_GET['txtBuscar'] != '') {
 	$txt = "LIKE '%" . $_GET['txtBuscar'] . "%'";
@@ -62,10 +68,10 @@ $cont = 0;
 								<th class="text-center align-middle">#</th>
 								<th class="text-center align-middle">Tipo documento</th>
 								<th class="text-center align-middle">Doc. persona</th>
-								<th class="text-center align-middle">Nombres completos</th>
+								<th class="text-center align-middle">Nombre Completo</th>
+								<th class="text-center align-middle">Ciudad</th>
 								<th class="text-center align-middle">Correos</th>
 								<th class="text-center align-middle">Celulares</th>
-								<th class="text-center align-middle">Ciudad</th>
 								<th class="text-center align-middle">Direcc. Empresa</th>
 								<th class="text-center align-middle">Actividad Económica</th>
 								<th class="text-center align-middle">Des. Productivo</th>
@@ -78,96 +84,20 @@ $cont = 0;
 								<th class="text-center align-middle">Matricula</th>
 								<th class="text-center align-middle">Registrado</th>
 								<th class="text-center align-middle">Num. Cam. Comercio</th>
-								<th class="text-center align-middle">Programa CCP</th>
 								<th class="text-center align-middle">Estado Solicitud</th>
 								<th class="text-center align-middle">Fecha Solicitud</th>
+								<th class="text-center align-middle">Solicitud</th>
 								<th class="text-center align-middle">Genero</th>
 								<th class="text-center align-middle">Escolaridad</th>
 								<th class="text-center align-middle">Rango EDAD</th>
-								<th class="text-center align-middle">Solicitud</th>
 
-								<th class="text-center align-middle">Desarrollo prod.</th>
-								<th class="text-center align-middle">Des. prod. Otro</th>
-								<th class="text-center align-middle">Principal Prod/Serv</th>
-								<th class="text-center align-middle">Formación empresarial</th>
-								<th class="text-center align-middle">Fortalecimiento empresarial</th>
-								<th class="text-center align-middle">Fort. empresarial Otro</th>
-								<th class="text-center align-middle">Solicitud</th>
-
-								<th class="text-center align-middle">Genero</th>
-								<th class="text-center align-middle">Tipo Población</th>
-								<th class="text-center align-middle">Otro Tipo Población</th>
-								<th class="text-center align-middle">Escolaridad</th>
-								<th class="text-center align-middle">Rango Edad</th>
-								<th class="text-center align-middle">Registrado en Cámara</th>
-								<th class="text-center align-middle">Número Matricula</th>
-								<th class="text-center align-middle">Fecha Matricula</th>
 								<th class="text-center align-middle">Proyecto CPP u otros</th>
-								<?php foreach ($programas2 as $p) { ?>
-									<th class="text-center align-middle">Proyecto = <?= $p ?></th>
-									<th class="text-center align-middle">Recibe apoyo1</th>
-									<th class="text-center align-middle">Tipo apoyo1</th>
-									<th class="text-center align-middle">Descripción / Valor1</th>
+								<?php foreach ($programas2 as $programa) { ?>
+									<th class="text-center align-middle">Proyecto = <?= $programa ?></th>
+									<th class="text-center align-middle">Recibe apoyo</th>
+									<th class="text-center align-middle">Tipo apoyo</th>
+									<th class="text-center align-middle">Descripción / Valor</th>
 								<?php   } ?>
-								<!--
-        								<th class="text-center align-middle">Nombre Proyecto 1</th>
-        								<th class="text-center align-middle">Recibe apoyo1</th>
-        								<th class="text-center align-middle">Tipo apoyo1</th>
-        								<th class="text-center align-middle">Descripción / Valor1</th>
-        								
-        								<th class="text-center align-middle">Nombre Proyecto 2</th>
-        								<th class="text-center align-middle">Recibe apoy2o</th>
-        								<th class="text-center align-middle">Tipo apoyo2</th>
-        								<th class="text-center align-middle">Descripción / Valor2</th>
-        								
-        								<th class="text-center align-middle">Nombre Proyecto 3</th>
-        								<th class="text-center align-middle">Recibe apoyo3</th>
-        								<th class="text-center align-middle">Tipo apoyo3</th>
-        								<th class="text-center align-middle">Descripción / Valor3</th>
-        								
-        								<th class="text-center align-middle">Nombre Proyecto 4</th>
-        								<th class="text-center align-middle">Recibe apoyo4</th>
-        								<th class="text-center align-middle">Tipo apoyo4</th>
-        								<th class="text-center align-middle">Descripción / Valor4</th>
-        								
-        								<th class="text-center align-middle">Nombre Proyecto 5</th>
-        								<th class="text-center align-middle">Recibe apoyo5</th>
-        								<th class="text-center align-middle">Tipo apoyo5</th>
-        								<th class="text-center align-middle">Descripción / Valor5</th>
-        								
-        								<th class="text-center align-middle">Nombre Proyecto 6</th>
-        								<th class="text-center align-middle">Recibe apoyo6</th>
-        								<th class="text-center align-middle">Tipo apoyo6</th>
-        								<th class="text-center align-middle">Descripción / Valor6</th>
-        								-->
-								<!-- 
-								<th class="text-center align-middle">Estado Solicitud</th>
-								<th class="text-center align-middle">Fecha Respuesta</th>
-								<th class="text-center align-middle">Enero</th>
-								<th class="text-center align-middle">Observación</th>
-								<th class="text-center align-middle">Febrero</th>
-								<th class="text-center align-middle">Observación</th>
-								<th class="text-center align-middle">Marzo</th>
-								<th class="text-center align-middle">Observación</th>
-								<th class="text-center align-middle">Abril</th>
-								<th class="text-center align-middle">Observación</th>
-								<th class="text-center align-middle">Mayo</th>
-								<th class="text-center align-middle">Observación</th>
-								<th class="text-center align-middle">Junio</th>
-								<th class="text-center align-middle">Observación</th>
-								<th class="text-center align-middle">Julio</th>
-								<th class="text-center align-middle">Observación</th>
-								<th class="text-center align-middle">Agosto</th>
-								<th class="text-center align-middle">Observación</th>
-								<th class="text-center align-middle">Septiembre</th>
-								<th class="text-center align-middle">Observación</th>
-								<th class="text-center align-middle">Octubre</th>
-								<th class="text-center align-middle">Observación</th>
-								<th class="text-center align-middle">Noviembre</th>
-								<th class="text-center align-middle">Observación</th>
-								<th class="text-center align-middle">Diciembre</th>
-								<th class="text-center align-middle">Observación</th>
-								<th>Fec. Actualiza</th> -->
 							</tr>
 						</thead>
 						<tbody id="cuerpo">
@@ -199,17 +129,25 @@ $cont = 0;
 							while ($fila = mysqli_fetch_array($res)) {
 								$filt_proyecto = '';
 
-								if (isset($_GET['proyecto']) && $_GET['proyecto'] != '') {
-									$aux_proyect = $_GET['proyecto'];
-									$filt_proyecto = " and nom_progr='$aux_proyect'";
+								if (isset($_POST['proyecto']) && $_POST['proyecto'] != '') {
+									//$aux_proyect=$_POST['proyecto'];
+									//$filt_proyecto=" and nom_progr='$aux_proyect'";
+									$filt_proyecto = " and id_programa=" . $_POST['proyecto'];
+									// echo "$filt_proyecto=$filt_proyecto<br>";
+
 								}
 
+								// var_dump($filt_proyecto);
+								$cons2 = "SELECT * FROM diligencias_new WHERE id_diligencia=" . $fila['id_diligencia'];
+								$res2 = $stmt = mysqli_query($conn, $cons2);
 
-								// $cons2 = "SELECT * FROM extras_usus WHERE id_usu=" . $fila['id'] . " " . $filt_proyecto;
-								// $res2 = $stmt = mysqli_query($conn, $cons2);
-								// $fila2 = mysqli_fetch_array($res2);
+								// if (condition) {
+								// 	# code...
+								// }
 
+								$fila2 = mysqli_fetch_array($res2);
 
+								// var_dump($filt_proyecto);
 
 								if (($_GET['proyecto'] != '' && count($fila2) > 0) || $_GET['proyecto'] == '') {
 
@@ -239,9 +177,7 @@ $cont = 0;
 										$aux = explode(" ", $fila['apellidos']);
 										$apellido =  $aux[0];
 									}
-
-									$consp = "SELECT * FROM progsxdiligencias WHERE id_diligencia=" . $fila['id_diligencia'];
-
+									$consp = "SELECT * FROM progsxdiligencias WHERE id_diligencia=" . $fila['id_diligencia'] . " " . $filt_proyecto;
 									$aux_pxd_x_id_pro = array();
 									$resp = $stmt = mysqli_query($conn, $consp);
 									while ($filap = mysqli_fetch_array($resp)) {
@@ -276,16 +212,16 @@ $cont = 0;
                 								<td>" . $fila['genero'] . "</td>
                 								<td>" . $fila['escolaridad'] . "</td>
                 								<td>" . $fila['rango_edad'] . "</td>
-                								<td>" . $fila['solicitud'] . "</td>";
+                								<td>" . $fila['programa_ccp'] . "</td>";
 
-									foreach ($programas3 as $p) {
+									foreach ($programas as $programa) {
 
-										if ($aux_pxd_x_id_pro[$p['id_programa']]) {
-											echo "<td>Si</td><td>" . $aux_pxd_x_id_pro[$p['id_programa']]['recibe_apoyo'] . "</td><td>" . $aux_pxd_x_id_pro[$p['id_programa']]['dinero_espcie'] . "</td><td>" . $aux_pxd_x_id_pro[$p['id_programa']]['descrip_val'] . "</td>";
+										if (isset($aux_pxd_x_id_pro[$programa['id_programa']])) {
+											$tbody .= "<td>Si</td><td>" . $aux_pxd_x_id_pro[$programa['id_programa']]['recibe_apoyo'] . "</td><td>" . $aux_pxd_x_id_pro[$programa['id_programa']]['dinero_espcie'] . "</td><td>" . $aux_pxd_x_id_pro[$programa['id_programa']]['descrip_val'] . "</td>";
 										} else {
-											echo "<td>No</td><td></td><td></td><td></td>";
+											$tbody .= "<td>No</td><td><td></td><td></td>";
 										}
-										$tbody .= "<td>" . $p['programa'] . "</td><td >Recibe apoyo1</td><td >Tipo apoyo1</td><td >Descripción / Valor1</td>";
+										//	$tbody.="<td>".$p['programa']."</td><td >Recibe apoyo1</td><td >Tipo apoyo1</td><td >Descripción / Valor1</td>";
 									}
 
 

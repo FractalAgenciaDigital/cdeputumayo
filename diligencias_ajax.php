@@ -4,7 +4,7 @@ include 'funciones.php';
 if (isset($_POST['email'])) {
   $mensaje = "Nombre:" . $_POST['nombre'] . "\r\n";
   $mensaje .= "Email:" . $_POST['email'] . "\r\n";
-  $mensaje = "Teléfono:" . $_POST['telefono'] . "\r\n";
+  $mensaje = "Teléfono:" . $_POST['celular'] . "\r\n";
   //mail('caffeinated@example.com', 'Mi título', $mensaje);
 }
 
@@ -46,7 +46,6 @@ $escolaridad = isset($_POST['escolaridad']) ? $_POST['escolaridad'] : "";
 $rango_edad = isset($_POST['rango_edad']) ? $_POST['rango_edad'] : "";
 $solicitud = isset($_POST['solicitud']) ? $_POST['solicitud'] : "";
 // ---------------------------------
-
 
 // $id = $_GET['id'];
 
@@ -189,6 +188,8 @@ if (isset($_POST['listar'])) {
   $formtal["10"] = "Domicilios putumayo";
   $formtal["11"] = "Visita Putumayo";
   $formtal["12"] = "Club de afiliados";
+
+
   $cons_a = "SELECT * FROM programas where estado = 1 order by programa";
   $res_a = mysqli_query($conn, $cons_a);
   $programas = array();

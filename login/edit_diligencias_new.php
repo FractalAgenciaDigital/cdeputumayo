@@ -11,6 +11,7 @@ if (isset($_GET['id_diligencia'])) {
 	$query = "SELECT * FROM diligencias_new WHERE id_diligencia = $id_diligencia";
 	$result = mysqli_query($conn, $query);
 
+
 	if (mysqli_num_rows($result) == 1) {
 		$row = mysqli_fetch_array($result);
 		$tipoDocumento = isset($row['tipoDocumento']) ? $row['tipoDocumento'] : "";
