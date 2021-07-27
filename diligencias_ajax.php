@@ -11,6 +11,8 @@ if (isset($_POST['email'])) {
 if (isset($_POST['elimin_d'])) {
   $cons = "DELETE FROM diligencias_new WHERE id_diligencia =" . $_POST['id_elim'];
   $res = mysqli_query($conn, $cons);
+  $deletepxd = "DELETE FROM progsxdiligencias WHERE id_diligencia =" . $_POST['id_elim'];
+  $res = mysqli_query($conn, $deletepxd);
 }
 
 // ---------------------------------
@@ -46,104 +48,6 @@ $escolaridad = isset($_POST['escolaridad']) ? $_POST['escolaridad'] : "";
 $rango_edad = isset($_POST['rango_edad']) ? $_POST['rango_edad'] : "";
 $solicitud = isset($_POST['solicitud']) ? $_POST['solicitud'] : "";
 // ---------------------------------
-
-// $id = $_GET['id'];
-
-// $new_diligencias = "SELECT *FROM diligencias_new WHERE id = '$id'";
-
-
-
-/* if (isset($_GET['buscar'])) {
-  $id_diligencia = $tipoDocumento = $documento = $nombres = $apellidos = $ciudad = $email = $celular = $direccEmpr = $activEcon = $otro_activEcon = $des_productivo = $princ_prod_serv = $fort_empresarial = $form_empresarial = $nombre_representante = $celular_representante = $email_representante = $poblacion = $otro_poblacion = $fecha_matricula = $matricula = $registrado = $num_cam_comercio = $programa_ccp = $estado_solicitud = $fecha_solicitud = '';
-  $cons = 'SELECT id_diligencia, tipoDocumento, documento, nombres, apellidos, ciudad, direccEmpr, email, celular, activEcon, otro_activEcon, des_productivo, princ_prod_serv, fort_empresarial, form_empresarial, nombre_representante, celular_representante, email_representante, poblacion, otro_poblacion, fecha_matricula, matricula, registrado, num_cam_comercio, programa_ccp, estado_solicitud, fecha_solicitud';
-  if (isset($_GET['nitEmpr'])) {
-    $activEconEmpr = $direccEmpr = $emailPersonalEmpr = $emailEmpr = $apellidos = $telocel = '';
-    $cons .= ', activEconEmpr, direccEmpr, emailPersonalEmpr, emailEmpr'; // No obtengo a nitEmpr, es el empleado para el filtro
-    $cons .= ', apellidos, telocel FROM diligencias_new WHERE nitEmpr = ?';
-    $stmt = mysqli_prepare($conn, $cons);
-    mysqli_stmt_bind_param($stmt, 's', $_GET['nitEmpr']);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result(
-      $stmt,
-      $id_diligencia,
-      $tipoDocumento,
-      $documento,
-      $nombres,
-      $apellidos,
-      $ciudad,
-      $email,
-      $celular,
-      $direccEmpr,
-      $activEcon,
-      $otro_activEcon,
-      $des_productivo,
-      $princ_prod_serv,
-      $fort_empresarial,
-      $form_empresarial,
-      $nombre_representante,
-      $celular_representante,
-      $email_representante,
-      $poblacion,
-      $otro_poblacion,
-      $fecha_matricula,
-      $matricula,
-      $registrado,
-      $num_cam_comercio,
-      $programa_ccp,
-      $estado_solicitud,
-      $fecha_solicitud
-    );
-    mysqli_stmt_fetch($stmt);
-    echo json_encode([
-      'id_diligencia' => is_null($id_diligencia) ? 0 : $id_diligencia, 'tipoDocumento' => is_null($tipoDocumento) ? '' : $tipoDocumento, 'documento' => is_null($documento) ? '' : $documento, 'nombres' => is_null($nombres) ? '' : $nombres, 'apellidos' => is_null($apellidos) ? '' : $apellidos, 'ciudad' => is_null($ciudad) ? '' : $ciudad, 'email' => is_null($email) ? '' : $email, 'celular' => is_null($celular) ? '' : $celular,  'direccEmpr' => is_null($direccEmpr) ? '' : $direccEmpr, 'activEcon' => is_null($activEcon) ? '' : $activEcon,  'otro_activEcon' => is_null($otro_activEcon) ? '' : $otro_activEcon, 'des_productivo' => is_null($des_productivo) ? '' : $des_productivo, 'princ_prod_serv' => is_null($princ_prod_serv) ? '' : $princ_prod_serv, 'fort_empresarial' => is_null($fort_empresarial) ? '' : $fort_empresarial, 'form_empresarial' => is_null($form_empresarial) ? '' : $form_empresarial, 'nombre_representante' => is_null($nombre_representante) ? '' : $nombre_representante, 'celular_representante' => is_null($celular_representante) ? '' : $celular_representante, 'email_representante' => is_null($email_representante) ? '' : $email_representante, 'poblacion' => is_null($poblacion) ? '' : $poblacion, 'otro_poblacion' => is_null($otro_poblacion) ? '' : $otro_poblacion, 'fecha_matricula' => is_null($fecha_matricula) ? '' : $fecha_matricula, 'matricula' => is_null($matricula) ? '' : $matricula, 'registrado' => is_null($registrado) ? '' : $registrado, 'num_cam_comercio' => is_null($num_cam_comercio) ? '' : $num_cam_comercio, 'programa_ccp' => is_null($programa_ccp) ? '' : $programa_ccp, 'estado_solicitud' => is_null($estado_solicitud) ? '' : $estado_solicitud, 'fecha_solicitud' => is_null($fecha_solicitud) ? '' : $fecha_solicitud
-    ]);
-    mysqli_stmt_close($stmt);
-  }
-  /*
-  elseif (isset($_GET['documento'])) {
-    $nombres = $apellidos = '';
-    $cons .= ', nombres, apellidos FROM diligencias_new WHERE documento = ?';
-    $stmt = mysqli_prepare($conn, $cons);
-    mysqli_stmt_bind_param($stmt, 's', $_GET['documento']);
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result(
-      $stmt,
-      $id,
-      $tipoDocumento,
-      $documento,
-      $nombres,
-      $apellidos,
-      $ciudad,
-      $email,
-      $celular,
-      $direccEmpr,
-      $activEcon,
-      $otro_activEcon,
-      $des_productivo,
-      $princ_prod_serv,
-      $fort_empresarial,
-      $form_empresarial,
-      $nombre_representante,
-      $celular_representante,
-      $email_representante,
-      $poblacion,
-      $otro_poblacion,
-      $fecha_matricula,
-      $matricula,
-      $registrado,
-      $num_cam_comercio,
-      $programa_ccp,
-      $estado_solicitud,
-      $fecha_solicitud
-    );
-     mysqli_stmt_fetch($stmt);
-    echo json_encode([
-      'id' => is_null($id) ? 0 : $id, 'tipoDocumento' => is_null($tipoDocumento) ? '' : $tipoDocumento, 'documento' => is_null($documento) ? '' : $documento, 'nombres' => is_null($nombres) ? '' : $nombres, 'apellidos' => is_null($apellidos) ? '' : $apellidos, 'ciudad' => is_null($ciudad) ? '' : $ciudad, 'email' => is_null($email) ? '' : $email, 'celular' => is_null($celular) ? '' : $celular,  'direccEmpr' => is_null($direccEmpr) ? '' : $direccEmpr, 'activEcon' => is_null($activEcon) ? '' : $activEcon,  'otro_activEcon' => is_null($otro_activEcon) ? '' : $otro_activEcon, 'des_productivo' => is_null($des_productivo) ? '' : $des_productivo, 'princ_prod_serv' => is_null($princ_prod_serv) ? '' : $princ_prod_serv, 'fort_empresarial' => is_null($fort_empresarial) ? '' : $fort_empresarial, 'form_empresarial' => is_null($form_empresarial) ? '' : $form_empresarial, 'nombre_representante' => is_null($nombre_representante) ? '' : $nombre_representante, 'celular_representante' => is_null($celular_representante) ? '' : $celular_representante, 'email_representante' => is_null($email_representante) ? '' : $email_representante, 'poblacion' => is_null($poblacion) ? '' : $poblacion, 'otro_poblacion' => is_null($otro_poblacion) ? '' : $otro_poblacion, 'fecha_matricula' => is_null($fecha_matricula) ? '' : $fecha_matricula, 'matricula' => is_null($matricula) ? '' : $matricula, 'registrado' => is_null($registrado) ? '' : $registrado, 'num_cam_comercio' => is_null($num_cam_comercio) ? '' : $num_cam_comercio, 'programa_ccp' => is_null($programa_ccp) ? '' : $programa_ccp, 'estado_solicitud' => is_null($estado_solicitud) ? '' : $estado_solicitud, 'fecha_solicitud' => is_null($fecha_solicitud) ? '' : $fecha_solicitud
-    ]);
-    mysqli_stmt_close($stmt);
-  }
-  mysqli_close($conn);
-} */
 
 
 if (isset($_POST['listar'])) {
@@ -321,7 +225,7 @@ if (isset($_POST['listar'])) {
 
       $tbody .= "
                   
-                  <td style='vertical-align: middle;'>
+                  <td style='vertical-align: middle; right: 0; position: sticky;'>
                     <a style='margin-bottom: 2px' href='edit_diligencias_new.php?id_diligencia=" . $fila['id_diligencia'] . "' class='btn btn-success' title='Editar'><i class='cui-pencil'></i></a>
                     <button class='btn btn-danger' title='Eliminar' onClick='Eliminar($id_f)'>
                     <i class='cui-trash'></i></button>

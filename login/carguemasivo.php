@@ -41,11 +41,6 @@ include 'upload.php';
                     <div>
                         <a href="../site/assets/Upload/Plantillas/diligencias_new.csv">Descargar PLantilla de Diligencias</a>
                     </div>
-
-                    <!-- <div id=" alertSI" class="alert alert-success alert-dismissible fade" role="alert">¡OK!</div>
-                        <div class="form-group">
-                            here
-                        </div> -->
                 </div>
             </form>
             <!-- </div> -->
