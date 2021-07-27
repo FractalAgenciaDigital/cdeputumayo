@@ -206,7 +206,7 @@ if (isset($_POST['listar'])) {
     $programas2[$afila['id_programa']] = $afila['programa'];
     $programas[$afila['id_programa']] = $afila;
   }
-  //while (list($tipoDocumento, $documento, $nombre, $apellido1, $apellido2, $razonSocial, $actividadEconomica, $direccDomicilio, $ciudad, $email, $telocel1, $telocel2, $nitEmpr, $actividadEconomicaEmpr, $direccEmpr, $emailPersonaEmpr, $emailEmpr, $telocel) = mysqli_fetch_array($res))
+  // while (list($tipoDocumento, $documento, $nombre, $apellido1, $apellido2, $razonSocial, $actividadEconomica, $direccDomicilio, $ciudad, $email, $telocel1, $telocel2, $nitEmpr, $actividadEconomicaEmpr, $direccEmpr, $emailPersonaEmpr, $emailEmpr, $telocel) = mysqli_fetch_array($res))
   while ($fila = mysqli_fetch_array($res)) {
 
     $filt_proyecto = '';
@@ -214,7 +214,7 @@ if (isset($_POST['listar'])) {
     if (isset($_POST['proyecto']) && $_POST['proyecto'] != '') {
       //$aux_proyect=$_POST['proyecto'];
       //$filt_proyecto=" and nom_progr='$aux_proyect'";
-      $filt_proyecto = " and id_programa=" . $_POST['proyecto'];
+      $filt_proyecto = " AND id_programa=" . $_POST['proyecto'];
       // echo "$filt_proyecto=$filt_proyecto<br>";
 
     }
@@ -233,6 +233,8 @@ if (isset($_POST['listar'])) {
     while ($filap = mysqli_fetch_array($resp)) {
       $aux_pxd_x_id_pro[$filap['id_programa']] = $filap;
     }
+
+
     // if (($_POST['proyecto'] != '' && count($fila2) > 0) || $_POST['proyecto'] != '')
 
 

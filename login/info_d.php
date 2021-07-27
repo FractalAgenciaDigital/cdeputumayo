@@ -130,26 +130,24 @@ $cont = 0;
 								$filt_proyecto = '';
 
 								if (isset($_POST['proyecto']) && $_POST['proyecto'] != '') {
-									//$aux_proyect=$_POST['proyecto'];
-									//$filt_proyecto=" and nom_progr='$aux_proyect'";
-									$filt_proyecto = " and id_programa=" . $_POST['proyecto'];
-									// echo "$filt_proyecto=$filt_proyecto<br>";
-
+									$aux_proyect = $_POST['proyecto'];
+									// $filt_proyecto=" and nom_progr='$aux_proyect'";
+									$filt_proyecto = " AND id_programa=" . $_POST['proyecto'];
+									echo "$filt_proyecto=$filt_proyecto<br>";
 								}
 
-								// var_dump($filt_proyecto);
-								$cons2 = "SELECT * FROM diligencias_new WHERE id_diligencia=" . $fila['id_diligencia'];
-								$res2 = $stmt = mysqli_query($conn, $cons2);
+								$consp = "SELECT * FROM progsxdiligencias WHERE id_diligencia=" . $fila['id_diligencia'] . " " . $filt_proyecto;
+								$aux_pxd_x_id_pro = array();
+								$resp = $stmt = mysqli_query($conn, $consp);
+								while ($filap = mysqli_fetch_array($resp)) {
+									$aux_pxd_x_id_pro[$filap['id_programa']] = $filap;
+								}
 
-								// if (condition) {
-								// 	# code...
-								// }
-
-								$fila2 = mysqli_fetch_array($res2);
 
 								// var_dump($filt_proyecto);
+								if (($_GET['proyecto'] != '' && count($aux_pxd_x_id_pro) > 0) || $_GET['proyecto'] == '') {
 
-								if (($_GET['proyecto'] != '' && count($fila2) > 0) || $_GET['proyecto'] == '') {
+									// if (($_GET['proyecto'] != '' && count($fila2) > 0) || $_GET['proyecto'] == '') {
 
 									$cont++;
 									$tipoDocumento = $fila['tipoDocumento'] == '1' ? 'CÉDULA DE CIUDADANÍA'
@@ -177,23 +175,16 @@ $cont = 0;
 										$aux = explode(" ", $fila['apellidos']);
 										$apellido =  $aux[0];
 									}
-									$consp = "SELECT * FROM progsxdiligencias WHERE id_diligencia=" . $fila['id_diligencia'] . " " . $filt_proyecto;
-									$aux_pxd_x_id_pro = array();
-									$resp = $stmt = mysqli_query($conn, $consp);
-									while ($filap = mysqli_fetch_array($resp)) {
-										$aux_pxd_x_id_pro[$filap['id_programa']] = $filap;
-									}
 
 									echo "
         									<tr>
         										<td>$cont</td>
         										<td>" . $tipoDocumento . "</td>
         										<td>" . $fila['documento'] . "</td>
-												<td>" . $fila['documento'] . "</td>
-                								<|td>" . $fila['nombres'] . ' ' . (!is_null($fila['apellidos']) ? $fila['apellidos'] : '') . "</								td>
+                								<td>" . $fila['nombres'] . ' ' . (!is_null($fila['apellidos']) ? $fila['apellidos'] : '') . "</td>
+                								<td>" . $fila['ciudad'] . "</td>
                 								<td>" . $fila['email'] . '<br>' . $fila['email_representante'] . "</td>
                 								<td>" . $fila['celular'] . '<br>' . $fila['celular_representante'] . "</td>
-                								<td>" . $fila['ciudad'] . "</td>
                 								<td>" . $fila['direccEmpr'] . "</td>
                 								<td>" . $fila['activEcon'] . '<br>' . $fila['otro_activEcon'] . "</td>
                 								<td>" . $fila['des_productivo'] . "</td>
