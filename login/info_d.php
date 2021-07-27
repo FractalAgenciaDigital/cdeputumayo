@@ -1,9 +1,10 @@
 <?php
 include 'funciones.php';
-// header('Content-type: application/vnd.ms-excel; charset=utf8');
-// header("Content-Disposition: attachment; filename=diligencias.xls");
-// header("Pragma: no-cache");
-// header("Expires: 0");
+header('Content-type: application/vnd.ms-excel; charset=utf8');
+header("Content-Disposition: attachment; filename=diligencias.xls");
+header("Pragma: no-cache");
+header("Expires: 0");
+
 $cons_a = "SELECT * FROM programas where estado = 1 order by programa";
 $res_a = mysqli_query($conn, $cons_a);
 $programas = array();
@@ -176,7 +177,7 @@ $cont = 0;
 										$apellido =  $aux[0];
 									}
 
-									echo "
+									$tbody .= "
         									<tr>
         										<td>$cont</td>
         										<td>" . $tipoDocumento . "</td>
@@ -212,72 +213,13 @@ $cont = 0;
 										} else {
 											$tbody .= "<td>No</td><td><td></td><td></td>";
 										}
-										//	$tbody.="<td>".$p['programa']."</td><td >Recibe apoyo1</td><td >Tipo apoyo1</td><td >Descripción / Valor1</td>";
 									}
 
-
-									/*
-                                        echo     "<td>".$fila2['nom_progr']."</td>
-                                                  <td>".$fila2['apoyo']."</td>
-                                                  <td>".$fila2['dinero_espcie']."</td>
-                                                  <td>".$fila2['especie']."</td>
-                                                  
-                                                  <td>".$fila2['nom_progr2']."</td>
-                                                  <td>".$fila2['apoyo2']."</td>
-                                                  <td>".$fila2['dinero_espcie2']."</td>
-                                                  <td>".$fila2['especie2']."</td>
-                                                  
-                                                  <td>".$fila2['nom_progr3']."</td>
-                                                  <td>".$fila2['apoyo3']."</td>
-                                                  <td>".$fila2['dinero_espcie3']."</td>
-                                                  <td>".$fila2['especie3']."</td>
-                                                  
-                                                  <td>".$fila2['nom_progr4']."</td>
-                                                  <td>".$fila2['apoyo4']."</td>
-                                                  <td>".$fila2['dinero_espcie4']."</td>
-                                                  <td>".$fila2['especie4']."</td>
-                                                  
-                                                  <td>".$fila2['nom_progr5']."</td>
-                                                  <td>".$fila2['apoyo5']."</td>
-                                                  <td>".$fila2['dinero_espcie5']."</td>
-                                                  <td>".$fila2['especie5']."</td>
-                                                  
-                                                  <td>".$fila2['nom_progr6']."</td>
-                                                  <td>".$fila2['apoyo6']."</td>
-                                                  <td>".$fila2['dinero_espcie6']."</td>
-                                                  <td>".$fila2['especie6']."</td>";"
-                                                  */
-									// echo  "<td>" . $fila2['estado_solicitud'] . "</td>
-									//   <td>" . $fila2['fecha_solicitud'] . "</td>
-									//   <td>" . $fila2['enero'] . "</td>
-									//   <td>" . $fila2['obs_ene'] . "</td>
-									//   <td>" . $fila2['febrero'] . "</td>
-									//   <td>" . $fila2['obs_feb'] . "</td>
-									//   <td>" . $fila2['marzo'] . "</td>
-									//   <td>" . $fila2['obs_mar'] . "</td>
-									//   <td>" . $fila2['abril'] . "</td>
-									//   <td>" . $fila2['obs_abr'] . "</td>
-									//   <td>" . $fila2['mayo'] . "</td>
-									//   <td>" . $fila2['obs_may'] . "</td>
-									//   <td>" . $fila2['junio'] . "</td>
-									//   <td>" . $fila2['obs_jun'] . "</td>
-									//   <td>" . $fila2['julio'] . "</td>
-									//   <td>" . $fila2['obs_jul'] . "</td>
-									//   <td>" . $fila2['agosto'] . "</td>
-									//   <td>" . $fila2['obs_ago'] . "</td>
-									//   <td>" . $fila2['septiembre'] . "</td>
-									//   <td>" . $fila2['obs_sep'] . "</td>
-									//   <td>" . $fila2['octubre'] . "</td>
-									//   <td>" . $fila2['obs_oct'] . "</td>
-									//   <td>" . $fila2['noviembre'] . "</td>
-									//   <td>" . $fila2['obs_nov'] . "</td>
-									//   <td>" . $fila2['diciembre'] . "</td>
-									//   <td>" . $fila2['obs_dic'] . "</td>
-									// <td>$updated_at</td>
 
 									"</tr>";
 								}
 							}
+							echo $tbody;
 							?>
 						</tbody>
 					</table>

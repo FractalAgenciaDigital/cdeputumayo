@@ -77,6 +77,7 @@ if (isset($_POST['listar'])) {
                 <td>" . $fila['num_cam_comercio'] . "</td>
                 <td>" . $fila['programa_ccp'] . "</td>
                 <td>" . $fila['estado_solicitud'] . "</td>
+                <td>" . $fila['fecha_solicitud'] . "</td>
                 <td>" . $fila['solicitud'] . "</td>
                 <td>" . $fila['genero'] . "</td>
                 <td>" . $fila['escolaridad'] . "</td>

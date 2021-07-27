@@ -31,7 +31,7 @@ $fechaDesde = $ND['year'] . "-" . $C1 . $ND['mon'] . "-01";
 			<div class="card-body">
 				<form name="FORMA">
 					<div class="form-group row">
-						<label class="col-md-2 col-form-label">Tipo documento</label>
+						<label class="col-md-2 col-form-label">Tipo Documento:</label>
 						<div class="col-md-3">
 							<select id="tipoDoc" name="tipoDoc" class="form-control">
 								<option value="">Seleccione</option>
@@ -40,7 +40,7 @@ $fechaDesde = $ND['year'] . "-" . $C1 . $ND['mon'] . "-01";
 								<option value="3">OTROS</option>
 							</select>
 						</div>
-						<label class="col-md-2 col-form-label">Tercero o Raz&oacute;n social</label>
+						<label class="col-md-2 col-form-label">Número Documento:</label>
 						<div class="col-md-3">
 							<input id="txtBuscar" name="txtBuscar" type="text" class="form-control">
 						</div>
@@ -86,6 +86,7 @@ $fechaDesde = $ND['year'] . "-" . $C1 . $ND['mon'] . "-01";
 							<th class="text-center align-middle">Número cámara de Comercio</th>
 							<th class="text-center align-middle">Programa CCP</th>
 							<th class="text-center align-middle">Estado Solicitud</th>
+							<th class="text-center align-middle">Fecha Solicitud</th>
 							<th class="text-center align-middle">Solicitud</th>
 							<th class="text-center align-middle">Genero</th>
 							<th class="text-center align-middle">Escolaridad</th>

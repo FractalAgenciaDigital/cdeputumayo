@@ -22,14 +22,15 @@ if (!$conn) {
 
 if (isset($_GET)) {
 
-    $cons = 'SELECT tipoDocumento, nitEmpr, documento, nombres, apellido1, apellido2, apellidos, razonSocial, activEcon, ciudad, email, emailPersonalEmpr, emailEmpr, telocel1, telocel2, telocel, ctde, dp, forme, forte, create_at, solicitud FROM diligencias';
+    $cons = 'SELECT * FROM diligencias_new';
+    // $cons = 'SELECT tipoDocumento, nitEmpr, documento, nombres, apellido1, apellido2, apellidos, razonSocial, activEcon, ciudad, email, emailPersonalEmpr, emailEmpr, telocel1, telocel2, telocel, ctde, dp, forme, forte, create_at, solicitud FROM diligencias';
     $donde = '';
     if ($_GET['tipoDoc']) {
-        $donde .= ' WHERE tipoDocumento = ' . $_GET['tipoDoc'];
+        $donde .= ' WHERE tipoDocumento = ' . $_GET['tipoDocumento'];
     }
     if ($_GET['txtBuscar']) {
         $txt = "LIKE '%" . $_GET['txtBuscar'] . "%'";
-        $bloque = "nombres $txt OR apellido1 $txt OR apellido2 $txt OR apellidos $txt OR razonSocial $txt or documento $txt or nitEmpr $txt";
+        $bloque = "nombres $txt OR apellidos $txt OR documento $txt";
         $donde .= $donde ? " AND ($bloque)" : " WHERE $bloque";
     }
     if ($_GET['fechaDesde']) {
@@ -66,10 +67,10 @@ if (isset($_GET)) {
                                                 : ($fila['ciudad'] == 11 ? 'SIBUNDOY'
                                                     : ($fila['ciudad'] == 12 ? 'VALLE DEL GUAMUEZ' : 'VILLAGARZÓN')))))))))));
 
-        $forte = $fila['forte'] == '1' ? 'Innovación'
-            : ($fila['forte'] == '2' ? 'Fábricas de productividad'
-                : ($fila['forte'] == '3' ? 'Propiedad industrial'
-                    : ($fila['forte'] == '4' ? 'Ferias, Misiones, otros.' : '')));
+        // $forte = $fila['forte'] == '1' ? 'Innovación'
+        //     : ($fila['forte'] == '2' ? 'Fábricas de productividad'
+        //         : ($fila['forte'] == '3' ? 'Propiedad industrial'
+        //             : ($fila['forte'] == '4' ? 'Ferias, Misiones, otros.' : '')));
 
         $fechaSol = explode('-', explode(' ', $fila['create_at'])[0]);
         $updated_at = $fechaSol[2] . "/" . $fechaSol[1] . "/" . $fechaSol[0];
@@ -77,20 +78,31 @@ if (isset($_GET)) {
         $tbody .= "
             <tr>
                 <td>$cont</td>
+                
                 <td>$tipoDocumento</td>
-                <td>" . (!is_null($fila['nitEmpr']) ? $fila['nitEmpr'] : '') . "</td>
                 <td>" . $fila['documento'] . "</td>
-                <td>" . $fila['nombres'] . ' ' . (!is_null($fila['apellido1']) ? $fila['apellido1'] . (!is_null($fila['apellido2']) ? ' ' . $fila['apellido2'] : '') : $fila['apellidos']) . "</td>
-                <td>" . (!is_null($fila['razonSocial']) ? $fila['razonSocial'] : '') . "</td>
-                <td>" . $fila['activEcon'] . "</td>
-                <td>$ciudad</td>
-                <td>" . $fila['email'] . '<br>' . $fila['emailPersonalEmpr'] . '<br>' . $fila['emailEmpr'] . "</td>
-                <td>" . $fila['telocel1'] . (!is_null($fila['telocel2']) ? '<br>' . $fila['telocel2'] : '') . (!is_null($fila['telocel']) ? '<br>' . $fila['telocel'] : '') . "</td>
-                <td>" . ($fila['ctde'] ? 'Si' : 'No') . "</td>
-                <td>" . ($fila['dp'] ? 'Si' : 'No') . "</td>
-                <td>" . ($fila['forme'] ? 'Si' : 'No') . "</td>
-                <td>$forte</td>
-                <td>$updated_at</td>
+                <td>" . $fila['nombres'] . ' ' . (!is_null($fila['apellidos']) ? $fila['apellidos'] : '') . "</td>
+                <td>" . $fila['email'] . '<br>' . $fila['email_representante'] . "</td>
+                <td>" . $fila['celular'] . '<br>' . $fila['celular_representante'] . "</td>
+                <td>" . $fila['ciudad'] . "</td>
+                <td>" . $fila['direccEmpr'] . "</td>
+                <td>" . $fila['activEcon'] . '<br>' . $fila['otro_activEcon'] . "</td>
+                <td>" . $fila['des_productivo'] . "</td>
+                <td>" . $fila['princ_prod_serv'] . "</td>
+                <td>" . $fila['fort_empresarial'] . "</td>
+                <td>" . $fila['form_empresarial'] . "</td>
+                <td>" . $fila['nombre_representante'] . "</td>
+                <td>" . $fila['poblacion'] . '<br>' . $fila['otro_poblacion'] . "</td>
+                <td>" . $fila['fecha_matricula'] . "</td>
+                <td>" . $fila['matricula'] . "</td>
+                <td>" . $fila['registrado'] . "</td>
+                <td>" . $fila['num_cam_comercio'] . "</td>
+                <td>" . $fila['programa_ccp'] . "</td>
+                <td>" . $fila['estado_solicitud'] . "</td>
+                <td>" . $fila['fecha_solicitud'] . "</td>
+                <td>" . $fila['genero'] . "</td>
+                <td>" . $fila['escolaridad'] . "</td>
+                <td>" . $fila['rango_edad'] . "</td>
                 <td>" . (!is_null($fila['solicitud']) ? $fila['solicitud'] : '') . "</td>
             </tr>";
     }
