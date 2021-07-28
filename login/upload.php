@@ -23,7 +23,7 @@ if (isset($_FILES['excel'])) {
 		$handle = fopen("$ruta$excel", "r");
 
 		// fgetcsv() obtiene los valores que estan en el csv y los extrae mediante ;
-		while ($data = fgetcsv($handle, 1000, ";")) {
+		while ($data = fgetcsv($handle, 0, ";")) {
 
 			// si la linea es igual a 1 no guardamos porque serian los titulos de la hoja del excel, el indice 0
 			if ($row != 1) {

@@ -1,2 +1,4 @@
-﻿tipoDocumento;documento;nombres;apellidos;ciudad;email;celular;direccEmpr; activEcon;otro_activEcon;des_productivo;princ_prod_serv;fort_empresarial;form_empresarial;nombre_representante;celular_representante;email_representante;poblacion;otro_poblacion;fecha_matricula;matricula;registrado;num_cam_comercio;programa_ccp;estado_solicitud;fecha_solicitud;genero;escolaridad;rango_edad;solicitud
-2;230981u329817;edfaselisOO;ÁóÉéÍí;;;;;;;;;;;;;;;;1/12/2021;;;;;;10/05/2021;;;;
+tipoDocumento;documento;nombres;apellidos;ciudad;email;celular;direccEmpr; activEcon;otro_activEcon;des_productivo;princ_prod_serv;fort_empresarial;form_empresarial;nombre_representante;celular_representante;email_representante;poblacion;otro_poblacion;fecha_matricula;matricula;registrado;num_cam_comercio;programa_ccp;estado_solicitud;fecha_solicitud;genero;escolaridad;rango_edad;solicitud
+2;1007305;Delmerk;ÁóÉéÍí;;;;;;;;;;;;;;;;1/12/2021;;;;;;10/05/2021;;;;solicitud
+3;12910;name;lastaname;;;;;;;;;;;;;;;;;;;;;;;;;;soli
+5;23231;nombre;apel;;;;;;;;;;;;;;;;;;;;;;;;;;s
