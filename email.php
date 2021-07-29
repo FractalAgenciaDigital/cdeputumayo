@@ -47,16 +47,16 @@ function enviarEmail()
       $mail->isSMTP();                                            //Send using SMTP 
       $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
       $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-      $mail->Username   = 'correo@gmail.com';                     //SMTP username
-      $mail->Password   = 'tucontraseña';                              //SMTP password
+      $mail->Username   = 'mailer@gmail.com';                     //SMTP username
+      $mail->Password   = 'tu contraseña';                              //SMTP password
       // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
       $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
       $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
       // $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
       //Recipients
-      $mail->setFrom('kremled@gmail.com', 'Mailer');
-      $mail->addAddress('otrocorrero@gmail.com', 'Mailer');     //Add a recipient - Name is optional
+      $mail->setFrom('mailer@gmail.com', 'Mailer');
+      $mail->addAddress('mailer@gmail.com', 'Mailer');     //Add a recipient - Name is optional
       // $mail->addReplyTo('info@example.com', 'Information');
       // $mail->addCC('cc@example.com');
       // $mail->addBCC('bcc@example.com');
@@ -67,11 +67,83 @@ function enviarEmail()
 
       //Content: Formateo del mensaje
       $mail->isHTML(true);                                  //Set email format to HTML
-      $mail->Subject = 'Correo Contacto';
-      $mail->Body = 'Nombre: ' . $nombre . '<br/>Correo: ' . $email . '<br/>' . $comentario;
+      $mail->Subject = 'Solicitud de Taller';
+      $mail->Body = '<h2>Solicitud Taller<h2>' . 'Nombre Usuario: ' . $nombre . '<br/>Correo: ' . $email . '<br/>' . 'Ayuda Solicitada: <br/>' . $comentario;
+      // ------------
+      /* $mail->Body = "<html>" .
+        "<head><title>Email de Prueba</title>" .
+        "<style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-size: 16px;
+            font-weight: 300;
+            color: #888;
+            background-color:rgba(230, 225, 225, 0.5);
+            line-height: 30px;
+            text-align: center;
+        }
+        .contenedor{
+            width: 80%;
+            min-height:auto;
+            text-align: center;
+            margin: 0 auto;
+            padding: 40px;
+            background: #ececec;
+            border-top: 3px solid #E64A19;
+        }
+        .bold{
+            color:#333;
+            font-size:25px;
+            font-weight:bold;
+        }
+        img{
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            padding:0px 0px 20px 0px;
+        }
+        </style>
+    </head>" .
+        "<body>" .
+        "<div class='contenedor'>" .
+        "<p>&nbsp;</p>" .
+        "<p>&nbsp;</p>" .
+        "<span>Felicitaciones <strong class='bold'>" . $nombre . " . . .!</strong></span>" .
+        "<p>&nbsp;</p>" .
+        "<p>Su formulario de Contacto funciona perfectamente...!</p> " .
+        "<p>&nbsp;</p>" .
+        "<p>&nbsp;</p>" .
+        "<p><strong>Email: </strong> " . $email . " </p>" .
+        "<p>&nbsp;</p>" .
+        "<p><strong>Celular: </strong> " . $telefono . " </p>" .
+        "<p>&nbsp;</p>" .
+        "<p><strong>Empresa: </strong> " . $empresa . " </p>" .
+        "<p>&nbsp;</p>" .
+        "<p><strong>Comentario: </strong> " . $comentario . " </p>" .
+        "<p>&nbsp;</p>" .
+        "<p><span class='bold'> Centro de Desarrollo Empresarial </span></p>" .
+        "<p>&nbsp;</p>" .
+        "<p>" .
+        "<a title='Centro de Desarrollo Empresarial' href='https://cdeputumayo.com/'>" . "</a>" .
+        "</p>" .
+        "</div>" .
+        "</body>" .
+        "</html>"; */
+      // ------------
 
       $mail->send();
-      echo 'Message has been sent';
+      echo "<script>
+                alert('Email enviado con éxito');
+                window.location= 'index.php'
+    </script>";
+      // header("location: index.php");
+
+      // echo 'Message has been sent';
     } catch (Exception $e) {        //En caso de que haya error
       echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
     }
