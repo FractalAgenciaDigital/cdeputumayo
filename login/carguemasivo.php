@@ -3,6 +3,10 @@
 include "cabecera.php";
 include '../funciones.php';
 
+// $sql = "SELECT CONCAT_WS(\' \',apellido1, apellido2, apellidos) datos FROM diligencias";
+// SELECT fecha_matricula FROM `extras_usus` INNER JOIN diligencias ON extras_usus.id_usu=diligencias.id ORDER BY `extras_usus`.`id_usu` ASC
+// 
+
 if (isset($_POST["enviar"])) {
 
     $archivo_name = $_FILES["csv"]["name"];
@@ -90,6 +94,9 @@ if (isset($_POST["enviar"])) {
                     </div>
                     <div>
                         <a href="../site/assets/Upload/Plantillas/diligencias_new.csv">Descargar PLantilla de Diligencias</a>
+                    </div>
+                    <div>
+                        <a href="unificar_tables.php">UNIFICAR TABLES</a>
                     </div>
                     <div class="form-group" style="margin-top: 5px;">
                         <?php
