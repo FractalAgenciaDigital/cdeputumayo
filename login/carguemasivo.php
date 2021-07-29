@@ -95,9 +95,6 @@ if (isset($_POST["enviar"])) {
                     <div>
                         <a href="../site/assets/Upload/Plantillas/diligencias_new.csv">Descargar PLantilla de Diligencias</a>
                     </div>
-                    <div>
-                        <a href="unificar_tables.php">UNIFICAR TABLES</a>
-                    </div>
                     <div class="form-group" style="margin-top: 5px;">
                         <?php
                         if (isset($mensaje)) {
