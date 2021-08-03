@@ -11,4 +11,3 @@ if (!$conn) {
     echo "Error Description: " . mysqli_connect_error();
     exit;
 }
-?>

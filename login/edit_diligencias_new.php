@@ -85,13 +85,15 @@ if (isset($_POST['update'])) {
 	$rango_edad = $_POST['rango_edad'];
 	$solicitud = $_POST['solicitud'];
 
-	$edit_diligencias_new = "UPDATE `diligencias_new` SET `tipoDocumento` = '$tipoDocumento', `documento` = '$documento', `nombres` = '$nombres', `apellidos` = '$apellidos', `ciudad` = '$ciudad', `email` = '$email', `celular` = '$celular', `direccEmpr` = '$direccEmpr', `a
-	
-	ctivEcon` = '$activEcon', `otro_activEcon` = '$otro_activEcon', `des_productivo` = '$des_productivo', `princ_prod_serv` = '$princ_prod_serv', `fort_empresarial` = '$fort_empresarial', `form_empresarial` = '$form_empresarial', `nombre_representante` = '$nombre_representante', `celular_representante` = '$celular_representante', `email_representante` = '$email_representante', `poblacion` = '$poblacion', `otro_poblacion` = '$otro_poblacion', `fecha_matricula` = '$fecha_matricula', `matricula` = '$matricula', `registrado` = '$registrado', `num_cam_comercio` = '$num_cam_comercio', `programa_ccp` = '$programa_ccp', `estado_solicitud` = '$estado_solicitud', `fecha_solicitud` = '$fecha_solicitud', `genero` = '$genero', `escolaridad` = '$escolaridad', `rango_edad` = '$rango_edad', `solicitud` = '$solicitud' WHERE `diligencias_new`.`id_diligencia` = $id_diligencia";
+	$edit_diligencias_new = "UPDATE `diligencias_new` SET `tipoDocumento` = '$tipoDocumento', `documento` = '$documento', `nombres` = '$nombres', `apellidos` = '$apellidos', `ciudad` = '$ciudad', `email` = '$email', `celular` = '$celular', `direccEmpr` = '$direccEmpr', `activEcon` = '$activEcon', `otro_activEcon` = '$otro_activEcon', `des_productivo` = '$des_productivo', `princ_prod_serv` = '$princ_prod_serv', `fort_empresarial` = '$fort_empresarial', `form_empresarial` = '$form_empresarial', `nombre_representante` = '$nombre_representante', `celular_representante` = '$celular_representante', `email_representante` = '$email_representante', `poblacion` = '$poblacion', `otro_poblacion` = '$otro_poblacion', `fecha_matricula` = '$fecha_matricula', `matricula` = '$matricula', `registrado` = '$registrado', `num_cam_comercio` = '$num_cam_comercio', `programa_ccp` = '$programa_ccp', `estado_solicitud` = '$estado_solicitud', `fecha_solicitud` = '$fecha_solicitud', `genero` = '$genero', `escolaridad` = '$escolaridad', `rango_edad` = '$rango_edad', `solicitud` = '$solicitud' WHERE `diligencias_new`.`id_diligencia` = $id_diligencia";
 
 
 
 	$ejecutar = mysqli_query($conn, $edit_diligencias_new);
+	// echo "<pre>";
+	// print_r($edit_diligencias_new);
+	// echo "</pre>";
+	// exit;
 
 	// --------------------
 	// if ($ejecutar != false) {
@@ -110,19 +112,13 @@ if (isset($_POST['update'])) {
 		$selectpxd = "SELECT * FROM `progsxdiligencias` WHERE `progsxdiligencias`.`id_diligencia` = $id_diligencia";
 		$exe_selectpxd = mysqli_query($conn, $selectpxd);
 	}
-	// echo "<pre>";
-	// print_r($datos_programa);
-	// echo "</pre>";
-	// exit;
+
 
 	$lista_progsxdiligencias = array();
 
 	while ($row = mysqli_fetch_array($exe_selectpxd)) {
 		$lista_progsxdiligencias[$row['id_programa']] = $row;
 	}
-
-
-
 
 
 	// INSERT INTO `progsxdiligencias` (`id`, `id_diligencia`, `id_programa`, `recibe_apoyo`, `dinero_espcie`, `descrip_val`) VALUES ('4', '154', '15', 'Si', 'Dinero', '7896541230000');

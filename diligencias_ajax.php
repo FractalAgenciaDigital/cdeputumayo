@@ -49,9 +49,9 @@ $rango_edad = isset($_POST['rango_edad']) ? $_POST['rango_edad'] : "";
 $solicitud = isset($_POST['solicitud']) ? $_POST['solicitud'] : "";
 // ---------------------------------
 
-
 if (isset($_POST['listar'])) {
 
+  // $cons = 'SELECT * FROM diligencias_new LIMIT 20';
   $cons = 'SELECT * FROM diligencias_new';
   $donde = '';
   if ($_POST['tipoDoc']) {
@@ -62,9 +62,10 @@ if (isset($_POST['listar'])) {
     $bloque = "nombres $txt OR apellidos $txt OR documento $txt OR email $txt OR nombre_representante $txt";
     $donde .= $donde ? " AND ($bloque)" : " WHERE $bloque";
   }
-  $cons .= $donde;
-
+  $limit = ' ORDER BY id_diligencia DESC LIMIT 20';
+  $cons .= $donde .= $limit;
   $res = $stmt = mysqli_query($conn, $cons);
+
   $tbody = '';
   $cont = 0;
   $sectores["1"] = "Sector agropecuario";
@@ -110,7 +111,7 @@ if (isset($_POST['listar'])) {
     $programas2[$afila['id_programa']] = $afila['programa'];
     $programas[$afila['id_programa']] = $afila;
   }
-  // while (list($tipoDocumento, $documento, $nombre, $apellido1, $apellido2, $razonSocial, $actividadEconomica, $direccDomicilio, $ciudad, $email, $telocel1, $telocel2, $nitEmpr, $actividadEconomicaEmpr, $direccEmpr, $emailPersonaEmpr, $emailEmpr, $telocel) = mysqli_fetch_array($res))
+  // while (list($tipoDocumento, $documento, $nombre, $apellido1, $apellido2, $razonSocial, $actividadEconomica, $direccDomicilio, $ciudad, $email, $telocel1, $telocel2, $nitEmpr, $actividadEconomicaEmpr, $direccEmpr, $emailPersonaEmpr, $emailEmpr, $telocel) = mysqli_fetch_array($res)) 
   while ($fila = mysqli_fetch_array($res)) {
 
     $filt_proyecto = '';
@@ -233,6 +234,7 @@ if (isset($_POST['listar'])) {
                   </tr>";
     }
   }
+
   //echo utf8_encode($tbody);
   echo $tbody;
 }

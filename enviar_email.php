@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
     $empresa = $_POST['empresa'];
     $comentario = $_POST['comentario'];
 
-    $header = "From:CDE Putumayo<delmerk2000@gmail.com> " . "\r\n";
+    $header = "From:CDE Putumayo<correspondencia@ccputumayo.org.co> " . "\r\n";
     $header .= "Reply-To: delmerk2000@gmail.com" . "\r\n";
     $header .= "X-Mailer: PHP/" . phpversion();
     // correo al que se envia - Se agraga el @ a la function mail para que no arroje error...

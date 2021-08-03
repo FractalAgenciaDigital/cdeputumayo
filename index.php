@@ -405,7 +405,7 @@
                 <div class="row mb-4">
                   <div class="col-12">
                     <h2 class="text-center pink-color">(57) 317 542 3958</h2>
-                    <h4 class="text-center">hola@nilobuisiness.com</h4>
+                    <h4 class="text-center">correspondencia@ccputumayo.org.co</h4>
                   </div>
                 </div>
                 <div class="row text-center">

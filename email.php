@@ -47,8 +47,9 @@ function enviarEmail()
       $mail->isSMTP();                                            //Send using SMTP 
       $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
       $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-      $mail->Username   = 'mailer@gmail.com';                     //SMTP username
-      $mail->Password   = 'tu contraseña';                              //SMTP password
+      $mail->Username   = 'correspondencia@ccputumayo.org.co';                     //SMTP username
+      $mail->Username   = 'kremled@gmail.com';                     //SMTP username
+      $mail->Password   = 'password.code73';                              //SMTP password
       // $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
       $mail->SMTPSecure = 'tls';            //Enable implicit TLS encryption
       $mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
@@ -138,8 +139,8 @@ function enviarEmail()
 
       $mail->send();
       echo "<script>
-                alert('Email enviado con éxito');
                 window.location= 'index.php'
+                alert('Email enviado con éxito');
     </script>";
       // header("location: index.php");
 

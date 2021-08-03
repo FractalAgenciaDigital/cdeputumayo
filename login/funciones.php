@@ -1,5 +1,7 @@
 <?php
+// $usuario = "ccputuma_CDE";
 $usuario = "root";
+// $contrasena = "G^PovWwNuP@$";  // en mi caso tengo contraseña pero en casa caso introducidla aquí.
 $contrasena = "";  // en mi caso tengo contraseña pero en casa caso introducidla aquí.
 $servidor = "localhost";
 $basededatos = "ccputuma_CDE";
@@ -11,4 +13,3 @@ if (!$conn) {
     echo "Error Description: " . mysqli_connect_error();
     exit;
 }
-?>

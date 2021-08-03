@@ -4,26 +4,44 @@ include 'funciones.php';
 if (isset($_POST['listar'])) {
     $cons = 'SELECT tipoDocumento, documento, nombres, apellidos, ciudad, email, celular,direccEmpr, activEcon, otro_activEcon, des_productivo, princ_prod_serv, fort_empresarial, form_empresarial, nombre_representante, celular_representante, email_representante, poblacion, otro_poblacion, fecha_matricula, matricula, registrado, num_cam_comercio, programa_ccp, estado_solicitud, fecha_solicitud, genero, escolaridad, rango_edad, solicitud FROM diligencias_new';
     $donde = '';
+
+    // ------------------------
     if ($_POST['tipoDoc']) {
         $donde .= ' WHERE tipoDocumento = ' . $_POST['tipoDoc'];
+    } else {
+
+        if ($_POST['txtBuscar']) {
+
+            $txt = "LIKE '%" . $_POST['txtBuscar'] . "%'";
+            $bloque = "nombres $txt OR apellidos $txt OR documento $txt";
+            $donde .= $donde ? " AND ($bloque)" : " WHERE $bloque";
+        } else {
+
+            if ($_POST['fechaDesde']) {
+                $fechaDesde = "create_at >= '" . $_POST['fechaDesde'] . " 00:00:00'";
+                $donde .= $donde ? " AND $fechaDesde" : " WHERE $fechaDesde";
+            }
+            if ($_POST['fechaHasta']) {
+                $fechaHasta = "create_at <= '" . $_POST['fechaHasta'] . " 23:59:59'";
+                $donde .= $donde ? " AND $fechaHasta" : " WHERE $fechaHasta";
+            }
+        }
     }
-    if ($_POST['txtBuscar']) {
-        $txt = "LIKE '%" . $_POST['txtBuscar'] . "%'";
-        $bloque = "nombres $txt OR apellidos $txt OR documento $txt";
-        $donde .= $donde ? " AND ($bloque)" : " WHERE $bloque";
-    }
-    if ($_POST['fechaDesde']) {
-        $fechaDesde = "create_at >= '" . $_POST['fechaDesde'] . " 00:00:00'";
-        $donde .= $donde ? " AND $fechaDesde" : " WHERE $fechaDesde";
-    }
-    if ($_POST['fechaHasta']) {
-        $fechaHasta = "create_at <= '" . $_POST['fechaHasta'] . " 23:59:59'";
-        $donde .= $donde ? " AND $fechaHasta" : " WHERE $fechaHasta";
-    }
+
+    // -------------------------
+
+    // $limit = ' ORDER BY id_diligencia DESC LIMIT 20';
+    // $cons .= $donde .= $limit;
     $cons .= $donde;
 
+
     $res = mysqli_query($conn, $cons);
-    echo mysqli_error($conn);
+    // echo "<pre>";
+    // print_r($cons);
+    // echo "</pre>";
+    // exit;
+    // print_r($cons);
+    // echo mysqli_error($conn);
     $cont = 0;
     $tbody = '';
     //echo json_encode(mysqli_fetch_array($res));
