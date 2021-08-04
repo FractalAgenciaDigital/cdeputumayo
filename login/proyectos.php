@@ -154,10 +154,9 @@ include "pie.php";
 			editar($("#editando").val());
 		}
 
-
 		//$("#editando").val("0");
 		$("#exampleModal").modal("hide");
-		return false;
+
 	}
 
 	function editar(id_usu) {
@@ -176,7 +175,7 @@ include "pie.php";
 				listar();
 			});
 		$("#editando").val("0");
-		$("#exampleModal").modal("hide");
+		$("#enviar").modal("hide");
 		return false;
 	}
 

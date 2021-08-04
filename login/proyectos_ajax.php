@@ -16,7 +16,7 @@ if (isset($_POST['lista_proyectos'])) {
 	if (isset($_POST['parametro']) && $_POST['parametro'] != '') {
 		//$condicion = " and (nombre like '%".$_POST['parametro']."')";
 	}
-	$cons = "select * from programas  order by programa";
+	$cons = "SELECT * FROM programas  order by programa";
 	$res = mysqli_query($conn, $cons);
 	$tabla = "";
 	$cont = 0;
@@ -63,17 +63,17 @@ if (isset($_POST['editar'])) {
 
 	print_r($_POST);
 
-	$cons = "UPDATE programas SET  programa='" . $_POST['programa'] . "', estado='" . $_POST['estado'] . "' WHERE id='" . $_POST['editar'] . "'";
+	$cons = "UPDATE programas SET  programa='" . $_POST['programa'] . "', estado='" . $_POST['estado'] . "' WHERE id_programa='" . $_POST['editar'] . "'";
 	$res = mysqli_query($conn, $cons);
 }
 
 if (isset($_POST['cargar_editar'])) {
-	$cons = "SELECT * FROM programas where id = " . $_POST['cargar_editar'];
+	$cons = "SELECT * FROM programas where id_programa = " . $_POST['cargar_editar'];
 	$res = mysqli_query($conn, $cons);
 	$fila = mysqli_fetch_assoc($res);
 	echo json_encode($fila);
 }
 if (isset($_POST['eliminar'])) {
-	$cons = "Update  programas set estado = 0 where id =" . $_POST['eliminar'];
+	$cons = "UPDATE  programas set estado = 0 where id_programa =" . $_POST['eliminar'];
 	$res = mysqli_query($conn, $cons);
 }

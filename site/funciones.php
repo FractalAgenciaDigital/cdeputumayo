@@ -1,6 +1,8 @@
 <?php
-$usuario = "ccputuma_CDE";
-$contrasena = "C4m1l0.M2017!";  // en mi caso tengo contraseña pero en casa caso introducidla aquí.
+// $usuario = "ccputuma_CDE";
+$usuario = "root";
+// $contrasena = "C4m1l0.M2017!";  // en mi caso tengo contraseña pero en casa caso introducidla aquí.
+$contrasena = "";  // en mi caso tengo contraseña pero en casa caso introducidla aquí.
 $servidor = "localhost";
 $basededatos = "ccputuma_CDE";
 
