@@ -28,7 +28,7 @@ $direccEmpr = isset($_POST['direccEmpr']) ? $_POST['direccEmpr'] : "";
 $activEcon = isset($_POST['activEcon']) ? $_POST['activEcon'] : "";
 $otro_activEcon = isset($_POST['otro_activEcon']) ? $_POST['otro_activEcon'] : "";
 $des_productivo = isset($_POST['des_productivo']) ? $_POST['des_productivo'] : "";
-$princ_prod_serv = isset($_POST['princ_prod_serv']) ? $_POST['princ_prod_serv'] : "";
+// $princ_prod_serv = isset($_POST['princ_prod_serv']) ? $_POST['princ_prod_serv'] : "";
 $fort_empresarial = isset($_POST['fort_empresarial']) ? $_POST['fort_empresarial'] : "";
 $form_empresarial = isset($_POST['form_empresarial']) ? $_POST['form_empresarial'] : "";
 $nombre_representante = isset($_POST['nombre_representante']) ? $_POST['nombre_representante'] : "";
@@ -195,7 +195,6 @@ if (isset($_POST['listar'])) {
                   <td>" . $fila['activEcon'] . "</td>
                   <td>" . $fila['otro_activEcon'] . "</td>
                   <td>" . $fila['des_productivo'] . "</td>
-                  <td>" . $fila['princ_prod_serv'] . "</td>
                   <td>" . $fila['fort_empresarial'] . "</td>
                   <td>" . $fila['form_empresarial'] . "</td>
                   <td>" . $fila['nombre_representante'] . "</td>
@@ -267,7 +266,7 @@ if (isset($_GET['exportar'])) {
   $cons .= $donde;
 
   $stmt = NULL;
-  $tipoDocumento =  $documento =  $nombres =  $apellidos =  $ciudad =  $email =  $celular = $direccEmpr = $activEcon = $otro_activEcon = $des_productivo =  $princ_prod_serv =  $fort_empresarial =  $form_empresarial =  $nombre_representante =  $celular_representante =  $email_representante =  $poblacion =  $otro_poblacion =  $fecha_matricula =  $matricula =  $registrado =  $num_cam_comercio =  $programa_ccp =  $estado_solicitud = $fecha_solicitud = $updated_at = $genero = $escolaridad = $rango_edad = $solicitud = '';
+  $tipoDocumento =  $documento =  $nombres =  $apellidos =  $ciudad =  $email =  $celular = $direccEmpr = $activEcon = $otro_activEcon = $des_productivo =  $fort_empresarial =  $form_empresarial =  $nombre_representante =  $celular_representante =  $email_representante =  $poblacion =  $otro_poblacion =  $fecha_matricula =  $matricula =  $registrado =  $num_cam_comercio =  $programa_ccp =  $estado_solicitud = $fecha_solicitud = $updated_at = $genero = $escolaridad = $rango_edad = $solicitud = '';
 
   if ($tipoCons == 'nn') {
     $stmt = mysqli_query($conn, $cons);
@@ -275,17 +274,17 @@ if (isset($_GET['exportar'])) {
     $stmt = mysqli_prepare($conn, $cons);
     mysqli_stmt_bind_param($stmt, 's', $_GET['tipoDocumento']);
     mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $tipoDocumento, $documento, $nombres, $apellidos, $ciudad, $email, $celular, $direccEmpr, $activEcon, $otro_activEcon, $des_productivo, $princ_prod_serv, $fort_empresarial, $form_empresarial, $nombre_representante, $celular_representante, $email_representante, $poblacion, $otro_poblacion, $fecha_matricula, $matricula, $registrado, $num_cam_comercio, $programa_ccp, $estado_solicitud, $fecha_solicitud, $genero, $escolaridad, $rango_edad, $solicitud, $updated_at);
+    mysqli_stmt_bind_result($stmt, $tipoDocumento, $documento, $nombres, $apellidos, $ciudad, $email, $celular, $direccEmpr, $activEcon, $otro_activEcon, $des_productivo, $fort_empresarial, $form_empresarial, $nombre_representante, $celular_representante, $email_representante, $poblacion, $otro_poblacion, $fecha_matricula, $matricula, $registrado, $num_cam_comercio, $programa_ccp, $estado_solicitud, $fecha_solicitud, $genero, $escolaridad, $rango_edad, $solicitud, $updated_at);
   } elseif ($tipoCons == 'ny') {
     $stmt = mysqli_prepare($conn, $cons);
     mysqli_stmt_bind_param($stmt, 's', $_GET['txtBuscar']);
     mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $tipoDocumento, $documento, $nombres, $apellidos, $ciudad, $email, $celular, $direccEmpr, $activEcon, $otro_activEcon, $des_productivo, $princ_prod_serv, $fort_empresarial, $form_empresarial, $nombre_representante, $celular_representante, $email_representante, $poblacion, $otro_poblacion, $fecha_matricula, $matricula, $registrado, $num_cam_comercio, $programa_ccp, $estado_solicitud, $fecha_solicitud, $genero, $escolaridad, $rango_edad, $solicitud, $updated_at);
+    mysqli_stmt_bind_result($stmt, $tipoDocumento, $documento, $nombres, $apellidos, $ciudad, $email, $celular, $direccEmpr, $activEcon, $otro_activEcon, $des_productivo, $fort_empresarial, $form_empresarial, $nombre_representante, $celular_representante, $email_representante, $poblacion, $otro_poblacion, $fecha_matricula, $matricula, $registrado, $num_cam_comercio, $programa_ccp, $estado_solicitud, $fecha_solicitud, $genero, $escolaridad, $rango_edad, $solicitud, $updated_at);
   } else {
     $stmt = mysqli_prepare($conn, $cons);
     mysqli_stmt_bind_param($stmt, 'ss', $_GET['tipoDocumento'], $_GET['txtBuscar']);
     mysqli_stmt_execute($stmt);
-    mysqli_stmt_bind_result($stmt, $tipoDocumento, $documento, $nombres, $apellidos, $ciudad, $email, $celular, $direccEmpr, $activEcon, $otro_activEcon, $des_productivo, $princ_prod_serv, $fort_empresarial, $form_empresarial, $nombre_representante, $celular_representante, $email_representante, $poblacion, $otro_poblacion, $fecha_matricula, $matricula, $registrado, $num_cam_comercio, $programa_ccp, $estado_solicitud, $fecha_solicitud, $genero, $escolaridad, $rango_edad, $solicitud, $updated_at);
+    mysqli_stmt_bind_result($stmt, $tipoDocumento, $documento, $nombres, $apellidos, $ciudad, $email, $celular, $direccEmpr, $activEcon, $otro_activEcon, $des_productivo, $fort_empresarial, $form_empresarial, $nombre_representante, $celular_representante, $email_representante, $poblacion, $otro_poblacion, $fecha_matricula, $matricula, $registrado, $num_cam_comercio, $programa_ccp, $estado_solicitud, $fecha_solicitud, $genero, $escolaridad, $rango_edad, $solicitud, $updated_at);
   }
 
   //'ssssssssssssssssssssssssss'

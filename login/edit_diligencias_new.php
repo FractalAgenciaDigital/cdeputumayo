@@ -27,8 +27,9 @@ if (isset($_GET['id_diligencia'])) {
 		$activEcon = $row['activEcon'];
 		$otro_activEcon = $row['otro_activEcon'];
 		$des_productivo = $row['des_productivo'];
-		$princ_prod_serv = $row['princ_prod_serv'];
-		$fort_empresarial = $row['fort_empresarial'];
+		// $princ_prod_serv = $row['princ_prod_serv'];
+		$fort_empresarial = isset($row['fort_empresarial']) ? $row['fort_empresarial'] : "";
+		// $fort_empresarial = $row['fort_empresarial'];
 		$form_empresarial = $row['form_empresarial'];
 		$nombre_representante = $row['nombre_representante'];
 		$celular_representante = $row['celular_representante'];
@@ -64,10 +65,13 @@ if (isset($_POST['update'])) {
 	$direccEmpr = $_POST['direccEmpr'];
 	$activEcon = $_POST['activEcon'];
 	$otro_activEcon = $_POST['otro_activEcon'];
-	$des_productivo = $_POST['des_productivo'];
-	$princ_prod_serv = $_POST['princ_prod_serv'];
-	$fort_empresarial = $_POST['fort_empresarial'];
-	$form_empresarial = $_POST['form_empresarial'];
+	// $des_productivo = $_POST['des_productivo'];
+	$des_productivo = isset($_POST['des_productivo']) ? $_POST['des_productivo'] : "";
+	// $princ_prod_serv = $_POST['princ_prod_serv'];
+	$fort_empresarial = isset($_POST['fort_empresarial']) ? $_POST['fort_empresarial'] : "";
+	// $fort_empresarial = $_POST['fort_empresarial'];
+	$form_empresarial = isset($_POST['form_empresarial']) ? $_POST['form_empresarial'] : "";
+	// $form_empresarial = $_POST['form_empresarial'];
 	$nombre_representante = $_POST['nombre_representante'];
 	$celular_representante = $_POST['celular_representante'];
 	$email_representante = $_POST['email_representante'];
@@ -85,7 +89,7 @@ if (isset($_POST['update'])) {
 	$rango_edad = $_POST['rango_edad'];
 	$solicitud = $_POST['solicitud'];
 
-	$edit_diligencias_new = "UPDATE `diligencias_new` SET `tipoDocumento` = '$tipoDocumento', `documento` = '$documento', `nombres` = '$nombres', `apellidos` = '$apellidos', `ciudad` = '$ciudad', `email` = '$email', `celular` = '$celular', `direccEmpr` = '$direccEmpr', `activEcon` = '$activEcon', `otro_activEcon` = '$otro_activEcon', `des_productivo` = '$des_productivo', `princ_prod_serv` = '$princ_prod_serv', `fort_empresarial` = '$fort_empresarial', `form_empresarial` = '$form_empresarial', `nombre_representante` = '$nombre_representante', `celular_representante` = '$celular_representante', `email_representante` = '$email_representante', `poblacion` = '$poblacion', `otro_poblacion` = '$otro_poblacion', `fecha_matricula` = '$fecha_matricula', `matricula` = '$matricula', `registrado` = '$registrado', `num_cam_comercio` = '$num_cam_comercio', `programa_ccp` = '$programa_ccp', `estado_solicitud` = '$estado_solicitud', `fecha_solicitud` = '$fecha_solicitud', `genero` = '$genero', `escolaridad` = '$escolaridad', `rango_edad` = '$rango_edad', `solicitud` = '$solicitud' WHERE `diligencias_new`.`id_diligencia` = $id_diligencia";
+	$edit_diligencias_new = "UPDATE `diligencias_new` SET `tipoDocumento` = '$tipoDocumento', `documento` = '$documento', `nombres` = '$nombres', `apellidos` = '$apellidos', `ciudad` = '$ciudad', `email` = '$email', `celular` = '$celular', `direccEmpr` = '$direccEmpr', `activEcon` = '$activEcon', `otro_activEcon` = '$otro_activEcon', `des_productivo` = '$des_productivo', `fort_empresarial` = '$fort_empresarial', `form_empresarial` = '$form_empresarial', `nombre_representante` = '$nombre_representante', `celular_representante` = '$celular_representante', `email_representante` = '$email_representante', `poblacion` = '$poblacion', `otro_poblacion` = '$otro_poblacion', `fecha_matricula` = '$fecha_matricula', `matricula` = '$matricula', `registrado` = '$registrado', `num_cam_comercio` = '$num_cam_comercio', `programa_ccp` = '$programa_ccp', `estado_solicitud` = '$estado_solicitud', `fecha_solicitud` = '$fecha_solicitud', `genero` = '$genero', `escolaridad` = '$escolaridad', `rango_edad` = '$rango_edad', `solicitud` = '$solicitud' WHERE `diligencias_new`.`id_diligencia` = $id_diligencia";
 
 
 
@@ -208,83 +212,28 @@ if (isset($_POST['update'])) {
 					<label for="celular">Celular</label>
 					<input type="number" id="celular" value="<?php echo $celular ?>" name="celular" v-model="celular" class="form-control" placeholder="Celular">
 				</div>
-				<div class="form-group col-3">
+				<!-- <div class="form-group col-3">
 					<label for="des_productivo">Des. Productivo:</label>
 					<input type="text" id="des_productivo" value="<?php echo $des_productivo ?>" name="des_productivo" class="form-control" placeholder="example" aria-label="DesProductivo">
-				</div>
-			</div>
-
-			<div class="form-row">
-				<div class="form-group col-3">
-					<label for="princ_prod_serv">Principal Prod/Serv:</label>
-					<input type="text" id="princ_prod_serv" value="<?php echo $princ_prod_serv ?>" name="princ_prod_serv" class="form-control" placeholder="Principal Prod/Serv" aria-label="PrincipalProd/Serv">
-				</div>
-				<div class="form-group col-3">
-					<label for="fort_empresarial">Fortalecimiento Empresarial</label>
-					<input type="text" id="fort_empresarial" value="<?php echo $fort_empresarial ?>" name="fort_empresarial" class="form-control" placeholder="Fortalecimiento Empresarial" aria-label="fort_empresarial">
-				</div>
+				</div> -->
 				<div class="form-group col-md-3">
 					<label for="direccEmpr">Dirección Empresa:</label>
 					<input type="text" id="direccEmpr" value="<?php echo $direccEmpr ?>" v-model="direccEmpr" name="direccEmpr" class="form-control" placeholder="Dirección Empresa" aria-label="DirEmpresa">
 				</div>
+			</div>
+
+			<div class="form-row">
+				<!-- <div class="form-group col-3">
+					<label for="princ_prod_serv">Principal Prod/Serv:</label>
+					<input type="text" id="princ_prod_serv" value="<?php echo $princ_prod_serv ?>" name="princ_prod_serv" class="form-control" placeholder="Principal Prod/Serv" aria-label="PrincipalProd/Serv">
+				</div> -->
+				<!-- <div class="form-group col-3">
+					<label for="fort_empresarial">Fortalecimiento Empresarial</label>
+					<input type="text" id="fort_empresarial" value="<?php echo $fort_empresarial ?>" name="fort_empresarial" class="form-control" placeholder="Fortalecimiento Empresarial" aria-label="fort_empresarial">
+				</div> -->
 				<div class="form-group col-md-3">
 					<label for="solicitud">Solicitud:</label>
 					<input type="text" id="solicitud" value="<?php echo $solicitud ?>" v-model="solicitud" name="solicitud" class="form-control" placeholder="Solicitud" aria-label="Solicitud">
-				</div>
-			</div>
-			<!-- ---------------------------------------------- -->
-
-			<div class="form-row">
-				<!-- ---------------------------------------------- -->
-				<div class="form-group col-3">
-					<label for="form_empresarial">Formación Empresarial:</label>
-					<select class="form-control" name="form_empresarial" v-model="select" onChange="tipoPobla(this.value)">
-						<option value="Mercadeo y Ventas" <?php if (isset($form_empresarial) && $form_empresarial == "Mercadeo y Ventas") {
-																echo "selected";
-															} ?>>
-							Mercadeo y Ventas</option>
-
-						<option value="Administrativo" <?php if (isset($form_empresarial) && $form_empresarial == "Administrativo") {
-															echo "selected";
-														} ?>>
-							Administrativo</option>
-
-						<option value="Desarrollo del Empresario " <?php if (isset($form_empresarial) && $form_empresarial == "Desarrollo del Empresario ") {
-																		echo "selected";
-																	} ?>>
-							Desarrollo del Empresario </option>
-
-						<option value="Entidades sin ánimo de lucro" <?php if (isset($form_empresarial) && $form_empresarial == "Entidades sin ánimo de lucro") {
-																			echo "selected";
-																		} ?>>
-							Entidades sin ánimo de lucro</option>
-
-						<option value="Financiero y Tributario" <?php if (isset($form_empresarial) && $form_empresarial == "Financiero y Tributario") {
-																	echo "selected";
-																} ?>>
-							Financiero y Tributario</option>
-
-						<option value="Juridico" <?php if (isset($form_empresarial) && $form_empresarial == "Juridico") {
-														echo "selected";
-													} ?>>Jurídico
-						</option>
-
-						<option value="Emprendimiento e Innovacion" <?php if (isset($form_empresarial) && $form_empresarial == "Emprendimiento e Innovacion") {
-																		echo "selected";
-																	} ?>>
-							Emprendimiento e Innovación</option>
-
-						<option value="Produccion" <?php if (isset($form_empresarial) && $form_empresarial == "Produccion") {
-														echo "selected";
-													} ?>>
-							Producción</option>
-
-						<option value="Comercio Exterior" <?php if (isset($form_empresarial) && $form_empresarial == "Comercio Exterior") {
-																echo "selected";
-															} ?>>
-							Comercio Exterior</option>
-
-					</select>
 				</div>
 				<!-- ---------------------------------------------- -->
 				<div class="form-group col-3">
@@ -407,9 +356,123 @@ if (isset($_POST['update'])) {
 				</div>
 
 				<!-- ------------------------------------- -->
-
-
 			</div>
+
+			<style>
+				.btn-outline-secondary {
+					color: black;
+					background-color: #e6e6e6;
+					border-color: #c8ced3;
+				}
+
+				.btn-outline-secondary:hover {
+					color: black;
+					background-color: #c8ced3;
+					border-color: #c8ced3;
+				}
+			</style>
+
+			<!-- ---------------------------------------------- -->
+
+
+			<div class="form-row">
+				<!-----EL Script para mostrar u ocultar es en la cabecera = form_empresarial ------- -->
+				<div class="form-group col-3">
+					<label for="">Componentes:</label></br>
+				</div>
+				<div class="form-group col-3">
+					<input class="form-check-input" name="des_productivo" v-model="des_productivo" type="checkbox" value="Fortalecimiento Empresarial" <?php if (isset($des_productivo) && $des_productivo == "Fortalecimiento Empresarial") {
+																																							echo "checked";
+																																						} ?> id="des_productivo">
+					<label class="form-check-label" for="des_productivo">
+						Desarrollo Productivo.
+					</label>
+				</div>
+				<div class="form-group col-3">
+					<input class="form-check-input" name="fort_empresarial" v-model="fort_empresarial" type="checkbox" value="Fortalecimiento Empresarial" <?php if (isset($fort_empresarial) && $fort_empresarial == "Fortalecimiento Empresarial") {
+																																								echo "checked";
+																																							} ?> id="fort_empresarial">
+					<label class="form-check-label" for="fort_empresarial">
+						Fortalecimiento Empresarial
+					</label>
+				</div>
+				<div class="form-group col-3">
+					<input class="form-check-input" type="checkbox" name="check" value="" name="form_empresarial" v-model="form_empresarial" id="check" onchange="javascript:showContent()" <?php if (isset($form_empresarial) && $form_empresarial != "") {
+																																																echo "checked";
+																																															} ?>>
+					<label class="form-check-label" for="check">
+						Formación Empresarial
+					</label>
+				</div>
+			</div>
+
+			<div class="form-row">
+				<div class="form-group col-3" id="content" style="display: none;">
+					<select class="btn btn-outline-secondary" name="form_empresarial" v-model="select">
+						<option value="" <?php if (isset($form_empresarial) && $form_empresarial == "") {
+												echo "selected";
+											} ?>>
+							Ninguno</option>
+						<option value="Mercadeo y Ventas" <?php if (isset($form_empresarial) && $form_empresarial == "Mercadeo y Ventas") {
+																echo "selected";
+															} ?>>
+							Mercadeo y Ventas</option>
+
+						<option value="Administrativo" <?php if (isset($form_empresarial) && $form_empresarial == "Administrativo") {
+															echo "selected";
+														} ?>>
+							Administrativo</option>
+
+						<option value="Desarrollo del Empresario " <?php if (isset($form_empresarial) && $form_empresarial == "Desarrollo del Empresario ") {
+																		echo "selected";
+																	} ?>>
+							Desarrollo del Empresario </option>
+
+						<option value="Entidades sin ánimo de lucro" <?php if (isset($form_empresarial) && $form_empresarial == "Entidades sin ánimo de lucro") {
+																			echo "selected";
+																		} ?>>
+							Entidades sin ánimo de lucro</option>
+
+						<option value="Financiero y Tributario" <?php if (isset($form_empresarial) && $form_empresarial == "Financiero y Tributario") {
+																	echo "selected";
+																} ?>>
+							Financiero y Tributario</option>
+
+						<option value="Juridico" <?php if (isset($form_empresarial) && $form_empresarial == "Juridico") {
+														echo "selected";
+													} ?>>Jurídico
+						</option>
+
+						<option value="Emprendimiento e Innovacion" <?php if (isset($form_empresarial) && $form_empresarial == "Emprendimiento e Innovacion") {
+																		echo "selected";
+																	} ?>>
+							Emprendimiento e Innovación</option>
+
+						<option value="Produccion" <?php if (isset($form_empresarial) && $form_empresarial == "Produccion") {
+														echo "selected";
+													} ?>>
+							Producción</option>
+
+						<option value="Comercio Exterior" <?php if (isset($form_empresarial) && $form_empresarial == "Comercio Exterior") {
+																echo "selected";
+															} ?>>
+							Comercio Exterior</option>
+
+					</select>
+
+				</div>
+			</div>
+			<script type="text/javascript">
+				function showContent() {
+					element = document.getElementById("content");
+					check = document.getElementById("check");
+					if (check.checked) {
+						element.style.display = 'block';
+					} else {
+						element.style.display = 'none';
+					}
+				}
+			</script>
 
 			<!-- ------------------------------------- -->
 

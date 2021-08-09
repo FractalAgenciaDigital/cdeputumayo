@@ -88,7 +88,6 @@ if (isset($_GET)) {
                 <td>" . $fila['direccEmpr'] . "</td>
                 <td>" . $fila['activEcon'] . '<br>' . $fila['otro_activEcon'] . "</td>
                 <td>" . $fila['des_productivo'] . "</td>
-                <td>" . $fila['princ_prod_serv'] . "</td>
                 <td>" . $fila['fort_empresarial'] . "</td>
                 <td>" . $fila['form_empresarial'] . "</td>
                 <td>" . $fila['nombre_representante'] . "</td>

@@ -14,7 +14,7 @@ $direccEmpr = isset($_POST['direccEmpr']) ? $_POST['direccEmpr'] : "";
 $activEcon = isset($_POST['activEcon']) ? $_POST['activEcon'] : "";
 $otro_activEcon = isset($_POST['otro_activEcon']) ? $_POST['otro_activEcon'] : "";
 $des_productivo = isset($_POST['des_productivo']) ? $_POST['des_productivo'] : "";
-$princ_prod_serv = isset($_POST['princ_prod_serv']) ? $_POST['princ_prod_serv'] : "";
+// $princ_prod_serv = isset($_POST['princ_prod_serv']) ? $_POST['princ_prod_serv'] : "";
 $fort_empresarial = isset($_POST['fort_empresarial']) ? $_POST['fort_empresarial'] : "";
 $form_empresarial = isset($_POST['form_empresarial']) ? $_POST['form_empresarial'] : "";
 $nombre_representante = isset($_POST['nombre_representante']) ? $_POST['nombre_representante'] : "";
@@ -34,12 +34,18 @@ $escolaridad = isset($_POST['escolaridad']) ? $_POST['escolaridad'] : "";
 $rango_edad = isset($_POST['rango_edad']) ? $_POST['rango_edad'] : "";
 $solicitud = isset($_POST['solicitud']) ? $_POST['solicitud'] : "";
 
+$componentes = array();
+
 
 if (isset($_POST['registrar'])) {
 
-  $info_diligencias_new = "INSERT INTO diligencias_new ( `tipoDocumento`, `documento`, `nombres`, `apellidos`, `ciudad`, `email`, `celular`,`direccEmpr`, `activEcon`, `otro_activEcon`, `des_productivo`, `princ_prod_serv`, `fort_empresarial`, `form_empresarial`, `nombre_representante`, `celular_representante`, `email_representante`, `poblacion`, `otro_poblacion`, `fecha_matricula`, `matricula`, `registrado`, `num_cam_comercio`, `programa_ccp`, `estado_solicitud`, `fecha_solicitud`, `genero`, `escolaridad`, `rango_edad`, `solicitud`) VALUES ( '$tipoDocumento','$documento','$nombres','$apellidos','$ciudad','$email','$celular','$direccEmpr','$activEcon','$otro_activEcon','$des_productivo','$princ_prod_serv','$fort_empresarial','$form_empresarial','$nombre_representante','$celular_representante','$email_representante','$poblacion','$otro_poblacion','$fecha_matricula' ,'$matricula','$registrado','$num_cam_comercio','$programa_ccp','$estado_solicitud','$fecha_solicitud', '$genero', '$escolaridad', '$rango_edad', '$solicitud') ";
+
+  $info_diligencias_new = "INSERT INTO diligencias_new ( `tipoDocumento`, `documento`, `nombres`, `apellidos`, `ciudad`, `email`, `celular`,`direccEmpr`, `activEcon`, `otro_activEcon`, `des_productivo`, `fort_empresarial`, `form_empresarial`, `nombre_representante`, `celular_representante`, `email_representante`, `poblacion`, `otro_poblacion`, `fecha_matricula`, `matricula`, `registrado`, `num_cam_comercio`, `programa_ccp`, `estado_solicitud`, `fecha_solicitud`, `genero`, `escolaridad`, `rango_edad`, `solicitud`) VALUES ( '$tipoDocumento','$documento','$nombres','$apellidos','$ciudad','$email','$celular','$direccEmpr','$activEcon','$otro_activEcon','$des_productivo', '$fort_empresarial','$form_empresarial','$nombre_representante','$celular_representante','$email_representante','$poblacion','$otro_poblacion','$fecha_matricula' ,'$matricula','$registrado','$num_cam_comercio','$programa_ccp','$estado_solicitud','$fecha_solicitud', '$genero', '$escolaridad', '$rango_edad', '$solicitud') ";
+
 
   $exe_diligencias_new = mysqli_query($conn, $info_diligencias_new);
+
+
   // ---------------------PROGXDILIGENCIAS TABLE------------------------
   if ($exe_diligencias_new != false) {
     $id_ultimo = mysqli_insert_id($conn);
@@ -60,7 +66,6 @@ if (isset($_POST['registrar'])) {
         $info_progsxdiligencias = "INSERT INTO progsxdiligencias ( `id_diligencia`, `id_programa`, `recibe_apoyo`, `dinero_espcie`, `descrip_val`) VALUES ('$id_ultimo', '{$program['si_programa']}', '{$program['recibe_apoyo']}', '{$program['dinero_espcie']}', '{$program['descrip_val']}')";
 
         $exe_diligencias_new = mysqli_query($conn, $info_progsxdiligencias);
-
       }
     }
     header("Location: diligencias.php");

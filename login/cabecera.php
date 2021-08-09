@@ -60,6 +60,19 @@
 			// Bootstrap ID
 			gtag('config', 'UA-118965717-5');
 		</script>
+
+		<!-- --- PARA MOSTRAR U OCULTAR SELECET  form_empresarial - -->
+		<!-- <script type="text/javascript">
+			function showContent() {
+				element = document.getElementById("content");
+				check = document.getElementById("check");
+				if (check.checked) {
+					element.style.display = 'block';
+				} else {
+					element.style.display = 'none';
+				}
+			}
+		</script> -->
 	</head>
 
 	<body class="app header-fixed sidebar-fixed aside-menu-fixed sidebar-lg-show">

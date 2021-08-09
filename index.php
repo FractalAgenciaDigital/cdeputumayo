@@ -419,8 +419,7 @@
                 <div class="row">
                   <div class="col-12 mb-2">
                     <p class="text-center">
-                      Solicita un <i>taller gratuito</i> de
-                      <br>Introducción a la transformación digital
+                      Registre aquí su solicitud y uno de nuestros asesores se contactara en el menor tiempo posible. <i>Cel: 311 7033955</i>
                     </p>
                   </div>
                   <div class="col-12">

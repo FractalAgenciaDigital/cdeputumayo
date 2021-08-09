@@ -81,7 +81,6 @@ $cont = 0;
 								<th class="text-center align-middle">Direcc. Empresa</th>
 								<th class="text-center align-middle">Actividad Económica</th>
 								<th class="text-center align-middle">Des. Productivo</th>
-								<th class="text-center align-middle">Princ. Prod. Serv</th>
 								<th class="text-center align-middle">Fort. Empresarial</th>
 								<th class="text-center align-middle">Form. Empresarial</th>
 								<th class="text-center align-middle">Nombre Representante</th>
@@ -190,7 +189,6 @@ $cont = 0;
                 								<td>" . $fila['direccEmpr'] . "</td>
                 								<td>" . $fila['activEcon'] . '<br>' . $fila['otro_activEcon'] . "</td>
                 								<td>" . $fila['des_productivo'] . "</td>
-                								<td>" . $fila['princ_prod_serv'] . "</td>
                 								<td>" . $fila['fort_empresarial'] . "</td>
                 								<td>" . $fila['form_empresarial'] . "</td>
                 								<td>" . $fila['nombre_representante'] . "</td>

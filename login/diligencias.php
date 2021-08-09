@@ -136,7 +136,6 @@ while ($afila = mysqli_fetch_array($res_a)) {
 							<th class="text-center align-middle">Act. Económica</th>
 							<th class="text-center align-middle">Otra Act. Económica</th>
 							<th class="text-center align-middle">Des. Productivo</th>
-							<th class="text-center align-middle">Principal Prod/Serv</th>
 							<th class="text-center align-middle">Fortalecimiento Empresarial</th>
 							<th class="text-center align-middle">Formación Empresarial</th>
 							<th class="text-center align-middle">Nombre Representante</th>
