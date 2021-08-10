@@ -23,6 +23,8 @@ if (isset($_GET['id_diligencia'])) {
 		$ciudad = $row['ciudad'];
 		$email = $row['email'];
 		$celular = $row['celular'];
+		$razonSocial = $row['razonSocial'];
+		$nitEmpr = $row['nitEmpr'];
 		$direccEmpr = $row['direccEmpr'];
 		$activEcon = $row['activEcon'];
 		$otro_activEcon = $row['otro_activEcon'];
@@ -62,6 +64,8 @@ if (isset($_POST['update'])) {
 	$ciudad = $_POST['ciudad'];
 	$email = $_POST['email'];
 	$celular = $_POST['celular'];
+	$razonSocial = isset($_POST['razonSocial']) ? $_POST['razonSocial'] : "";
+	$nitEmpr = isset($_POST['nitEmpr']) ? $_POST['nitEmpr'] : "";
 	$direccEmpr = $_POST['direccEmpr'];
 	$activEcon = $_POST['activEcon'];
 	$otro_activEcon = $_POST['otro_activEcon'];
@@ -89,7 +93,7 @@ if (isset($_POST['update'])) {
 	$rango_edad = $_POST['rango_edad'];
 	$solicitud = $_POST['solicitud'];
 
-	$edit_diligencias_new = "UPDATE `diligencias_new` SET `tipoDocumento` = '$tipoDocumento', `documento` = '$documento', `nombres` = '$nombres', `apellidos` = '$apellidos', `ciudad` = '$ciudad', `email` = '$email', `celular` = '$celular', `direccEmpr` = '$direccEmpr', `activEcon` = '$activEcon', `otro_activEcon` = '$otro_activEcon', `des_productivo` = '$des_productivo', `fort_empresarial` = '$fort_empresarial', `form_empresarial` = '$form_empresarial', `nombre_representante` = '$nombre_representante', `celular_representante` = '$celular_representante', `email_representante` = '$email_representante', `poblacion` = '$poblacion', `otro_poblacion` = '$otro_poblacion', `fecha_matricula` = '$fecha_matricula', `matricula` = '$matricula', `registrado` = '$registrado', `num_cam_comercio` = '$num_cam_comercio', `programa_ccp` = '$programa_ccp', `estado_solicitud` = '$estado_solicitud', `fecha_solicitud` = '$fecha_solicitud', `genero` = '$genero', `escolaridad` = '$escolaridad', `rango_edad` = '$rango_edad', `solicitud` = '$solicitud' WHERE `diligencias_new`.`id_diligencia` = $id_diligencia";
+	$edit_diligencias_new = "UPDATE `diligencias_new` SET `tipoDocumento` = '$tipoDocumento', `documento` = '$documento', `nombres` = '$nombres', `apellidos` = '$apellidos', `ciudad` = '$ciudad', `email` = '$email', `celular` = '$celular', `razonSocial` = '$razonSocial', `nitEmpr` = '$nitEmpr', `direccEmpr` = '$direccEmpr', `activEcon` = '$activEcon', `otro_activEcon` = '$otro_activEcon', `des_productivo` = '$des_productivo', `fort_empresarial` = '$fort_empresarial', `form_empresarial` = '$form_empresarial', `nombre_representante` = '$nombre_representante', `celular_representante` = '$celular_representante', `email_representante` = '$email_representante', `poblacion` = '$poblacion', `otro_poblacion` = '$otro_poblacion', `fecha_matricula` = '$fecha_matricula', `matricula` = '$matricula', `registrado` = '$registrado', `num_cam_comercio` = '$num_cam_comercio', `programa_ccp` = '$programa_ccp', `estado_solicitud` = '$estado_solicitud', `fecha_solicitud` = '$fecha_solicitud', `genero` = '$genero', `escolaridad` = '$escolaridad', `rango_edad` = '$rango_edad', `solicitud` = '$solicitud' WHERE `diligencias_new`.`id_diligencia` = $id_diligencia";
 
 
 
@@ -175,7 +179,7 @@ if (isset($_POST['update'])) {
 						<option value="3" <?php if ($tipoDocumento == "3") {
 												echo "selected";
 											} ?>>Cedula de Extranjeria</option>
-						<option value="NA" <?php if ($tipoDocumento == "NA") {
+						<option value="NA" <?php if ($tipoDocumento == "0") {
 												echo "selected";
 											} ?>>Otro</option>
 					</select>
@@ -223,14 +227,14 @@ if (isset($_POST['update'])) {
 			</div>
 
 			<div class="form-row">
-				<!-- <div class="form-group col-3">
-					<label for="princ_prod_serv">Principal Prod/Serv:</label>
-					<input type="text" id="princ_prod_serv" value="<?php echo $princ_prod_serv ?>" name="princ_prod_serv" class="form-control" placeholder="Principal Prod/Serv" aria-label="PrincipalProd/Serv">
-				</div> -->
-				<!-- <div class="form-group col-3">
-					<label for="fort_empresarial">Fortalecimiento Empresarial</label>
-					<input type="text" id="fort_empresarial" value="<?php echo $fort_empresarial ?>" name="fort_empresarial" class="form-control" placeholder="Fortalecimiento Empresarial" aria-label="fort_empresarial">
-				</div> -->
+				<div class="form-group col-md-3">
+					<label for="razonSocial">Razón Social:</label>
+					<input type="text" id="razonSocial" value="<?php echo $razonSocial ?>" v-model="razonSocial" name="razonSocial" class="form-control" placeholder="Razón Social" aria-label="Razón Social">
+				</div>
+				<div class="form-group col-md-3">
+					<label for="nitEmpr">NIT Empresa:</label>
+					<input type="text" id="nitEmpr" value="<?php echo $nitEmpr ?>" v-model="nitEmpr" name="nitEmpr" class="form-control" placeholder="NIT Empresa" aria-label="NIT Empresa">
+				</div>
 				<div class="form-group col-md-3">
 					<label for="solicitud">Solicitud:</label>
 					<input type="text" id="solicitud" value="<?php echo $solicitud ?>" v-model="solicitud" name="solicitud" class="form-control" placeholder="Solicitud" aria-label="Solicitud">

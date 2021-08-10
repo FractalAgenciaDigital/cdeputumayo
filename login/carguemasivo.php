@@ -43,14 +43,15 @@ if (isset($_POST["enviar"])) {
                 if ($rows != 1) {
 
                     $data[19] = date("Y-m-d");
-                    // $data[19] = date("Y-m-d H:i:s");
                     $data[25] = date("Y-m-d");
-                    // $data[30] = date("yyy/mm/d h:mm:ss");
-                    // $data[31] = date("yyy/mm/d h:mm:ss");
+                    // $data[32] = date("Y-m-d");
+                    // $data[33] = date("Y-m-d");
 
                     // $resultado = insertar_datos($datos[0], $datos[1], $datos[2], $datos[3], $datos[4], $datos[5], $datos[6], $datos[7], $datos[8], $datos[9], $datos[10], $datos[11], $datos[12], $datos[13], $datos[14], $datos[15], $datos[16], $datos[17], $datos[18], $datos[19], $datos[20], $datos[21], $datos[22], $datos[23], $datos[24], $datos[25], $datos[26], $datos[27], $datos[28], $datos[29]);
 
-                    $sql_guardar = "INSERT INTO diligencias_new(tipoDocumento, documento, nombres, apellidos, ciudad, email, celular, direccEmpr, activEcon, otro_activEcon, des_productivo, fort_empresarial, form_empresarial, nombre_representante, celular_representante, email_representante, poblacion, otro_poblacion, fecha_matricula, matricula, registrado, num_cam_comercio, programa_ccp, estado_solicitud, fecha_solicitud, genero, escolaridad, rango_edad, solicitud,create_at,updated_at) VALUES ('$data[0]','$data[1]', '$data[2]', '$data[3]', '$data[4]', '$data[5]', '$data[6]', '$data[7]', '$data[8]', '$data[9]', '$data[10]', '$data[11]', '$data[12]', '$data[13]', '$data[14]', '$data[15]', '$data[16]', '$data[17]', '$data[18]', '$data[19]', '$data[20]', '$data[21]', '$data[22]', '$data[23]', '$data[24]', '$data[25]', '$data[26]', '$data[27]', '$data[28]', '$data[29]', '$data[30]')";
+                    // para insertar con id_diligencia y create_at y updated_at
+                    // $sql_guardar = "INSERT INTO diligencias_new(id_diligencia, tipoDocumento, documento, nombres, apellidos, ciudad, email, celular, razonSocial, nitEmpr, direccEmpr, activEcon, otro_activEcon, des_productivo, fort_empresarial, form_empresarial, nombre_representante, celular_representante, email_representante, poblacion, otro_poblacion, fecha_matricula, matricula, registrado, num_cam_comercio, programa_ccp, estado_solicitud, fecha_solicitud, genero, escolaridad, rango_edad, solicitud,create_at,updated_at) VALUES ('$data[0]','$data[1]', '$data[2]', '$data[3]', '$data[4]', '$data[5]', '$data[6]', '$data[7]', '$data[8]', '$data[9]', '$data[10]', '$data[11]', '$data[12]', '$data[13]', '$data[14]', '$data[15]', '$data[16]', '$data[17]', '$data[18]', '$data[19]', '$data[20]', '$data[21]', '$data[22]', '$data[23]', '$data[24]', '$data[25]', '$data[26]', '$data[27]', '$data[28]', '$data[29]', '$data[30]', '$data[31]', '$data[32]', '$data[33]')";
+                    $sql_guardar = "INSERT INTO diligencias_new(tipoDocumento, documento, nombres, apellidos, ciudad, email, celular, razonSocial, nitEmpr, direccEmpr, activEcon, otro_activEcon, des_productivo, fort_empresarial, form_empresarial, nombre_representante, celular_representante, email_representante, poblacion, otro_poblacion, fecha_matricula, matricula, registrado, num_cam_comercio, programa_ccp, estado_solicitud, fecha_solicitud, genero, escolaridad, rango_edad, solicitud) VALUES ('$data[0]','$data[1]', '$data[2]', '$data[3]', '$data[4]', '$data[5]', '$data[6]', '$data[7]', '$data[8]', '$data[9]', '$data[10]', '$data[11]', '$data[12]', '$data[13]', '$data[14]', '$data[15]', '$data[16]', '$data[17]', '$data[18]', '$data[19]', '$data[20]', '$data[21]', '$data[22]', '$data[23]', '$data[24]', '$data[25]', '$data[26]', '$data[27]', '$data[28]', '$data[29]', '$data[30]')";
 
                     $resultado = mysqli_query($conn, $sql_guardar);
                     if ($resultado) {

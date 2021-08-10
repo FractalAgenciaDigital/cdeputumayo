@@ -4,12 +4,13 @@ include '../funciones.php';
 
 $tipoDocumento = isset($_POST['tipoDocumento']) ? $_POST['tipoDocumento'] : "";
 $documento = isset($_POST['documento']) ? $_POST['documento'] : "";
-$nitEmpr = isset($_POST['nitEmpr']) ? $_POST['nitEmpr'] : "";
 $nombres = isset($_POST['nombres']) ? $_POST['nombres'] : "";
 $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : "";
 $ciudad = isset($_POST['ciudad']) ? $_POST['ciudad'] : "";
 $email = isset($_POST['email']) ? $_POST['email'] : "";
 $celular = isset($_POST['celular']) ? $_POST['celular'] : "";
+$razonSocial = isset($_POST['razonSocial']) ? $_POST['razonSocial'] : "";
+$nitEmpr = isset($_POST['nitEmpr']) ? $_POST['nitEmpr'] : "";
 $direccEmpr = isset($_POST['direccEmpr']) ? $_POST['direccEmpr'] : "";
 $activEcon = isset($_POST['activEcon']) ? $_POST['activEcon'] : "";
 $otro_activEcon = isset($_POST['otro_activEcon']) ? $_POST['otro_activEcon'] : "";
@@ -34,13 +35,11 @@ $escolaridad = isset($_POST['escolaridad']) ? $_POST['escolaridad'] : "";
 $rango_edad = isset($_POST['rango_edad']) ? $_POST['rango_edad'] : "";
 $solicitud = isset($_POST['solicitud']) ? $_POST['solicitud'] : "";
 
-$componentes = array();
-
 
 if (isset($_POST['registrar'])) {
 
 
-  $info_diligencias_new = "INSERT INTO diligencias_new ( `tipoDocumento`, `documento`, `nombres`, `apellidos`, `ciudad`, `email`, `celular`,`direccEmpr`, `activEcon`, `otro_activEcon`, `des_productivo`, `fort_empresarial`, `form_empresarial`, `nombre_representante`, `celular_representante`, `email_representante`, `poblacion`, `otro_poblacion`, `fecha_matricula`, `matricula`, `registrado`, `num_cam_comercio`, `programa_ccp`, `estado_solicitud`, `fecha_solicitud`, `genero`, `escolaridad`, `rango_edad`, `solicitud`) VALUES ( '$tipoDocumento','$documento','$nombres','$apellidos','$ciudad','$email','$celular','$direccEmpr','$activEcon','$otro_activEcon','$des_productivo', '$fort_empresarial','$form_empresarial','$nombre_representante','$celular_representante','$email_representante','$poblacion','$otro_poblacion','$fecha_matricula' ,'$matricula','$registrado','$num_cam_comercio','$programa_ccp','$estado_solicitud','$fecha_solicitud', '$genero', '$escolaridad', '$rango_edad', '$solicitud') ";
+  $info_diligencias_new = "INSERT INTO diligencias_new ( `tipoDocumento`, `documento`, `nombres`, `apellidos`, `ciudad`, `email`, `celular`, `razonSocial`, `nitEmpr`, `direccEmpr`, `activEcon`, `otro_activEcon`, `des_productivo`, `fort_empresarial`, `form_empresarial`, `nombre_representante`, `celular_representante`, `email_representante`, `poblacion`, `otro_poblacion`, `fecha_matricula`, `matricula`, `registrado`, `num_cam_comercio`, `programa_ccp`, `estado_solicitud`, `fecha_solicitud`, `genero`, `escolaridad`, `rango_edad`, `solicitud`) VALUES ( '$tipoDocumento','$documento','$nombres','$apellidos','$ciudad','$email','$celular','$razonSocial','$nitEmpr','$direccEmpr','$activEcon','$otro_activEcon','$des_productivo', '$fort_empresarial','$form_empresarial','$nombre_representante','$celular_representante','$email_representante','$poblacion','$otro_poblacion','$fecha_matricula' ,'$matricula','$registrado','$num_cam_comercio','$programa_ccp','$estado_solicitud','$fecha_solicitud', '$genero', '$escolaridad', '$rango_edad', '$solicitud') ";
 
 
   $exe_diligencias_new = mysqli_query($conn, $info_diligencias_new);

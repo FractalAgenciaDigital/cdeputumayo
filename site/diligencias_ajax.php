@@ -24,7 +24,7 @@ if (isset($_POST['Guardar'])) {
   echo json_encode($fila);
 }
 if (isset($_POST['crear'])) {
-  $cons = "INSERT INTO diligencias_new( tipoDocumento, documento, nombres, apellidos, ciudad, email, celular, activEcon, des_productivo, fort_empresarial, form_empresarial, nombre_representante, celular_representante, email_representante, poblacion, otro_poblacion, fecha_matricula, matricula, registrado, num_cam_comercio, programa_ccp, estado_solicitud, fecha_solicitud) values ('tipoDocumento','documento','nombres','apellidos','ciudad','email','celular','activEcon','des_productivo','fort_empresarial','form_empresarial','nombre_representante','celular_representante','email_representante','poblacion','otro_poblacion','fecha_matricula' ,'matricula','registrado','num_cam_comercio','programa_ccp','estado_solicitud','fecha_solicitud')";
+  $cons = "INSERT INTO diligencias_new( tipoDocumento, documento, nombres, apellidos, email, ciudad,  celular, activEcon, des_productivo, fort_empresarial, form_empresarial, nombre_representante, celular_representante, email_representante, poblacion, otro_poblacion, fecha_matricula, matricula, registrado, num_cam_comercio, programa_ccp, estado_solicitud, fecha_solicitud) values ('tipoDocumento','documento','nombres','apellidos','ciudad','email','celular', 'razonSocial', 'nitEmpr', 'activEcon','des_productivo','fort_empresarial','form_empresarial','nombre_representante','celular_representante','email_representante','poblacion','otro_poblacion','fecha_matricula' ,'matricula','registrado','num_cam_comercio','programa_ccp','estado_solicitud','fecha_solicitud')";
   $res = mysqli_query($conn, $cons);
   //print_r($_POST);	
 }

@@ -2,7 +2,7 @@
 include 'funciones.php';
 
 if (isset($_POST['listar'])) {
-    $cons = 'SELECT tipoDocumento, documento, nombres, apellidos, ciudad, email, celular,direccEmpr, activEcon, otro_activEcon, des_productivo, princ_prod_serv, fort_empresarial, form_empresarial, nombre_representante, celular_representante, email_representante, poblacion, otro_poblacion, fecha_matricula, matricula, registrado, num_cam_comercio, programa_ccp, estado_solicitud, fecha_solicitud, genero, escolaridad, rango_edad, solicitud FROM diligencias_new';
+    $cons = 'SELECT tipoDocumento, documento, nombres, apellidos, ciudad, email, celular, razonSocial, nitEmpr,direccEmpr, activEcon, otro_activEcon, des_productivo, fort_empresarial, form_empresarial, nombre_representante, celular_representante, email_representante, poblacion, otro_poblacion, fecha_matricula, matricula, registrado, num_cam_comercio, programa_ccp, estado_solicitud, fecha_solicitud, genero, escolaridad, rango_edad, solicitud FROM diligencias_new';
     $donde = '';
 
     // ------------------------
@@ -13,7 +13,7 @@ if (isset($_POST['listar'])) {
         if ($_POST['txtBuscar']) {
 
             $txt = "LIKE '%" . $_POST['txtBuscar'] . "%'";
-            $bloque = "nombres $txt OR apellidos $txt OR documento $txt";
+            $bloque = "nombres $txt OR apellidos $txt OR documento $txt OR nitEmpr $txt OR razonSocial $txt";
             $donde .= $donde ? " AND ($bloque)" : " WHERE $bloque";
         } else {
 
@@ -79,8 +79,10 @@ if (isset($_POST['listar'])) {
                 <td>" . $fila['documento'] . "</td>
                 <td>" . $fila['nombres'] . ' ' . (!is_null($fila['apellidos']) ? $fila['apellidos'] : '') . "</td>
                 <td>" . $fila['email'] . '<br>' . $fila['email_representante'] . "</td>
-                <td>" . $fila['celular'] . '<br>' . $fila['celular_representante'] . "</td>
                 <td>" . $fila['ciudad'] . "</td>
+                <td>" . $fila['celular'] . '<br>' . $fila['celular_representante'] . "</td>
+                <td>" . $fila['razonSocial'] . "</td>
+                <td>" . $fila['nitEmpr'] . "</td>
                 <td>" . $fila['direccEmpr'] . "</td>
                 <td>" . $fila['activEcon'] . '<br>' . $fila['otro_activEcon'] . "</td>
                 <td>" . $fila['des_productivo'] . "</td>

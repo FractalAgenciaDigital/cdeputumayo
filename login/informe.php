@@ -1,5 +1,5 @@
 <?php
-//include 'funciones.php';
+include 'funciones.php';
 
 header('Content-type: application/vnd.ms-excel; charset=utf8');
 header("Content-Disposition: attachment; filename=innforme.xls");
@@ -30,7 +30,7 @@ if (isset($_GET)) {
     }
     if ($_GET['txtBuscar']) {
         $txt = "LIKE '%" . $_GET['txtBuscar'] . "%'";
-        $bloque = "nombres $txt OR apellidos $txt OR documento $txt";
+        $bloque = "nombres $txt OR apellidos $txt OR documento $txt OR nitEmpr $txt OR razonSocial $txt";
         $donde .= $donde ? " AND ($bloque)" : " WHERE $bloque";
     }
     if ($_GET['fechaDesde']) {
@@ -83,8 +83,10 @@ if (isset($_GET)) {
                 <td>" . $fila['documento'] . "</td>
                 <td>" . $fila['nombres'] . ' ' . (!is_null($fila['apellidos']) ? $fila['apellidos'] : '') . "</td>
                 <td>" . $fila['email'] . '<br>' . $fila['email_representante'] . "</td>
-                <td>" . $fila['celular'] . '<br>' . $fila['celular_representante'] . "</td>
                 <td>" . $fila['ciudad'] . "</td>
+                <td>" . $fila['celular'] . '<br>' . $fila['celular_representante'] . "</td>
+                <td>" . $fila['razonSocial'] . "</td>
+                <td>" . $fila['nitEmpr'] . "</td>
                 <td>" . $fila['direccEmpr'] . "</td>
                 <td>" . $fila['activEcon'] . '<br>' . $fila['otro_activEcon'] . "</td>
                 <td>" . $fila['des_productivo'] . "</td>
@@ -111,7 +113,8 @@ if (isset($_GET)) {
 <html lang="es">
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html;">
 
     <title>Infome CDE</title>
 </head>
@@ -125,12 +128,13 @@ if (isset($_GET)) {
                 <th class="text-center align-middle">Doc. persona</th>
                 <th class="text-center align-middle">Nombres completos</th>
                 <th class="text-center align-middle">Correos</th>
-                <th class="text-center align-middle">Celulares</th>
                 <th class="text-center align-middle">Ciudad</th>
+                <th class="text-center align-middle">Celulares</th>
+                <th class="text-center align-middle">razonSocial</th>
+                <th class="text-center align-middle">nitEmpr</th>
                 <th class="text-center align-middle">Direcc. Empresa</th>
                 <th class="text-center align-middle">Actividad Económica</th>
                 <th class="text-center align-middle">Des. Productivo</th>
-                <th class="text-center align-middle">Princ. Prod. Serv</th>
                 <th class="text-center align-middle">Fort. Empresarial</th>
                 <th class="text-center align-middle">Form. Empresarial</th>
                 <th class="text-center align-middle">Nombre Representante</th>

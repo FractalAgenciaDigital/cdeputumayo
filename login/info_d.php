@@ -34,7 +34,7 @@ if (isset($_GET['tipoDoc']) && $_GET['tipoDoc'] != '') {
 }
 if (isset($_GET['txtBuscar']) && $_GET['txtBuscar'] != '') {
 	$txt = "LIKE '%" . $_GET['txtBuscar'] . "%'";
-	$bloque = "nombres $txt OR apellidos $txt or documento $txt";
+	$bloque = "nombres $txt OR apellidos $txt OR documento $txt OR nitEmpr $txt OR razonSocial $txt";
 	$donde .= $donde ? " AND ($bloque)" : " WHERE $bloque";
 }
 $cons .= $donde;
@@ -78,6 +78,8 @@ $cont = 0;
 								<th class="text-center align-middle">Ciudad</th>
 								<th class="text-center align-middle">Correos</th>
 								<th class="text-center align-middle">Celulares</th>
+								<th class="text-center align-middle">Razón Social</th>
+								<th class="text-center align-middle">NIT Empresa</th>
 								<th class="text-center align-middle">Direcc. Empresa</th>
 								<th class="text-center align-middle">Actividad Económica</th>
 								<th class="text-center align-middle">Des. Productivo</th>
@@ -186,6 +188,8 @@ $cont = 0;
                 								<td>" . $fila['ciudad'] . "</td>
                 								<td>" . $fila['email'] . '<br>' . $fila['email_representante'] . "</td>
                 								<td>" . $fila['celular'] . '<br>' . $fila['celular_representante'] . "</td>
+                								<td>" . $fila['razonSocial'] . "</td>
+                								<td>" . $fila['nitEmpr'] . "</td>
                 								<td>" . $fila['direccEmpr'] . "</td>
                 								<td>" . $fila['activEcon'] . '<br>' . $fila['otro_activEcon'] . "</td>
                 								<td>" . $fila['des_productivo'] . "</td>

@@ -40,7 +40,7 @@ $id_registro = '';
             <option value="3" <?php if ($tipoDocumento == "3") {
                                 echo "selected";
                               } ?>>Cedula de Extranjeria</option>
-            <option value="NA" <?php if ($tipoDocumento == "NA") {
+            <option value="NA" <?php if ($tipoDocumento == "0") {
                                   echo "selected";
                                 } ?>>Otro</option>
           </select>
@@ -49,10 +49,6 @@ $id_registro = '';
           <label for="documento">Documento</label>
           <input type="text" name="documento" required="" id="documento" class="form-control" placeholder="Documento" value="<?php echo $documento ?>">
         </div>
-        <!-- <div class="form-group col-3">
-          <label for="nitEmpr">NIT Empresa</label>
-          <input type="text" name="nitEmpr" v-model="nitEmpr" id="nitEmpr" class="form-control" placeholder="NIT">
-        </div> -->
         <div class="form-group col-3">
           <label for="nombres">Nombres</label>
           <input type="text" v-model="" id="nombres" value="<?php echo $nombres ?>" name="nombres" class="form-control" value="">
@@ -89,6 +85,14 @@ $id_registro = '';
           <label for="princ_prod_serv">Principal Prod/Serv:</label>
           <input type="text" id="princ_prod_serv" value="<?php echo $princ_prod_serv ?>" name="princ_prod_serv" class="form-control" placeholder="Principal Prod/Serv" aria-label="PrincipalProd/Serv">
         </div> -->
+        <div class="form-group col-md-3">
+          <label for="razonSocial">Razón Social:</label>
+          <input type="text" id="razonSocial" value="<?php echo $razonSocial ?>" v-model="razonSocial" name="razonSocial" class="form-control" placeholder="Razón Social" aria-label="Razón Social">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="nitEmpr">NIT Empresa:</label>
+          <input type="text" id="nitEmpr" value="<?php echo $nitEmpr ?>" v-model="nitEmpr" name="nitEmpr" class="form-control" placeholder="NIT Empresa" aria-label="NIT Empresa">
+        </div>
 
 
         <div class="form-group col-md-3">
