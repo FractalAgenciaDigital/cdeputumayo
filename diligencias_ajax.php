@@ -230,11 +230,14 @@ if (isset($_POST['listar'])) {
 
       $tbody .= "
                   
-                  <td style='vertical-align: middle; right: 0; position: sticky; background:#f2f2f2; border:2px;'>
+                  <td style='vertical-align: middle; right: 46px; position: sticky; background:#f2f2f2; border:2px;'>
                     <a style='margin-bottom: 2px' href='edit_diligencias_new.php?id_diligencia=" . $fila['id_diligencia'] . "' class='btn btn-success' title='Editar'><i class='cui-pencil'></i></a>
-                    <button class='btn btn-danger' title='Eliminar' onClick='Eliminar($id_f)'>
-                    <i class='cui-trash'></i></button>
+                    
                   </td>
+                  <td style='vertical-align: middle; right: 0; position: sticky; background:#f2f2f2; border:2px;'>
+                  <button style='margin-bottom: 2px' class='btn btn-danger' title='Eliminar' onClick='Eliminar($id_f)'>
+                  <i class='cui-trash'></i></button>
+                </td>
                   </tr>";
     }
   }

@@ -47,15 +47,15 @@ $id_registro = '';
         </div>
         <div class="form-group col-3">
           <label for="documento">Documento</label>
-          <input type="text" name="documento" required="" id="documento" class="form-control" placeholder="Documento" value="<?php echo $documento ?>">
+          <input required type="text" name="documento" required="" id="documento" class="form-control" placeholder="Documento" value="<?php echo $documento ?>">
         </div>
         <div class="form-group col-3">
           <label for="nombres">Nombres</label>
-          <input type="text" v-model="" id="nombres" value="<?php echo $nombres ?>" name="nombres" class="form-control" value="">
+          <input required type="text" v-model="" id="nombres" value="<?php echo $nombres ?>" name="nombres" class="form-control" value="">
         </div>
         <div class="form-group col-3">
           <label for="apellidos">Apellidos</label>
-          <input type="text" v-model="apellidos" value="<?php echo $apellidos ?>" id="apellidos" name="apellidos" class="form-control" placeholder="Apellidos">
+          <input required type="text" v-model="apellidos" value="<?php echo $apellidos ?>" id="apellidos" name="apellidos" class="form-control" placeholder="Apellidos">
         </div>
       </div>
 
@@ -67,7 +67,7 @@ $id_registro = '';
         <div class="form-group col-3">
 
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" value="<?php echo $email ?>" id="email" name="email" placeholder="Email">
+          <input required type="email" class="form-control" value="<?php echo $email ?>" id="email" name="email" placeholder="Email">
         </div>
         <div class="form-group col-md-3">
           <label for="celular">Celular</label>
@@ -433,7 +433,7 @@ $id_registro = '';
         <!-- -------------------------- -->
         <div class="form-group col-3">
           <label for="genero">Género:</label>
-          <select required class="form-control" name="genero" v-model="select">
+          <select class="form-control" name="genero" v-model="select">
             <option value="">Seleccione</option>
             <option value="Mujer" <?php if (isset($genero) && $genero == "Mujer") {
                                     echo "selected";

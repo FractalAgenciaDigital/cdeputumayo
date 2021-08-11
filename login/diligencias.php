@@ -164,8 +164,10 @@ while ($afila = mysqli_fetch_array($res_a)) {
 								<th class="text-center align-middle">Descripción / Valor1</th>
 							<?php   } ?>
 
-							<th class="text-center align-middle" style="background:white; border: 2px;    right: 0;
-    position: sticky;" colspan="2">-</th>
+							<th class="" style="background:white; border: 2px;    right: 46px;
+    position: sticky;" colspan="1"></th>
+							<th class="" style="background:white; border: 2px;    right: 0;
+    position: sticky;" colspan="1"></th>
 						</tr>
 					</thead>
 					<tbody id="cuerpo">

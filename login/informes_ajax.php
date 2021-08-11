@@ -36,12 +36,8 @@ if (isset($_POST['listar'])) {
 
 
     $res = mysqli_query($conn, $cons);
-    // echo "<pre>";
-    // print_r($cons);
-    // echo "</pre>";
-    // exit;
-    // print_r($cons);
-    // echo mysqli_error($conn);
+
+    echo mysqli_error($conn);
     $cont = 0;
     $tbody = '';
     //echo json_encode(mysqli_fetch_array($res));

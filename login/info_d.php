@@ -1,11 +1,10 @@
 <?php
 include 'funciones.php';
-header('Content-type: application/vnd.ms-excel; charset=utf8');
-header("Content-Disposition: attachment; filename=diligencias.xls");
-header("Pragma: no-cache");
-header("Expires: 0");
+// header('Content-type: application/vnd.ms-excel; charset=utf8');
+// header("Content-Disposition: attachment; filename=diligencias.xls");
+// header("Pragma: no-cache");
+// header("Expires: 0");
 
-print_r($_GET);
 
 
 $cons_order = "SELECT * FROM programas where estado = 1 order by programa";
