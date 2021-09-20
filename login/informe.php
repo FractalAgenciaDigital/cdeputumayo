@@ -1,26 +1,26 @@
 <?php
 include 'funciones.php';
 
-// header('Content-type: application/vnd.ms-excel; charset=utf8');
-// header("Content-Disposition: attachment; filename=innforme.xls");
-// header("Pragma: no-cache");
-// header("Expires: 0");
+header('Content-type: application/vnd.ms-excel; charset=utf8');
+header("Content-Disposition: attachment; filename=innforme.xls");
+header("Pragma: no-cache");
+header("Expires: 0");
 
-print_r($_GET);
-exit;
-$usuario = "root";
-// $contrasena = "C4m1l0.M2017!";  // en mi caso tengo contraseña pero en casa caso introducidla aquí.
-$contrasena = "";  // en mi caso tengo contraseña pero en casa caso introducidla aquí.
-$servidor = "localhost";
-$basededatos = "ccputuma_CDE";
+// print_r($_GET);
+// exit;
+// $usuario = "root";
+// // $contrasena = "C4m1l0.M2017!";  // en mi caso tengo contraseña pero en casa caso introducidla aquí.
+// $contrasena = "";  // en mi caso tengo contraseña pero en casa caso introducidla aquí.
+// $servidor = "localhost";
+// $basededatos = "ccputuma_CDE";
 
-$conn = mysqli_connect($servidor, $usuario, $contrasena, $basededatos);
+// $conn = mysqli_connect($servidor, $usuario, $contrasena, $basededatos);
 
-if (!$conn) {
-    echo "Error No: " . mysqli_connect_errno();
-    echo "Error Description: " . mysqli_connect_error();
-    exit;
-}
+// if (!$conn) {
+//     echo "Error No: " . mysqli_connect_errno();
+//     echo "Error Description: " . mysqli_connect_error();
+//     exit;
+// }
 
 if (isset($_GET)) {
 
@@ -45,7 +45,7 @@ if (isset($_GET)) {
     }
     $cons .= $donde;
     // echo "$cons <br>";
-    // $res = mysqli_query($conn, $cons);
+    $res = mysqli_query($conn, $cons);
     // print_r($cons);
     // exit;
     //echo mysqli_error($conn);

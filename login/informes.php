@@ -120,6 +120,7 @@ include "pie.php";
 			fechaDesde: $("#fechaDesde").val(),
 			fechaHasta: $("#fechaHasta").val()
 		};
+		$("#exportar").attr('href', `info_d.php?exportar=1&tipoDoc=${cuerpo.tipoDoc}&txtBuscar=${cuerpo.txtBuscar}`);
 		$.post('informes_ajax.php', cuerpo).done(function(resp) {
 			$('#cuerpo').html(resp);
 		});

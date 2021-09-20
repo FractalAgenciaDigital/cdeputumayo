@@ -47,7 +47,7 @@ $id_registro = '';
         </div>
         <div class="form-group col-3">
           <label for="documento">Documento</label>
-          <input required type="text" name="documento" required="" id="documento" class="form-control" placeholder="Documento" value="<?php echo $documento ?>">
+          <input required type="number" name="documento" required="" id="documento" class="form-control" placeholder="Documento" value="<?php echo $documento ?>">
         </div>
         <div class="form-group col-3">
           <label for="nombres">Nombres</label>
@@ -242,9 +242,9 @@ $id_registro = '';
             <label for="">Componentes:</label></br>
           </div>
           <div class="form-group col-3">
-            <input class="form-check-input" name="des_productivo" v-model="des_productivo" type="checkbox" value="Fortalecimiento Empresarial" <?php if (isset($des_productivo) && $des_productivo == "Fortalecimiento Empresarial") {
-                                                                                                                                                  echo "checked";
-                                                                                                                                                } ?> id="des_productivo">
+            <input class="form-check-input" name="des_productivo" v-model="des_productivo" type="checkbox" value="Desarrollo Productivo" <?php if (isset($des_productivo) && $des_productivo == "Desarrollo Productivo") {
+                                                                                                                                            echo "checked";
+                                                                                                                                          } ?> id="des_productivo">
             <label class="form-check-label" for="des_productivo">
               Desarrollo Productivo.
             </label>
@@ -409,7 +409,7 @@ $id_registro = '';
 
 
         <div class=" form-group col-3">
-          <label for="regis_camc">Registrado en C. de Comercio:</label>
+          <label for="regis_camc">Registrado en Cámara de Comercio:</label>
           <select class="form-control" name="registrado" id="registrado" v-model="registrado" onChange="siRegistrado(this.value)">
             <option value="No" <?php if (isset($registrado) && $registrado == "No") {
                                   echo "selected";
@@ -420,8 +420,8 @@ $id_registro = '';
           </select>
         </div>
         <div class="form-group col-3 aux_regis " style="display:none">
-          <label id="num_cam_comercio" for="num_cam_comercio">Número C. de Comercio:</label>
-          <input class="form-control" type="text" placeholder="Número C. de Comercio:" name="num_cam_comercio" id="num_cam_comercio" value="<?= $num_cam_comercio ?>">
+          <label id="num_cam_comercio" for="num_cam_comercio">Número Cámara de Comercio:</label>
+          <input class="form-control" type="number" placeholder="Número C. de Comercio:" name="num_cam_comercio" id="num_cam_comercio" value="<?= $num_cam_comercio ?>">
         </div>
       </div>
 
@@ -592,7 +592,7 @@ $id_registro = '';
                       </select>
                     </td>
                     <td>
-                      <input class="form-control " type="text" name="datos_programa[<?= isset($filap['id_programa']) ?  $filap['id_programa'] : '' ?>][descrip_val]" id="especie" value="<?= isset($aux_pxd[$filap['id_programa']]['descrip_val']) ? $aux_pxd[$filap['id_programa']]['descrip_val'] : '' ?>">
+                      <input class="form-control " type="number" name="datos_programa[<?= isset($filap['id_programa']) ?  $filap['id_programa'] : '' ?>][descrip_val]" id="especie" value="<?= isset($aux_pxd[$filap['id_programa']]['descrip_val']) ? $aux_pxd[$filap['id_programa']]['descrip_val'] : '' ?>">
                     </td>
                   </tr> <?php
                       } ?>
