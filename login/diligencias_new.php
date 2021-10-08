@@ -1,8 +1,6 @@
 <?php
 include "cabecera.php";
 include '../funciones.php';
-include 'controller.php';
-
 
 $id_edit = '';
 $id_registro = '';
@@ -16,8 +14,8 @@ $id_registro = '';
   }
 </style>
 
-<div class=" bg-light">
-  <form action="controller.php" name="registro_diligencia" method="POST">
+<div class="bg-light">
+  <form action="./controller.php"  method="POST">
     <div class="container bg-white mb-4">
       <div class="form-row pt-2">
         <div class="form-group col-12">
@@ -29,7 +27,7 @@ $id_registro = '';
       <div class="form-row">
         <div class="form-group col-3">
           <label for="tipoDocumento">Tipo Documento</label>
-          <select required name="tipoDocumento" id="tipoDocumento" class="form-control">
+          <select required name="tipoDocumento" v-model="select" id="tipoDocumento" class="form-control">
             <option value="">Seleccione</option>
             <option value="1" <?php if ($tipoDocumento == "1") {
                                 echo "selected";
@@ -40,26 +38,22 @@ $id_registro = '';
             <option value="3" <?php if ($tipoDocumento == "3") {
                                 echo "selected";
                               } ?>>Cedula de Extranjeria</option>
-            <option value="NA" <?php if ($tipoDocumento == "NA") {
+            <option value="NA" <?php if ($tipoDocumento == "0") {
                                   echo "selected";
                                 } ?>>Otro</option>
           </select>
         </div>
         <div class="form-group col-3">
           <label for="documento">Documento</label>
-          <input type="text" name="documento" required="" id="documento" class="form-control" placeholder="Documento" value="<?php echo $documento ?>">
+          <input required type="text" name="documento" required="" id="documento" class="form-control" placeholder="Documento" value="<?php echo $documento ?>">
         </div>
-        <!-- <div class="form-group col-3">
-          <label for="nitEmpr">NIT Empresa</label>
-          <input type="text" name="nitEmpr" v-model="nitEmpr" id="nitEmpr" class="form-control" placeholder="NIT">
-        </div> -->
         <div class="form-group col-3">
           <label for="nombres">Nombres</label>
-          <input type="text" v-model="" id="nombres" value="<?php echo $nombres ?>" name="nombres" class="form-control" value="">
+          <input required type="text" v-model="" id="nombres" value="<?php echo $nombres ?>" name="nombres" class="form-control" value="">
         </div>
         <div class="form-group col-3">
           <label for="apellidos">Apellidos</label>
-          <input type="text" v-model="apellidos" value="<?php echo $apellidos ?>" id="apellidos" name="apellidos" class="form-control" placeholder="Apellidos">
+          <input required type="text" v-model="apellidos" value="<?php echo $apellidos ?>" id="apellidos" name="apellidos" class="form-control" placeholder="Apellidos">
         </div>
       </div>
 
@@ -71,89 +65,33 @@ $id_registro = '';
         <div class="form-group col-3">
 
           <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" value="<?php echo $email ?>" id="email" name="email" placeholder="Email">
+          <input required type="email" class="form-control" value="<?php echo $email ?>" id="email" name="email" placeholder="Email">
         </div>
         <div class="form-group col-md-3">
           <label for="celular">Celular</label>
           <input type="number" id="celular" value="<?php echo $celular ?>" name="celular" v-model="celular" class="form-control" placeholder="Celular">
         </div>
-        <div class="form-group col-3">
-          <label for="des_productivo">Des. Productivo:</label>
-          <input type="text" id="des_productivo" value="<?php echo $des_productivo ?>" name="des_productivo" class="form-control" placeholder="example" aria-label="DesProductivo">
-        </div>
-      </div>
-
-      <div class="form-row">
-        <div class="form-group col-3">
-          <label for="princ_prod_serv">Principal Prod/Serv:</label>
-          <input type="text" id="princ_prod_serv" value="<?php echo $princ_prod_serv ?>" name="princ_prod_serv" class="form-control" placeholder="Principal Prod/Serv" aria-label="PrincipalProd/Serv">
-        </div>
-        <div class="form-group col-3">
-          <label for="fort_empresarial">Fortalecimiento Empresarial</label>
-          <input type="text" id="fort_empresarial" value="<?php echo $fort_empresarial ?>" name="fort_empresarial" class="form-control" placeholder="Fortalecimiento Empresarial" aria-label="fort_empresarial">
-        </div>
         <div class="form-group col-md-3">
           <label for="direccEmpr">Dirección Empresa:</label>
           <input type="text" id="direccEmpr" value="<?php echo $direccEmpr ?>" v-model="direccEmpr" name="direccEmpr" class="form-control" placeholder="Dirección Empresa" aria-label="DirEmpresa">
         </div>
+
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-3">
+          <label for="razonSocial">Razón Social:</label>
+          <input type="text" id="razonSocial" value="<?php echo $razonSocial ?>" v-model="razonSocial" name="razonSocial" class="form-control" placeholder="Razón Social" aria-label="Razón Social">
+        </div>
+        <div class="form-group col-md-3">
+          <label for="nitEmpr">NIT Empresa:</label>
+          <input type="text" id="nitEmpr" value="<?php echo $nitEmpr ?>" v-model="nitEmpr" name="nitEmpr" class="form-control" placeholder="NIT Empresa" aria-label="NIT Empresa">
+        </div>
+
+
         <div class="form-group col-md-3">
           <label for="solicitud">Solicitud:</label>
           <input type="text" id="solicitud" value="<?php echo $solicitud ?>" v-model="solicitud" name="solicitud" class="form-control" placeholder="Solicitud" aria-label="Solicitud">
-        </div>
-      </div>
-      <!-- ---------------------------------------------- -->
-
-      <div class="form-row">
-        <!-- ---------------------------------------------- -->
-        <div class="form-group col-3">
-          <label for="form_empresarial">Formación Empresarial:</label>
-          <select class="form-control" name="form_empresarial" v-model="select" onChange="tipoPobla(this.value)">
-            <option value="Mercadeo y Ventas" <?php if (isset($form_empresarial) && $form_empresarial == "Mercadeo y Ventas") {
-                                                echo "selected";
-                                              } ?>>
-              Mercadeo y Ventas</option>
-
-            <option value="Administrativo" <?php if (isset($form_empresarial) && $form_empresarial == "Administrativo") {
-                                              echo "selected";
-                                            } ?>>
-              Administrativo</option>
-
-            <option value="Desarrollo del Empresario " <?php if (isset($form_empresarial) && $form_empresarial == "Desarrollo del Empresario ") {
-                                                          echo "selected";
-                                                        } ?>>
-              Desarrollo del Empresario </option>
-
-            <option value="Entidades sin ánimo de lucro" <?php if (isset($form_empresarial) && $form_empresarial == "Entidades sin ánimo de lucro") {
-                                                            echo "selected";
-                                                          } ?>>
-              Entidades sin ánimo de lucro</option>
-
-            <option value="Financiero y Tributario" <?php if (isset($form_empresarial) && $form_empresarial == "Financiero y Tributario") {
-                                                      echo "selected";
-                                                    } ?>>
-              Financiero y Tributario</option>
-
-            <option value="Juridico" <?php if (isset($form_empresarial) && $form_empresarial == "Juridico") {
-                                        echo "selected";
-                                      } ?>>Jurídico
-            </option>
-
-            <option value="Emprendimiento e Innovacion" <?php if (isset($form_empresarial) && $form_empresarial == "Emprendimiento e Innovacion") {
-                                                          echo "selected";
-                                                        } ?>>
-              Emprendimiento e Innovación</option>
-
-            <option value="Produccion" <?php if (isset($form_empresarial) && $form_empresarial == "Produccion") {
-                                          echo "selected";
-                                        } ?>>
-              Producción</option>
-
-            <option value="Comercio Exterior" <?php if (isset($form_empresarial) && $form_empresarial == "Comercio Exterior") {
-                                                echo "selected";
-                                              } ?>>
-              Comercio Exterior</option>
-
-          </select>
         </div>
         <!-- ---------------------------------------------- -->
         <div class="form-group col-3">
@@ -275,11 +213,124 @@ $id_registro = '';
           <input class="form-control" type="text" placeholder="Escriba su tipo de población" name="otro_activEcon" value="<?php echo $otro_activEcon ?>">
         </div>
 
-        <!-- ------------------------------------- -->
+        <!-- ---------------------------------------------- -->
+
+        <style>
+          .btn-outline-secondary {
+            color: black;
+            background-color: #e6e6e6;
+            border-color: #c8ced3;
+          }
+
+          .btn-outline-secondary:hover {
+            color: black;
+            background-color: #c8ced3;
+            border-color: #c8ced3;
+          }
+        </style>
+
+        <!-- ---------------------------------------------- -->
+        <div class="form-row">
+          <!-----EL Script para mostrar u ocultar es en la cabecera = form_empresarial ------- -->
+          <div class="form-group col-3">
+            <label for="">Componentes:</label></br>
+          </div>
+          <div class="form-group col-3">
+            <input class="form-check-input" name="des_productivo" v-model="des_productivo" type="checkbox" value="Desarrollo Productivo" <?php if (isset($des_productivo) && $des_productivo == "Desarrollo Productivo") {
+                                                                                                                                            echo "checked";
+                                                                                                                                          } ?> id="des_productivo">
+            <label class="form-check-label" for="des_productivo">
+              Desarrollo Productivo.
+            </label>
+          </div>
+          <div class="form-group col-3">
+            <input class="form-check-input" name="fort_empresarial" v-model="fort_empresarial" type="checkbox" value="Fortalecimiento Empresarial" <?php if (isset($fort_empresarial) && $fort_empresarial == "Fortalecimiento Empresarial") {
+                                                                                                                                                      echo "checked";
+                                                                                                                                                    } ?> id="fort_empresarial">
+            <label class="form-check-label" for="fort_empresarial">
+              Fortalecimiento Empresarial
+            </label>
+          </div>
+          <div class="form-group col-3">
+            <input class="form-check-input" type="checkbox" name="check" value="" name="form_empresarial" v-model="form_empresarial" id="check" onchange="javascript:showContent()" <?php if (isset($form_empresarial) && $form_empresarial != "") {
+                                                                                                                                                                                      echo "checked";
+                                                                                                                                                                                    } ?>>
+            <label class="form-check-label" for="check">
+              Formación Empresarial
+            </label>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-3" id="content" style="display: none;">
+            <select class="btn btn-outline-secondary" name="form_empresarial" v-model="select">
+              <option value="" <?php if (isset($form_empresarial) && $form_empresarial == "") {
+                                  echo "selected";
+                                } ?>>
+                Ninguno</option>
+              <option value="Mercadeo y Ventas" <?php if (isset($form_empresarial) && $form_empresarial == "Mercadeo y Ventas") {
+                                                  echo "selected";
+                                                } ?>>
+                Mercadeo y Ventas</option>
+
+              <option value="Administrativo" <?php if (isset($form_empresarial) && $form_empresarial == "Administrativo") {
+                                                echo "selected";
+                                              } ?>>
+                Administrativo</option>
+
+              <option value="Desarrollo del Empresario " <?php if (isset($form_empresarial) && $form_empresarial == "Desarrollo del Empresario ") {
+                                                            echo "selected";
+                                                          } ?>>
+                Desarrollo del Empresario </option>
+
+              <option value="Entidades sin ánimo de lucro" <?php if (isset($form_empresarial) && $form_empresarial == "Entidades sin ánimo de lucro") {
+                                                              echo "selected";
+                                                            } ?>>
+                Entidades sin ánimo de lucro</option>
+
+              <option value="Financiero y Tributario" <?php if (isset($form_empresarial) && $form_empresarial == "Financiero y Tributario") {
+                                                        echo "selected";
+                                                      } ?>>
+                Financiero y Tributario</option>
+
+              <option value="Juridico" <?php if (isset($form_empresarial) && $form_empresarial == "Juridico") {
+                                          echo "selected";
+                                        } ?>>Jurídico
+              </option>
+
+              <option value="Emprendimiento e Innovacion" <?php if (isset($form_empresarial) && $form_empresarial == "Emprendimiento e Innovacion") {
+                                                            echo "selected";
+                                                          } ?>>
+                Emprendimiento e Innovación</option>
+
+              <option value="Produccion" <?php if (isset($form_empresarial) && $form_empresarial == "Produccion") {
+                                            echo "selected";
+                                          } ?>>
+                Producción</option>
+
+              <option value="Comercio Exterior" <?php if (isset($form_empresarial) && $form_empresarial == "Comercio Exterior") {
+                                                  echo "selected";
+                                                } ?>>
+                Comercio Exterior</option>
+
+            </select>
+
+          </div>
 
 
+        </div>
       </div>
-
+      <script type="text/javascript">
+        function showContent() {
+          element = document.getElementById("content");
+          check = document.getElementById("check");
+          if (check.checked) {
+            element.style.display = 'block';
+          } else {
+            element.style.display = 'none';
+          }
+        }
+      </script>
       <!-- ------------------------------------- -->
 
       <br>
@@ -296,7 +347,7 @@ $id_registro = '';
         </div>
         <div class="form-group col-3">
           <label for=fecha_matricula">Fecha Matricula:</label>
-          <input class="form-control" type="date" name="fecha_matricula" id="fecha_matricula" value="<?= $fecha_matricula ?>">
+          <input class="form-control" type="date" name="fecha_matricula" id="fecha_matricula" value="<?= date('Y-m-d') ?>">
         </div>
         <!-- ---------------------------------------------- -->
 
@@ -362,28 +413,8 @@ $id_registro = '';
                                 } ?>>Si</option>
           </select>
         </div>
-        <div class="form-group col-3 aux_regis " style="display:none">
-          <label id="num_cam_comercio" for="num_cam_comercio">Número C. de Comercio:</label>
-          <input class="form-control" type="text" placeholder="Número C. de Comercio:" name="num_cam_comercio" id="num_cam_comercio" value="<?= $num_cam_comercio ?>">
-        </div>
+        
       </div>
-      <!-- --------------------------------------------------- -->
-      <!-- 
-        <div class="form-group col-3">
-          <label for="registrado">Registrado en C. de Comercio:</label>
-          <select class="form-control" style="width: 5em;" name="registrado" v-model="" id="registrado">
-            <option value="Si" <?php if ($registrado == "Si") {
-                                  echo "selected";
-                                } ?>>Si</option>
-            <option value="No" <?php if ($registrado == "No") {
-                                  echo "selected";
-                                } ?>>No</option>
-          </select>
-        </div>
-        <div class="form-group col-3" style="display:none">
-          <label id="registrado" for="registrado">Número C. de Comercio:</label>
-          <input class="form-control" type="text" placeholder="Número cámara comercio" name="registrado" id="registrado" value="<?= $registrado ?>">
-        </div> -->
 
       <div class="form-row">
         <div class="form-group col-3">
@@ -393,7 +424,7 @@ $id_registro = '';
         <!-- -------------------------- -->
         <div class="form-group col-3">
           <label for="genero">Género:</label>
-          <select required class="form-control" name="genero" v-model="select">
+          <select class="form-control" name="genero" v-model="select">
             <option value="">Seleccione</option>
             <option value="Mujer" <?php if (isset($genero) && $genero == "Mujer") {
                                     echo "selected";
@@ -506,30 +537,33 @@ $id_registro = '';
                   <th>Descripción/ Valor</th>
                 </tr>
                 <?php
-                $conspxd = "SELECT * FROM progsxdiligendias where id_diligencia=$id_registro";
-                $respxd = mysqli_query($conn, $conspxd);
+                $conspxd = "SELECT * FROM progsxdiligencias WHERE id_diligencia=$id_registro";
+                $query_pxd = mysqli_query($conn, $conspxd);
                 $aux_pxd = array();
-                if ($respxd) {
-                  while ($filapxd = mysqli_fetch_array($respxd)) {
+                if ($query_pxd) {
+                  while ($filapxd = mysqli_fetch_array($query_pxd)) {
                     $aux_pxd[$filapxd['id_programa']] = $filapxd;
                   }
                 }
 
 
-                $consp = "SELECT * FROM programas where estado=1 order by programa";
-                $resp = mysqli_query($conn, $consp);
+                $consp = "SELECT * FROM programas WHERE estado=1 ORDER BY programa";
+
+
+                $query_programas = mysqli_query($conn, $consp);
+
                 $cont = 1;
-                while ($filap = mysqli_fetch_array($resp)) {  ?>
+                while ($filap = mysqli_fetch_array($query_programas)) {  ?>
                   <tr>
                     <td><?= $cont++ ?></td>
                     <td>
                       <?= $filap['programa'] ?>
                     </td>
                     <td>
-                      <input type="checkbox" name="si_programa[]" value="<?= $filap['id_programa'] ? $filap['id_programa'] : '' ?>" <?php if (isset($aux_pxd[$filap['id_programa']]) && $aux_pxd[$filap['id_programa']]) echo "checked"; ?>>
+                      <input type="checkbox" name="datos_programa[<?= isset($filap['id_programa']) ?  $filap['id_programa'] : '' ?>][si_programa]" value="<?= $filap['id_programa'] ? $filap['id_programa'] : '' ?>" <?php if (isset($aux_pxd[$filap['id_programa']]) && $aux_pxd[$filap['id_programa']]) echo "checked"; ?>>
                     </td>
                     <td>
-                      <select class="form-control " style="width: 5em;" name="apoyo_l['<?= $filap['id'] ?>']" id="apoyo">
+                      <select class="form-control" style="width: 5em;" name="datos_programa[<?= isset($filap['id_programa']) ?  $filap['id_programa'] : '' ?>][recibe_apoyo]" id="apoyo">
                         <option value="No" <?php if (isset($aux_pxd[$filap['id_programa']]['recibe_apoyo']) && $aux_pxd[$filap['id_programa']]['recibe_apoyo'] == "No") {
                                               echo "selected";
                                             } ?>>No</option>
@@ -539,21 +573,20 @@ $id_registro = '';
                       </select>
                     </td>
                     <td>
-                      <select class="form-control " name="dinero_espcie_l['<?= isset($filap['id_programa']) ? $filap['id_programa'] : '' ?>']" id="dinero_espcie">
+                      <select class="form-control " name="datos_programa[<?= isset($filap['id_programa']) ?  $filap['id_programa'] : '' ?>][dinero_espcie]" id="dinero_espcie">
                         <option value="Dinero" <?php
                                                 if (isset($aux_pxd[$filap['id_programa']]['dinero_espcie']) && ($aux_pxd[$filap['id_programa']]['dinero_espcie'] == "Dinero"
                                                   || $aux_pxd[$filap['id_programa']] == "Di")) {
                                                   echo "selected";
-                                                } ?>>
-                          Dinero
-                        </option>
+                                                } ?>>Dinero</option>
+
                         <option value="Especie" <?php if (isset($aux_pxd[$filap['id_programa']]['dinero_espcie']) && ($aux_pxd[$filap['id_programa']]['dinero_espcie'] != "Dinero" && $aux_pxd[$filap['id_programa']] != "Di")) {
                                                   echo "selected";
                                                 } ?>>Especie</option>
                       </select>
                     </td>
                     <td>
-                      <input class="form-control " type="text" name="especie_l['<?= isset($filap['id_programa']) ? $filap['id_programa'] : '' ?>']" id="especie" value="<?= isset($aux_pxd[$filap['id_programa']]['descrip_val']) ? $aux_pxd[$filap['id_programa']]['descrip_val'] : '' ?>">
+                      <input class="form-control " type="text" name="datos_programa[<?= isset($filap['id_programa']) ?  $filap['id_programa'] : '' ?>][descrip_val]" id="especie" value="<?= isset($aux_pxd[$filap['id_programa']]['descrip_val']) ? $aux_pxd[$filap['id_programa']]['descrip_val'] : '' ?>">
                     </td>
                   </tr> <?php
                       } ?>
@@ -568,7 +601,6 @@ $id_registro = '';
           <div class="form-group col-12">
             <input type="button" value="Regresar" class="btn btn-danger" onClick="document.location.href='diligencias.php?ruta=Diligencias'">
             <input type="submit" value="Guardar" class="btn btn-success" name="registrar">
-            <!-- <input type="submit" value="Guardar" class="btn btn-success" name="Guardar"> -->
           </div>
         </div>
       </div>
@@ -587,6 +619,9 @@ include "pie.php";
     <?php   }
     if ($poblacion == "Otro") { ?>
       $(".aux_cual").show();
+    <?php   }
+    if ($poblacion == "Otro") { ?>
+      $(".aux_compon").show();
     <?php   }
     if ($activEcon == "Other") { ?>
       $(".act_econ").show();

@@ -1,9 +1,8 @@
 <?php
 $usuario = "root";
-$contrasena = "";  // en mi caso tengo contraseña pero en casa caso introducidla aquí.
+$contrasena = ""; 
 $servidor = "localhost";
-$basededatos = "ccputuma_CDE";
-
+$basededatos = "ccputuma_cde";
 $conn = mysqli_connect($servidor, $usuario, $contrasena, $basededatos);
 
 if (!$conn) {
@@ -11,4 +10,3 @@ if (!$conn) {
     echo "Error Description: " . mysqli_connect_error();
     exit;
 }
-?>

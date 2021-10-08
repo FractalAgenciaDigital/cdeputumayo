@@ -3,37 +3,6 @@ include "cabecera.php";
 
 
 ?>
-<!-- <div class="row">
-	<div class="col-sm-12">
-		<div class="card">
-			<div class="card-header">
-				<strong>Usuarios</strong>
-			</div>
-			<div class="card-body">
-				<form class="form-horizontal" action="" name="forma2" method="post">
-					<div class="form-group row">
-						<label class="col-md-1 col-form-label" for="hf-email">Buscar</label>
-						<div class="col-md-5">
-							<input class="form-control" id="text_buscar" type="text" name="text_buscar">
-
-						</div>
-						<div class="col-md-1">
-							<button type="button" class="btn btn-ghost-primary active" name="buscar" id="buscar" onClick="listar()">
-								<i class="cui-magnifying-glass"></i>
-							</button>
-						</div>
-						<div class="col-md-1">
-							<button type="button" class="btn btn-ghost-success active" name="nuevo" id="nuevo" data-toggle="modal" data-target="#exampleModal" onClick="limpiar()">
-								Nuevo
-							</button>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-</div>
-</div> -->
 <div class="row">
 	<div class="col-sm-12">
 		<div class="card">

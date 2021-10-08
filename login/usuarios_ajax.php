@@ -19,9 +19,6 @@ if(isset($_POST['usuario'])&&isset($_POST['clave'])){
 	else{
 		$fila['respuesta'] = 0;
 	}
-	//print_r($_SESSION);
-	//echo json_encode($fila,JSON_UNESCAPED_SLASHES);
-	
 	echo json_encode($fila);
 	
 }
