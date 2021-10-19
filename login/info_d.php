@@ -28,7 +28,7 @@ while ($afila = mysqli_fetch_array($res_a)) {
 $cons = 'SELECT * FROM diligencias_new';
 $donde = '';
 
-if (isset($_GET['tipoDoc']) && $_GET['tipoDoc'] != '') {
+if (isset($_GET['tipoDocumento']) && $_GET['tipoDocumento'] != '') {
 	$donde .= ' WHERE tipoDocumento = ' . $_GET['tipoDoc'];
 }
 if (isset($_GET['txtBuscar']) && $_GET['txtBuscar'] != '') {

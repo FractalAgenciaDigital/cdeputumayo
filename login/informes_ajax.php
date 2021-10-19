@@ -63,11 +63,6 @@ if (isset($_POST['listar'])) {
             : ($fila['fort_empresarial'] == '2' ? 'Fábricas de productividad'
                 : ($fila['fort_empresarial'] == '3' ? 'Propiedad industrial'
                     : ($fila['fort_empresarial'] == '4' ? 'Ferias, Misiones, otros.' : '')));
-
-        // $fechaSol = explode('-', explode(' ', $fila['create_at'])[0]);
-        // $create_at = $fechaSol[2] . "/" . $fechaSol[1] . "/" . $fechaSol[0];
-        // $fechaSol = explode('-', explode(' ', $fila['updated_at'])[0]);
-        // $update_at = $fechaSol[2] . "/" . $fechaSol[1] . "/" . $fechaSol[0];
         $tbody .= "
             <tr>
                 <td>$cont</td>
